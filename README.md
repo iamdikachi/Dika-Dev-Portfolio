@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Dashboard
+
+A modern, responsive portfolio dashboard built with Next.js 14, TypeScript, and Tailwind CSS.
+
+## Features
+
+- 🎨 Modern, clean UI with blue gradient theme
+- 📱 Fully responsive (desktop dashboard, mobile single-page)
+- ⚡ Built with Next.js 14 App Router
+- 🔷 TypeScript for type safety
+- 🎭 Smooth animations and transitions
+- 📊 Collapsible sidebar on desktop
+- 🎯 Multiple sections: Home, Profile, About, Projects, Experience, Skills, Resume, Contact, Buy Me a Coffee
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd portfolio-dashboard
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio-dashboard/
+├── public/              # Static assets
+├── src/
+│   ├── app/            # Next.js app router files
+│   ├── components/     # React components
+│   │   ├── layout/    # Layout components
+│   │   ├── sections/  # Page sections
+│   │   └── ui/        # Reusable UI components
+│   ├── data/          # Static data
+│   ├── hooks/         # Custom React hooks
+│   └── lib/           # Utilities and types
+└── ...config files
+```
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+### Update Your Information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Personal Info**: Edit `src/data/` files:
+   - `projects.ts` - Your projects
+   - `experience.ts` - Work experience
+   - `skills.ts` - Technical skills
+   - `socialLinks.ts` - Social media links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Section Content**: Modify components in `src/components/sections/`
 
-## Deploy on Vercel
+3. **Colors**: Update Tailwind config in `tailwind.config.js`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Add New Sections
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create component in `src/components/sections/YourSection.tsx`
+2. Add menu item in `src/data/menuItems.ts`
+3. Import and add to `sectionComponents` in `src/components/layout/DashboardLayout.tsx`
+
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Deployment
+
+Deploy easily on [Vercel](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+## Technologies Used
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Lucide React (icons)
+
+## License
+
+MIT License - feel free to use this for your own portfolio!
+
+## Support
+
+If you found this helpful, consider buying me a coffee! ☕
+
+---
+
+Built with ❤️ using Next.js
