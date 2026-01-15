@@ -20,6 +20,9 @@ export interface Project {
   image?: string;
   link?: string;
   github?: string;
+  status?: "ACTIVE" | "ARCHIVE" | "CASE STUDY" | "BASELINE";
+  role?: string;
+  category?: string;
 }
 
 export interface Experience {
@@ -28,6 +31,10 @@ export interface Experience {
   position: string;
   duration: string;
   description: string;
+  icon?: string;
+  achievements?: string[];
+  location?: string;
+  technologies?: string[];
 }
 
 export interface Skill {
@@ -35,4 +42,37 @@ export interface Skill {
   name: string;
   level: number;
   category: string;
+  type?: "technical" | "soft";
+}
+
+
+export interface SampleProject {
+  id: string;
+  title: string;
+  image: string;
+  url: string;
+}
+
+
+export interface Recommendation {
+  id: string;
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+  avatar: string;
+  verified: boolean;
+}
+
+export interface ServiceCardProps {
+  title: string;
+  description: string;
+  onReadMore?: () => void;
+}
+
+
+export interface TimelineItemProps {
+  title: string;
+  description: string;
+  delay: string;
 }

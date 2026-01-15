@@ -8,7 +8,7 @@ import { Footer } from "./footer";
 import { Sidebar } from "./sidebar";
 
 import { Profile } from "../sections/profile";
-import { About } from "../sections/about";
+
 import { Projects } from "../sections/projects";
 import { Experience } from "../sections/experience";
 import { Skills } from "../sections/skills";
@@ -16,6 +16,7 @@ import { Resume } from "../sections/resume";
 import { Contact } from "../sections/contact";
 import { BuyMeCoffee } from "../sections/buyMeCofee";
 import { Home } from "../sections/home";
+import About from "../sections/about";
 
 // Import all section components
 
@@ -34,7 +35,6 @@ const sectionComponents = {
 export const DashboardLayout: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isCollapsed, toggle } = useSidebar();
   const isMobile = useIsMobile();
 
   const SectionComponent =
@@ -52,7 +52,7 @@ export const DashboardLayout: React.FC = () => {
 
         <main className="flex-1 md:p-6">
           <div className="max-w-4xl mx-auto">
-            <SectionComponent />
+            <SectionComponent onSectionChange={setActiveSection} />
           </div>
         </main>
 
@@ -62,19 +62,17 @@ export const DashboardLayout: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-dark-surface overflow-hidden  lg:max-w-[75%] lg:mx-auto 2xl:max-w-[80%]">
+    <div className="flex h-screen bg-dark-surface overflow-hidden  lg:max-w-[85%] lg:mx-auto 2xl:max-w-[80%]">
       <Sidebar
         activeSection={activeSection}
         onSectionChange={setActiveSection}
       />
-
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <div className="flex-1 overflow-y-auto p-10">
-          <div className="mx-auto">
-            <SectionComponent />
+      <main className="flex-1 flex flex-col overflow-hidden ">
+        <div className="flex-1 overflow-y-auto ">
+          <div className="mx-auto p-10">
+            <SectionComponent onSectionChange={setActiveSection} />
           </div>
         </div>
-
         <Footer />
       </main>
     </div>

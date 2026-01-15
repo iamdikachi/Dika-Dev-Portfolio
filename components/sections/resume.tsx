@@ -1,63 +1,238 @@
+"use client";
+
 import React from "react";
-import { Card } from "@/components/ui/card";
-import { Download, FileText } from "lucide-react";
+import { experiences } from "@/data/experience";
+import { skills } from "@/data/skills";
+import { Download, Mail, Phone, MapPin, Linkedin, Github, Globe } from "lucide-react";
 
 export const Resume: React.FC = () => {
-  return (
-    <Card>
-      <h2 className="text-4xl font-bold text-blue-900 mb-6">My Resume</h2>
-      <div className="space-y-6">
-        <p className="text-lg text-gray-700">
-          Download my complete resume to learn more about my professional
-          background, skills, and achievements.
-        </p>
+  const handleDownload = () => {
+    // This will trigger browser print dialog which can save as PDF
+    window.print();
+  };
 
-        <div className="bg-gradient-to-br from-blue-50 to-white rounded-xl p-8 border-2 border-blue-200 flex items-center gap-6">
-          <div className="bg-blue-600 text-white p-4 rounded-lg">
-            <FileText size={48} />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-blue-800 mb-1">
-              Professional Resume
-            </h3>
-            <p className="text-gray-600">
-              PDF Document • Last updated: November 2024
-            </p>
-          </div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all">
+  return (
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Download Button - Fixed at top */}
+        <div className="mb-6 flex justify-end print:hidden">
+          <button
+            onClick={handleDownload}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-lg"
+          >
             <Download size={20} />
-            Download
+            Download as PDF
           </button>
         </div>
 
-        <div className="border-t pt-6">
-          <h3 className="text-xl font-semibold text-blue-800 mb-4">
-            Resume Highlights
-          </h3>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-start gap-3">
-              <span className="text-blue-600 mt-1">•</span>
-              <span>
-                5+ years of professional experience in web development
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-blue-600 mt-1">•</span>
-              <span>Expertise in React, Next.js, TypeScript, and Node.js</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-blue-600 mt-1">•</span>
-              <span>
-                Led multiple successful projects from conception to deployment
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-blue-600 mt-1">•</span>
-              <span>Strong problem-solving and communication skills</span>
-            </li>
-          </ul>
+        {/* Resume Container */}
+        <div className="bg-white shadow-xl rounded-lg overflow-hidden print:shadow-none print:rounded-none">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 sm:p-12">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-2">Your Name</h1>
+            <p className="text-xl sm:text-2xl text-blue-100 mb-6">
+              Full Stack Developer & UI/UX Designer
+            </p>
+            
+            {/* Contact Info */}
+            <div className="flex flex-wrap gap-4 text-sm sm:text-base">
+              <div className="flex items-center gap-2">
+                <Mail size={16} />
+                <span>your.email@example.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={16} />
+                <span>+234 XXX XXX XXXX</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin size={16} />
+                <span>Lagos, Nigeria</span>
+              </div>
+            </div>
+            
+            {/* Social Links */}
+            <div className="flex flex-wrap gap-4 mt-4 text-sm">
+              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+                <Linkedin size={16} />
+                <span>linkedin.com/in/yourprofile</span>
+              </a>
+              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+                <Github size={16} />
+                <span>github.com/yourusername</span>
+              </a>
+              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+                <Globe size={16} />
+                <span>yourportfolio.com</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="p-8 sm:p-12 space-y-8">
+            {/* Professional Summary */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Professional Summary
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                Passionate Full Stack Developer with 8+ years of experience building scalable web applications 
+                and leading development teams. Expertise in modern JavaScript frameworks, backend technologies, 
+                and UI/UX design. Proven track record of delivering high-quality projects on time and mentoring 
+                junior developers. Strong problem-solver with excellent communication skills and a commitment to 
+                continuous learning.
+              </p>
+            </section>
+
+            {/* Professional Experience */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Professional Experience
+              </h2>
+              <div className="space-y-6">
+                {experiences.map((exp) => (
+                  <div key={exp.id} className="relative pl-6 border-l-2 border-blue-200">
+                    <div className="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                    <div className="mb-2">
+                      <h3 className="text-xl font-bold text-gray-900">{exp.position}</h3>
+                      <p className="text-blue-600 font-semibold">{exp.company}</p>
+                      <p className="text-sm text-gray-500">
+                        {exp.duration} {exp.location && `• ${exp.location}`}
+                      </p>
+                    </div>
+                    {exp.achievements && exp.achievements.length > 0 && (
+                      <ul className="space-y-2 text-gray-700">
+                        {exp.achievements.map((achievement, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="text-blue-600 mt-1">•</span>
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {exp.technologies && exp.technologies.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {exp.technologies.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Technical Skills */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Technical Skills
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {Array.from(new Set(skills.filter(s => s.type !== "soft").map(s => s.category))).map((category) => (
+                  <div key={category}>
+                    <h3 className="font-semibold text-gray-900 mb-2">{category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {skills
+                        .filter(s => s.category === category && s.type !== "soft")
+                        .map((skill) => (
+                          <span
+                            key={skill.id}
+                            className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded"
+                          >
+                            {skill.name}
+                          </span>
+                        ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Soft Skills */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Soft Skills
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {skills
+                  .filter(s => s.type === "soft")
+                  .map((skill) => (
+                    <span
+                      key={skill.id}
+                      className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+              </div>
+            </section>
+
+            {/* Education */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Education
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Bachelor of Science in Computer Science</h3>
+                  <p className="text-blue-600 font-semibold">University Name</p>
+                  <p className="text-sm text-gray-500">2014 - 2018 • Lagos, Nigeria</p>
+                  <p className="text-gray-700 mt-2">
+                    Graduated with First Class Honors. Relevant coursework: Data Structures, 
+                    Algorithms, Web Development, Database Systems, Software Engineering.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Certifications */}
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+                Certifications
+              </h2>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>AWS Certified Solutions Architect - Amazon Web Services (2023)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>Professional Scrum Master I (PSM I) - Scrum.org (2022)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>React Developer Certification - Meta (2021)</span>
+                </li>
+              </ul>
+            </section>
+          </div>
         </div>
       </div>
-    </Card>
+
+      {/* Print Styles */}
+      <style jsx global>{`
+        @media print {
+          body {
+            background: white !important;
+          }
+          .print\\:hidden {
+            display: none !important;
+          }
+          .print\\:shadow-none {
+            box-shadow: none !important;
+          }
+          .print\\:rounded-none {
+            border-radius: 0 !important;
+          }
+          @page {
+            margin: 0.5in;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
