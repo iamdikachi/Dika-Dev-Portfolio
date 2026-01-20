@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 import { experiences } from "@/data/experience";
-import { Briefcase, Code, Palette, Building2, MapPin, Calendar } from "lucide-react";
+import {
+  Briefcase,
+  Code,
+  Palette,
+  Building2,
+  MapPin,
+  Calendar,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -30,17 +37,34 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
 
   const highlightKeywords = (text: string) => {
     const keywords = [
-      "PHP", "monolith", "Node.js", "microservices", "React", "WebSockets",
-      "Next.js", "TDD", "CI/CD", "TypeScript", "MongoDB", "Stripe",
-      "Figma", "Tailwind CSS", "Framer Motion", "CMS", "e-commerce"
+      "PHP",
+      "monolith",
+      "Node.js",
+      "microservices",
+      "React",
+      "WebSockets",
+      "Next.js",
+      "TDD",
+      "CI/CD",
+      "TypeScript",
+      "MongoDB",
+      "Stripe",
+      "Figma",
+      "Tailwind CSS",
+      "Framer Motion",
+      "CMS",
+      "e-commerce",
     ];
-    
+
     let highlighted = text;
-    keywords.forEach(keyword => {
-      const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
-      highlighted = highlighted.replace(regex, '<span class="text-teal-400 font-medium">$1</span>');
+    keywords.forEach((keyword) => {
+      const regex = new RegExp(`\\b(${keyword})\\b`, "gi");
+      highlighted = highlighted.replace(
+        regex,
+        '<span class="text-teal-400 font-medium">$1</span>',
+      );
     });
-    
+
     return highlighted;
   };
 
@@ -52,7 +76,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
           <h3 className="text-xs text-gray-400 uppercase tracking-wider mb-4">
             EXPERIENCE_EXPLORER
           </h3>
-          
+
           {/* View Options */}
           <div className="space-y-2 mb-8">
             {views.map((view) => (
@@ -91,7 +115,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             </h4>
             <div className="space-y-4">
               {milestones.map((milestone, index) => (
-                <div key={index} className="relative pl-4 border-l border-teal-400/10">
+                <div
+                  key={index}
+                  className="relative pl-4 border-l border-teal-400/10"
+                >
                   <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-teal-400 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.4)]"></div>
                   <p className="text-xs text-gray-500">{milestone.year}</p>
                   <p className="text-sm text-gray-400">{milestone.title}</p>
@@ -108,7 +135,8 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             <span>status.log</span>
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Currently open to senior leadership roles and cloud architecture consulting.
+            Currently open to senior leadership roles and cloud architecture
+            consulting.
           </p>
         </div>
       </div>
@@ -125,8 +153,9 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
               Professional Experience
             </h1>
             <p className="text-gray-400 text-base sm:text-lg max-w-3xl">
-              A technical chronicle of 8+ years building scalable web systems, leading
-              engineering teams, and solving complex architectural challenges.
+              A technical chronicle of 8+ years building scalable web systems,
+              leading engineering teams, and solving complex architectural
+              challenges.
             </p>
           </div>
 
@@ -143,7 +172,9 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                   <div className="w-3 h-3 rounded-full bg-orange-400/20"></div>
                   <div className="w-3 h-3 rounded-full bg-teal-400/20"></div>
                 </div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest">dikachi-dev@experience: ~</div>
+                <div className="text-xs text-gray-500 uppercase tracking-widest">
+                  dikachi-dev@experience: ~
+                </div>
                 <div className="w-10"></div>
               </div>
               <div className="p-6 space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar">
@@ -152,26 +183,48 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                   <span className="text-gray-300">~ /career/experience</span>
                   <span className="text-teal-400">git status</span>
                 </div>
-                <div className="text-gray-500">On branch professional-growth</div>
-                <div className="text-gray-400">Your career is up to date with origin/master.</div>
-                
+                <div className="text-gray-500">
+                  On branch professional-growth
+                </div>
+                <div className="text-gray-400">
+                  Your career is up to date with origin/master.
+                </div>
+
                 {experiences.map((exp, i) => (
                   <div key={exp.id} className="pt-4 border-t border-teal-400/5">
                     <div className="flex gap-2 text-teal-400 font-bold mb-2">
-                       <span>[{i + 1}]</span>
-                       <span>{exp.position.toUpperCase()}</span>
-                       <span className="text-gray-500 font-normal">--company &quot;{exp.company}&quot;</span>
+                      <span>[{i + 1}]</span>
+                      <span>{exp.position.toUpperCase()}</span>
+                      <span className="text-gray-500 font-normal">
+                        --company &quot;{exp.company}&quot;
+                      </span>
                     </div>
                     <div className="pl-6 space-y-1 text-gray-400">
-                      <div><span className="text-teal-400/50">duration:</span> {exp.duration}</div>
-                      <div><span className="text-teal-400/50">location:</span> {exp.location}</div>
-                      <div className="pt-2 text-gray-500 italic">// Key accomplishments:</div>
-                      {exp.achievements.map((ach, idx) => (
-                        <div key={idx} className="flex gap-2">
-                          <span className="text-teal-400/30">L{idx + 1}:</span>
-                          <span dangerouslySetInnerHTML={{ __html: highlightKeywords(ach) }} />
-                        </div>
-                      ))}
+                      <div>
+                        <span className="text-teal-400/50">duration:</span>{" "}
+                        {exp.duration}
+                      </div>
+                      <div>
+                        <span className="text-teal-400/50">location:</span>{" "}
+                        {exp.location}
+                      </div>
+                      <div className="pt-2 text-gray-500 italic">
+                     
+                      </div>
+                      {exp.achievements && Array.isArray(exp.achievements)
+                        ? exp.achievements.map((ach, idx) => (
+                            <div key={idx} className="flex gap-2">
+                              <span className="text-teal-400/30">
+                                L{idx + 1}:
+                              </span>
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: highlightKeywords(ach),
+                                }}
+                              />
+                            </div>
+                          ))
+                        : null}
                     </div>
                   </div>
                 ))}
@@ -187,15 +240,15 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             <div className="space-y-6 lg:space-y-8">
               {experiences.map((exp, index) => {
                 const IconComponent = exp.icon ? iconMap[exp.icon] : Briefcase;
-                
+
                 return (
-                    <motion.div
-                      key={exp.id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      className="bg-teal-400/2 backdrop-blur-sm rounded-2xl border border-teal-400/10 overflow-hidden hover:border-teal-400 transition-all duration-300"
-                    >
+                  <motion.div
+                    key={exp.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="bg-teal-400/2 backdrop-blur-sm rounded-2xl border border-teal-400/10 overflow-hidden hover:border-teal-400 transition-all duration-300"
+                  >
                     {/* File Header */}
                     <div className="bg-dark-bg px-4 sm:px-6 py-3 flex items-center justify-between border-b border-teal-400/10">
                       <div className="flex items-center gap-2">
@@ -205,7 +258,8 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                           <div className="w-3 h-3 rounded-full bg-teal-400/60"></div>
                         </div>
                         <span className="text-xs sm:text-sm text-gray-500 font-mono ml-2 sm:ml-4 truncate">
-                          {exp.position.replace(/\s+/g, '').substring(0, 20)}..tsx
+                          {exp.position.replace(/\s+/g, "").substring(0, 20)}
+                          ..tsx
                         </span>
                       </div>
                       <button className="text-gray-400 hover:text-white text-sm">
@@ -224,9 +278,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                         {/* Content */}
                         <div className="flex-1">
                           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-300">
-                            {exp.position} @ <span className="text-teal-400">{exp.company}</span>
+                            {exp.position} @{" "}
+                            <span className="text-teal-400">{exp.company}</span>
                           </h2>
-                          
+
                           <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6">
                             {exp.location && (
                               <div className="flex items-center gap-1">
@@ -244,13 +299,18 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                           {exp.achievements && exp.achievements.length > 0 && (
                             <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                               {exp.achievements.map((achievement, idx) => (
-                                <div key={idx} className="flex items-start gap-2 sm:gap-3">
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-2 sm:gap-3"
+                                >
                                   <span className="text-teal-400 font-mono text-xs sm:text-sm mt-1 shrink-0">
                                     {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                                   </span>
-                                  <p 
+                                  <p
                                     className="text-gray-300 text-sm sm:text-base leading-relaxed"
-                                    dangerouslySetInnerHTML={{ __html: highlightKeywords(achievement) }}
+                                    dangerouslySetInnerHTML={{
+                                      __html: highlightKeywords(achievement),
+                                    }}
                                   />
                                 </div>
                               ))}

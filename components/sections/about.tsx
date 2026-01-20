@@ -39,7 +39,6 @@ const About: React.FC = () => {
       `}</style>
 
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <header
           className="mb-16 opacity-0"
           style={{ animation: "fadeInUp 0.8s ease forwards" }}

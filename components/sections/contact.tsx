@@ -1,20 +1,20 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
-import { Mail, MapPin, Github, Linkedin, Twitter, Send, Code2, Briefcase, Share2 } from "lucide-react";
+import { Mail, MapPin, Send, Code2, Briefcase, Share2 } from "lucide-react";
 
 export const Contact: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        {/* Left Side: Info */}
+
         <div className="lg:col-span-5 space-y-8">
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold tracking-tight text-teal-400">
-              Let's Build <br />
+            <h1 className="text-4xl font-bold tracking-tight text-teal-400">
+              Let&apos;s Build <br />
               <span className="text-gray-300">Something Together</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-md italic">
-              I'm always open to discussing new projects, creative AI ideas, or
+              I&apos;m always open to discussing new projects, creative AI ideas, or
               opportunities to be part of your visions. Feel free to reach out
               through the form or my social media.
             </p>
@@ -46,13 +46,13 @@ export const Contact: React.FC = () => {
               <div className="w-10 h-10 rounded-lg bg-teal-400/10 flex items-center justify-center text-teal-400 border border-teal-400/20">
                 <Mail className="w-5 h-5" />
               </div>
-              <p className="font-medium text-gray-300">hello@devportfolio.com</p>
+              <p className="font-medium text-gray-300">emmanuelnnadi097@gmail.com</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-lg bg-teal-400/10 flex items-center justify-center text-teal-400 border border-teal-400/20">
                 <MapPin className="w-5 h-5" />
               </div>
-              <p className="font-medium text-gray-300">Remote / San Francisco, CA</p>
+              <p className="font-medium text-gray-300">Remote / Nigeria</p>
             </div>
           </div>
         </div>

@@ -83,7 +83,7 @@ const HeroSection = () => {
                     Hello
                     <br />
                     I&apos;m
-                    <span className="text-gray-300">Onyedikachi Emmanuel</span>,
+                    <span className="text-gray-300"> Onyedikachi Emmanuel</span>,
                     <br />
                     Web developer
                   </motion.h1>

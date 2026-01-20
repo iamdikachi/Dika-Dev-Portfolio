@@ -32,7 +32,7 @@ const Recommendation = () => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="bg-teal-400/2 rounded-2xl p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 relative border-l-4 border-teal-400"
           >
-            {/* Quote Icon */}
+         
             <div className="absolute top-6 left-6 w-12 h-12 bg-teal-400/10 rounded-full flex items-center justify-center border border-teal-400/20">
               <svg
                 className="w-6 h-6 text-teal-400"
@@ -43,12 +43,12 @@ const Recommendation = () => {
               </svg>
             </div>
 
-            {/* Quote Text */}
-            <p className="text-gray-300 leading-relaxed mb-6 mt-8 italic">
+        
+            <p className="text-gray-300 leading-relaxed mb-6 mt-12 italic">
               &quot;{rec.quote}&quot;
             </p>
 
-            {/* Author Info */}
+   
             <div className="flex items-center justify-between mt-6 pt-6 border-t border-teal-400/10">
               <div className="flex items-center gap-3">
                 <Image

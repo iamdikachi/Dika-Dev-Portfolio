@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { projects } from "@/data/projects";
-import { ExternalLink, Github, ArrowRight, Star, Share2, X, Calendar, Globe, Layers } from "lucide-react";
+import { ExternalLink, Github,  X, Calendar, Globe, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ProjectsProps {
@@ -37,22 +37,20 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
   return (
     <div className="min-h-screen bg-dark-bg text-gray-300 py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 text-teal-400">
             Innovative <span className="text-gray-300">Digital Experience</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-            A curated collection of desktop and web applications focusing on data visualization, fintech, and creative commerce.
+            A curated collection of  web applications.
           </p>
 
-          {/* Filter Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2 rounded-lg font-medium transition-all ${
+                className={`cursor-pointer px-5 py-2 rounded-lg font-medium transition-all ${
                   activeCategory === category
                     ? "bg-teal-400 text-dark-bg"
                     : "bg-teal-400/5 text-gray-400 hover:text-teal-400 hover:bg-teal-400/10"
@@ -64,7 +62,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
           </div>
         </div>
 
-        {/* Projects Grid */}
+    
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -77,7 +75,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               whileHover={{ y: -5 }}
               className="group bg-teal-400/2 backdrop-blur-sm rounded-3xl overflow-hidden border border-teal-400/10 hover:border-teal-400/30 transition-all duration-500 h-full flex flex-col"
             >
-              {/* Project Image */}
+          
               <div className="relative h-64 bg-teal-400/5 flex items-center justify-center overflow-hidden">
                 {project.image ? (
                   <img
@@ -89,7 +87,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                   <div className="text-6xl text-teal-400/20">📊</div>
                 )}
                 
-                {/* Status Badge */}
+             
                 {project.status && (
                   <div className={`absolute top-4 right-4 px-3 py-1 rounded-md text-xs font-bold ${getStatusColor(project.status)}`}>
                     {project.status}
@@ -97,7 +95,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                 )}
               </div>
 
-              {/* Project Content */}
+           
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-2 text-teal-400">{project.title}</h3>
                 
@@ -109,7 +107,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                   {project.description}
                 </p>
 
-                {/* Technologies */}
+         
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, index) => (
                     <span
@@ -150,10 +148,10 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
           ))}
         </div>
 
-        {/* Call to Action Section */}
+  
         <div className="bg-teal-400/2 rounded-3xl p-12 text-center border border-teal-400/10">
           <h2 className="text-4xl font-bold mb-4 text-teal-400">
-            Let's build something <span className="text-gray-300">amazing</span> together
+            Let&apos;s build something <span className="text-gray-300">amazing</span> together
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             Currently open for freelance projects and full-time opportunities. I specialize in creating immersive digital products that balance aesthetics and performance.
@@ -175,7 +173,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
         </div>
       </div>
 
-      {/* Project Detail Modal */}
+  
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -193,7 +191,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-4xl bg-dark-bg border border-teal-400/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[90vh] lg:max-h-[80vh]"
             >
-              {/* Close Button */}
+       
               <button 
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 z-10 p-2 bg-dark-bg/50 backdrop-blur-md rounded-full text-gray-400 hover:text-white transition-colors"
@@ -201,7 +199,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                 <X size={20} />
               </button>
 
-              {/* Left Side: Image */}
+           
               <div className="lg:w-1/2 relative bg-teal-400/5 min-h-[250px] lg:min-h-full">
                 {selectedProject.image ? (
                   <img
@@ -215,7 +213,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                 <div className="absolute inset-0 bg-linear-to-t from-dark-bg lg:bg-linear-to-r lg:from-transparent lg:to-dark-bg/20" />
               </div>
 
-              {/* Right Side: Content */}
+       
               <div className="lg:w-1/2 p-6 lg:p-10 overflow-y-auto custom-scrollbar">
                 <div className="space-y-6">
                   <div>

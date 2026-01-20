@@ -3,8 +3,8 @@ import { Experience } from "@/lib/types";
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "TechCorp",
-    position: "Senior Software Engineer",
+    company: "Eduzone",
+    position: "FullStack Developer",
     duration: "Jan 2022 - Present",
     location: "Remote",
     description: "Leading development of enterprise web applications.",
@@ -18,10 +18,10 @@ export const experiences: Experience[] = [
   },
   {
     id: "2",
-    company: "InnovateSoft",
-    position: "Full Stack Developer",
+    company: "Cogrea",
+    position: "Senior Frontend Developer",
     duration: "Mar 2020 - Dec 2021",
-    location: "Austin, TX",
+    location: "Remote",
     description: "Developed scalable web applications and APIs.",
     icon: "code",
     achievements: [
@@ -31,20 +31,6 @@ export const experiences: Experience[] = [
     ],
     technologies: ["Next.js", "TypeScript", "MongoDB", "Stripe", "Docker"],
   },
-  {
-    id: "3",
-    company: "Freelance",
-    position: "UI/UX Consultant",
-    duration: "Jan 2019 - Feb 2020",
-    location: "Remote",
-    description: "Provided UI/UX consulting for various clients.",
-    icon: "palette",
-    achievements: [
-      "Redesigned 5+ client websites, increasing user engagement by an average of 35%.",
-      "Created design systems and component libraries for consistent branding.",
-      "Conducted user research and usability testing to inform design decisions."
-    ],
-    technologies: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
-  },
+
 ];
 

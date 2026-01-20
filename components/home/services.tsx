@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
 import { ServiceCardProps } from "@/lib/types";
 import { services } from "@/data/service";
 import { motion } from "framer-motion";
@@ -7,7 +6,6 @@ import { motion } from "framer-motion";
 export const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
   title,
   description,
-  onReadMore,
   index,
 }) => {
   return (
@@ -21,8 +19,6 @@ export const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
       <h3 className="text-xl font-bold text-teal-400 mb-4">{title}</h3>
 
       <p className="text-gray-300 leading-relaxed mb-6 italic">{description}</p>
-
-   
     </motion.div>
   );
 };
