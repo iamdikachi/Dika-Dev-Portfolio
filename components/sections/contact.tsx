@@ -1,85 +1,127 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Twitter, Send, Code2, Briefcase, Share2 } from "lucide-react";
 
 export const Contact: React.FC = () => {
   return (
-    <div className="space-y-6">
-      <Card>
-        <h2 className="text-4xl font-bold text-blue-900 mb-2">Contact</h2>
-        <p className="text-gray-600">
-          Get in touch with me for collaborations and opportunities.
-        </p>
-      </Card>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="text-center">
-          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail className="text-blue-600" size={32} />
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Left Side: Info */}
+        <div className="lg:col-span-5 space-y-8">
+          <div className="space-y-4">
+            <h1 className="text-5xl font-bold tracking-tight text-teal-400">
+              Let's Build <br />
+              <span className="text-gray-300">Something Together</span>
+            </h1>
+            <p className="text-gray-400 text-lg leading-relaxed max-w-md italic">
+              I'm always open to discussing new projects, creative AI ideas, or
+              opportunities to be part of your visions. Feel free to reach out
+              through the form or my social media.
+            </p>
           </div>
-          <h3 className="font-semibold text-gray-800 mb-2">Email</h3>
-          <p className="text-gray-600">your.email@example.com</p>
-        </Card>
 
-        <Card className="text-center">
-          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Phone className="text-blue-600" size={32} />
+          <div className="flex gap-6">
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer group">
+                <Code2 className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Github</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer group">
+                <Briefcase className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Linkedin</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer">
+                <Share2 className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Twitter</span>
+            </div>
           </div>
-          <h3 className="font-semibold text-gray-800 mb-2">Phone</h3>
-          <p className="text-gray-600">+234 XXX XXX XXXX</p>
-        </Card>
 
-        <Card className="text-center">
-          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MapPin className="text-blue-600" size={32} />
+          <div className="bg-teal-400/5 rounded-2xl p-8 space-y-6 border border-teal-400/10">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-teal-400/10 flex items-center justify-center text-teal-400 border border-teal-400/20">
+                <Mail className="w-5 h-5" />
+              </div>
+              <p className="font-medium text-gray-300">hello@devportfolio.com</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-teal-400/10 flex items-center justify-center text-teal-400 border border-teal-400/20">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <p className="font-medium text-gray-300">Remote / San Francisco, CA</p>
+            </div>
           </div>
-          <h3 className="font-semibold text-gray-800 mb-2">Location</h3>
-          <p className="text-gray-600">Lagos, Nigeria</p>
-        </Card>
+        </div>
+
+        {/* Right Side: Form */}
+        <div className="lg:col-span-7">
+          <Card className="p-8 md:p-10 bg-teal-400/2 border border-teal-400/10 rounded-4xl">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 flex items-center gap-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="john@example.com"
+                    className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  placeholder="Project Inquiry"
+                  className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                  Message
+                </label>
+                <textarea
+                  placeholder="Tell me about your project visions..."
+                  rows={4}
+                  className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600 resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-8 py-4 bg-teal-400 hover:bg-teal-500 text-dark-bg font-bold rounded-xl transition-all shadow-lg shadow-teal-400/10 flex items-center justify-center gap-3 group"
+              >
+                Send Message
+                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <p className="text-center text-xs text-gray-400 font-medium pt-2">
+                Typically responds within 24-48 hours.
+              </p>
+            </form>
+          </Card>
+        </div>
       </div>
-
-      <Card>
-        <h3 className="text-2xl font-bold text-blue-800 mb-4">
-          Send Me a Message
-        </h3>
-        <form className="space-y-4">
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">Name</label>
-            <input
-              type="text"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="your.email@example.com"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              rows={5}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Your message..."
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all"
-          >
-            <Send size={20} />
-            Send Message
-          </button>
-        </form>
-      </Card>
     </div>
   );
 };
+

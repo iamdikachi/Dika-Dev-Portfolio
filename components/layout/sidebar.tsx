@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { menuItems } from "@/data/menuItem";
 import Profile from "@/public/images/my-photo.png";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface SidebarProps {
   activeSection: string;
@@ -17,19 +18,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   return (
-    <aside
-      className={`hidden md:flex flex-col bg-dark-bg text-white transition-all duration-300 ease-in-out ${
-        isCollapsed ? "w-20" : "lg:w-60 2xl:w-80"
-      } shadow-2xl relative`}
+    <motion.aside
+      initial={false}
+      animate={{ width: isCollapsed ? 80 : 256 }}
+      className={`hidden md:flex flex-col bg-dark-bg text-gray-300 transition-colors duration-300 ease-in-out relative border-r border-teal-400/5`}
       onMouseEnter={() => setIsCollapsed(false)}
       onMouseLeave={() => setIsCollapsed(true)}
     >
       {/* Logo/Brand */}
-      <div className="p-6 border-b border-dark-surface-light">
-       
+      <div className="p-6 border-b border-teal-400/10">
         <h1
-          className={`font-bold transition-all duration-300 mt-5 ${
-            isCollapsed ? "text-center text-xl" : "text-2xl text-center"
+          className={`font-bold transition-all duration-300 mt-5 text-teal-400 text-center ${
+            isCollapsed ? "text-xl" : "text-2xl"
           }`}
         >
           {isCollapsed ? "<>" : "</Dika-Dev>"}
@@ -44,21 +44,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => onSectionChange(item.id)}
-              className={`w-full flex items-center gap-4 px-6 py-3 transition-all duration-200 ${
+              className={`w-full flex items-center gap-4 px-6 py-3 transition-all duration-200 group ${
                 activeSection === item.id
-                  ? "bg-dark-bg border-l-4 border-dark-surface-light"
-                  : "hover:bg-dark-surface-light"
+                  ? "bg-teal-400/10 text-teal-400 border-l-4 border-teal-400"
+                  : "hover:bg-teal-400/5 text-gray-300 hover:text-teal-400"
               } ${isCollapsed ? "justify-center px-0" : ""}`}
               title={isCollapsed ? item.label : ""}
             >
-              <Icon size={22} />
+              <div className="shrink-0">
+                <Icon size={22} className={`${activeSection === item.id ? "scale-110" : "group-hover:scale-110"} transition-transform`} />
+              </div>
               {!isCollapsed && (
-                <span className="font-medium">{item.label}</span>
+                <motion.span
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="font-medium whitespace-nowrap"
+                >
+                  {item.label}
+                </motion.span>
               )}
             </button>
           );
         })}
       </nav>
-    </aside>
+    </motion.aside>
   );
 };

@@ -2,14 +2,15 @@
 
 import React, { useState } from "react";
 import { skills } from "@/data/skills";
+import { motion } from "framer-motion";
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const categories = ["All", ...Array.from(new Set(skills.filter(s => s.type !== "soft").map((skill) => skill.category)))];
+  const categories = ["All", ...Array.from(new Set(skills.filter(s => s.type === "technical").map((skill) => skill.category)))];
 
   const filteredSkills = activeCategory === "All" 
-    ? skills.filter(s => s.type !== "soft")
-    : skills.filter(s => s.category === activeCategory && s.type !== "soft");
+    ? skills.filter(s => s.type === "technical")
+    : skills.filter(s => s.category === activeCategory && s.type === "technical");
 
   // Technology logo URLs from CDN (simpleicons.org via cdnjs)
   const getLogoUrl = (name: string) => {
@@ -42,20 +43,26 @@ export const Skills: React.FC = () => {
       "Git": "https://cdn.simpleicons.org/git/F05032",
       "Zod": "https://cdn.simpleicons.org/zod/3E67B1",
       "Yup": "https://cdn.simpleicons.org/javascript/F7DF1E",
+      "VS Code": "https://cdn.simpleicons.org/visualstudiocode/007ACC",
+      "ChatGPT": "https://cdn.simpleicons.org/openai/412991",
+      "Claude": "https://cdn.simpleicons.org/anthropic/D97757",
+      "Antigravity": "https://cdn.simpleicons.org/planetscale/000000",
+      "Cursor": "https://cdn.simpleicons.org/cursor/5555ff",
+      "Vercel": "https://cdn.simpleicons.org/vercel/000000",
     };
     
     return logoMap[name] || "https://cdn.simpleicons.org/code/666666";
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-dark-bg py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Technical <span className="text-blue-600">Skills</span>
+          <h1 className="text-4xl sm:text-5xl font-bold text-teal-400 mb-4">
+            Technical <span className="text-gray-300">Skills</span>
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A comprehensive toolkit of modern technologies, frameworks, and tools I use to build exceptional digital experiences.
           </p>
         </div>
@@ -68,8 +75,8 @@ export const Skills: React.FC = () => {
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2 rounded-lg font-medium transition-all ${
                 activeCategory === category
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
-                  : "bg-white text-gray-700 hover:bg-gray-100 shadow-sm"
+                  ? "bg-teal-400 text-dark-bg shadow-lg shadow-teal-400/20"
+                  : "bg-dark-bg text-gray-400 hover:text-teal-400 border border-teal-400/10"
               }`}
             >
               {category}
@@ -78,11 +85,20 @@ export const Skills: React.FC = () => {
         </div>
 
         {/* Skills Grid - Technical Skills Only */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-          {filteredSkills.map((skill) => (
-            <div
+        <motion.div 
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
+        >
+          {filteredSkills.map((skill, index) => (
+            <motion.div
+              layout
               key={skill.id}
-              className="bg-white rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: (index % 6) * 0.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="bg-teal-400/2 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:shadow-xl transition-all duration-300 border border-teal-400/10 group"
             >
               {/* Logo */}
               <div className="w-16 h-16 flex items-center justify-center">
@@ -95,7 +111,7 @@ export const Skills: React.FC = () => {
               
               {/* Name */}
               <div className="text-center">
-                <h3 className="font-semibold text-gray-900 text-sm">
+                <h3 className="font-semibold text-gray-300 text-sm">
                   {skill.name}
                 </h3>
                 <p className="text-xs text-gray-500 mt-1">
@@ -104,72 +120,110 @@ export const Skills: React.FC = () => {
               </div>
 
               {/* Proficiency Level (optional visual indicator) */}
-              <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
-                <div
-                  className="bg-blue-600 h-full rounded-full transition-all duration-500"
-                  style={{ width: `${skill.level}%` }}
-                ></div>
+              <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="bg-teal-400 h-full rounded-full"
+                ></motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">
-              {skills.filter(s => s.type !== "soft").length}+
-            </div>
-            <div className="text-gray-600 text-sm">Technologies</div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">
-              {categories.length - 1}
-            </div>
-            <div className="text-gray-600 text-sm">Categories</div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">
-              8+
-            </div>
-            <div className="text-gray-600 text-sm">Years Experience</div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">
-              100+
-            </div>
-            <div className="text-gray-600 text-sm">Projects Built</div>
-          </div>
+          {[
+            { label: "Technologies", value: `${skills.filter(s => s.type !== "soft").length}+` },
+            { label: "Categories", value: categories.length - 1 },
+            { label: "Years Experience", value: "8+" },
+            { label: "Projects Built", value: "100+" }
+          ].map((stat, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-dark-bg rounded-2xl p-6 text-center shadow-sm border border-teal-400/10"
+            >
+              <div className="text-3xl font-bold text-teal-400 mb-2">{stat.value}</div>
+              <div className="text-gray-500 text-sm">{stat.label}</div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Soft Skills Section */}
         <div className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Soft <span className="text-blue-600">Skills</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">
+              Soft <span className="text-gray-300">Skills</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Beyond technical expertise, I bring strong interpersonal and professional skills that drive successful project outcomes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.filter(s => s.type === "soft").map((skill) => (
-              <div
+            {skills.filter(s => s.type === "soft").map((skill, index) => (
+              <motion.div
                 key={skill.id}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="bg-teal-400/2 rounded-2xl p-6 shadow-sm border border-teal-400/10 hover:shadow-lg transition-all duration-300"
               >
-                <h3 className="font-semibold text-gray-900 text-lg mb-4">
+                <h3 className="font-semibold text-gray-300 text-lg mb-4">
                   {skill.name}
                 </h3>
                 
                 {/* Proficiency Bar */}
-                <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                  <div
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
+                <div className="w-full bg-teal-400/10 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                    className="bg-teal-400 h-full rounded-full"
+                  ></motion.div>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tools I Use Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">
+              Tools I <span className="text-gray-300">Use</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Professional software and AI-powered assistants that streamline my development workflow.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4">
+            {skills.filter(s => s.type === "tool").map((skill) => (
+              <div
+                key={skill.id}
+                className="bg-teal-400/2 rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-teal-400/10 group"
+              >
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img
+                    src={getLogoUrl(skill.name)}
+                    alt={skill.name}
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <h3 className="font-semibold text-gray-300 text-[10px] text-center uppercase tracking-wider">
+                  {skill.name}
+                </h3>
               </div>
             ))}
           </div>

@@ -26,9 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-violet-950`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dark-bg text-gray-300`}
       >
-        <BlurredBackground />
         {children}
       </body>
     </html>

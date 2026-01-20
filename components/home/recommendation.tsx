@@ -1,26 +1,41 @@
 import { recommendations } from '@/data/recommendation';
 import Image from 'next/image';
-
+import { motion } from 'framer-motion';
 
 const Recommendation = () => {
   return (
-    <div>
-      <h1 className="text-center text-white font-bold md:text-3xl mt-6 italic">
+    <div className="py-12">
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center text-teal-400 font-bold md:text-3xl mt-6 italic"
+      >
         Recommendations
-      </h1>
-      <p className="text-center text-gray-600 mb-12 ">
+      </motion.h1>
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+        className="text-center text-gray-500 mb-12 font-mono text-sm uppercase tracking-widest"
+      >
         What colleagues and clients say about working with me
-      </p>
+      </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recommendations.map((rec) => (
-          <div
+        {recommendations.map((rec, index) => (
+          <motion.div
             key={rec.id}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative border-l-4 border-red-500"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="bg-teal-400/2 rounded-2xl p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 relative border-l-4 border-teal-400"
           >
             {/* Quote Icon */}
-            <div className="absolute top-6 left-6 w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
+            <div className="absolute top-6 left-6 w-12 h-12 bg-teal-400/10 rounded-full flex items-center justify-center border border-teal-400/20">
               <svg
-                className="w-6 h-6 text-red-500"
+                className="w-6 h-6 text-teal-400"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -29,30 +44,30 @@ const Recommendation = () => {
             </div>
 
             {/* Quote Text */}
-            <p className="text-gray-700 leading-relaxed mb-6 mt-8">
+            <p className="text-gray-300 leading-relaxed mb-6 mt-8 italic">
               &quot;{rec.quote}&quot;
             </p>
 
             {/* Author Info */}
-            <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+            <div className="flex items-center justify-between mt-6 pt-6 border-t border-teal-400/10">
               <div className="flex items-center gap-3">
                 <Image
-                  width={10}
-                  height={10}
+                  width={48}
+                  height={48}
                   src={rec.avatar}
                   alt={rec.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-teal-400/20 grayscale group-hover:grayscale-0 transition-all"
                 />
                 <div>
-                  <h4 className="font-bold text-gray-900">{rec.name}</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4 className="font-bold text-teal-400">{rec.name}</h4>
+                  <p className="text-sm text-gray-500">
                     {rec.title} at {rec.company}
                   </p>
                 </div>
               </div>
 
               {rec.verified && (
-                <div className="flex items-center gap-1 text-red-500 bg-red-50 px-3 py-1 rounded-full">
+                <div className="flex items-center gap-1 text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full border border-teal-400/20">
                   <svg
                     className="w-4 h-4"
                     fill="currentColor"
@@ -64,11 +79,11 @@ const Recommendation = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-xs font-medium">Verified</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider">Verified</span>
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

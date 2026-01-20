@@ -1,6 +1,7 @@
 import { sampleProjects } from '@/data/projects';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const ProjectContributions = () => {
     const [isDragging, setIsDragging] = useState(false);
@@ -49,11 +50,20 @@ const ProjectContributions = () => {
       window.open(url, "_blank");
     };
   return (
-    <div>
-      <h1 className="text-center mb-6 text-white font-bold md:text-3xl mt-6 italic">
+    <div className="py-12">
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-6 text-teal-400 font-bold md:text-3xl mt-6 italic"
+      >
         Project Contributions
-      </h1>
-      <div
+      </motion.h1>
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         ref={containerRef}
         className="overflow-x-auto overflow-y-hidden scrollbar-hide 
         cursor-grab active:cursor-grabbing pb-4"
@@ -66,10 +76,14 @@ const ProjectContributions = () => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleDragEnd}
       >
-        <div className="grid grid-flow-col  gap-6">
+        <div className="grid grid-flow-col gap-6 p-4">
           {sampleProjects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={(e) => handleProjectClick(e, project.url)}
               className={`
                   group relative overflow-hidden cursor-pointer
@@ -92,13 +106,13 @@ const ProjectContributions = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 draggable={false}
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-lg font-bold mb-1">{project.title}</h3>
-                  <p className="text-xs text-gray-200 flex items-center">
+              <div className="absolute inset-0 bg-linear-to-t from-dark-bg/90 via-dark-bg/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-lg font-bold mb-1 text-teal-400">{project.title}</h3>
+                  <p className="text-[10px] text-gray-300 flex items-center uppercase tracking-widest font-bold">
                     View project
                     <svg
-                      className="w-3 h-3 ml-1"
+                      className="w-3 h-3 ml-2 text-teal-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -113,12 +127,12 @@ const ProjectContributions = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-      <div className="flex justify-center mt-8 text-sm text-gray-500">
-        <p>← Swipe or drag to see more →</p>
+      </motion.div>
+      <div className="flex justify-center mt-8 text-[10px] text-gray-500 font-mono uppercase tracking-widest">
+        <p>← Swipe or drag to explore →</p>
       </div>
     </div>
   );

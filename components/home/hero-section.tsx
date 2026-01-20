@@ -1,11 +1,68 @@
-import Image from 'next/image'
-import AnimatedText from '../animations/typeWriter'
+import Image from "next/image";
+import AnimatedText from "../animations/typeWriter";
 import Profile from "@/public/images/my-photo.png";
+import { motion, Variants } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const HeroSection = () => {
+  const iconsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    iconsRef.current.forEach((icon, index) => {
+      gsap.to(icon, {
+        y: "random(-20, 20)",
+        x: "random(-10, 10)",
+        rotation: "random(-10, 10)",
+        duration: "random(2, 4)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: index * 0.5,
+      });
+    });
+  }, []);
+
+  const leftContentVariants: Variants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut",
+        staggerChildren: 0.2
+      } 
+    },
+  };
+
+  const rightContentVariants: Variants = {
+    hidden: { opacity: 0, x: 50, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      scale: 1,
+      transition: { 
+        duration: 2, 
+        ease: "easeOut" 
+      } 
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.5, 
+        ease: "easeOut" 
+      } 
+    },
+  };
+
   return (
-     <div className="relative  ">
-          {/* Background code snippets */}
+     <div className="relative">
           <div className="absolute inset-0 opacity-10 text-gray-400 font-mono text-sm pointer-events-none select-none">
             <div className="absolute top-8 left-8">&lt;/html&gt;</div>
             <div className="absolute top-16 left-12">&lt;body&gt;</div>
@@ -15,98 +72,116 @@ const HeroSection = () => {
   
           <div className="flex items-center">
             <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-              {/* Left Content */}
-              <div className="space-y-8 z-10">
+              <motion.div
+                variants={leftContentVariants}
+                initial="hidden"
+                animate="visible"
+                className="space-y-8 z-10"
+              >
                 <div className="space-y-4">
-                  <h1 className="text-5xl sm:text-5xl lg:text-5xl 2xl:text-7xl font-bold text-white leading-tight">
+                  <motion.h1 variants={itemVariants} className="text-5xl sm:text-5xl lg:text-5xl 2xl:text-7xl font-bold text-teal-400 leading-tight">
                     Hello
                     <br />
-                    I&apos;m{" "}
-                    <span className="text-teal-400">Onyedikachi Emmanel</span>,
+                    I&apos;m
+                    <span className="text-gray-300">Onyedikachi Emmanuel</span>,
                     <br />
                     Web developer
-                  </h1>
-                  <p className="text-gray-300 text-lg font-mono">
+                  </motion.h1>
+                  <motion.p variants={itemVariants} className="text-gray-300 text-lg font-mono">
                     full stack developer
-                  </p>
-                  <div className="text-teal-400">
+                  </motion.p>
+                  <motion.div variants={itemVariants} className="text-teal-400">
                     <AnimatedText />
-                  </div>
+                  </motion.div>
                 </div>
-  
-                <div className="flex flex-wrap gap-4 items-center">
-                  <button className="px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-gray-900 transition-all duration-300 font-medium">
+   
+                <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-dark-bg transition-all duration-300 font-medium"
+                  >
                     View my CV
-                  </button>
-                  <a
+                  </motion.button>
+                  <motion.a
+                    whileHover={{ x: 5 }}
                     href="#"
-                    className="text-teal-400 hover:text-teal-300 underline transition-colors duration-300"
+                    className="text-gray-300 hover:text-teal-400 underline transition-colors duration-300 flex items-center gap-2"
                   >
                     Booking
-                  </a>
-                </div>
-              </div>
-  
-              {/* Right Content - Image */}
+                  </motion.a>
+                </motion.div>
+              </motion.div>
+   
               <div className="relative flex justify-center lg:justify-end">
                 <div className="relative w-full max-w-md lg:max-w-lg">
-                  {/* Gradient overlay effect */}
-                  <div className="absolute inset-0 bg-linear-to-l from-teal-500/20 to-transparent rounded-full blur-3xl"></div>
-  
-                  {/* Profile image placeholder */}
-                  <div className="relative aspect-square bg-lineaer-to-br from-gray-700 to-gray-800 rounded-full overflow-hidden">
+                  <div className="absolute inset-0 bg-teal-400/5 rounded-full blur-3xl"></div>
+   
+                  <motion.div 
+                    variants={rightContentVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="relative aspect-square border border-teal-400/20 rounded-full overflow-hidden"
+                  >
                     <Image
                       src={Profile}
-                      alt="Clark - Web Developer"
-                      className="w-full h-full object-cover"
+                      alt="Onyedikachi Emmanuel - Web Developer"
+                      className="w-full h-full object-cover grayscale opacity-80"
+                    />
+                  </motion.div>
+
+                  <div 
+                    ref={(el) => { if (el) iconsRef.current[0] = el; }}
+                    className="absolute top-12 -right-4 w-14 h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                  >
+                    <img 
+                      src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
+                      alt="Node.js" 
+                      className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
   
-                  {/* Floating tech icons */}
-                  <div className="absolute top-12 -right-4 w-16 h-16 bg-gray-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-xl border border-gray-700">
-                    <span className="text-2xl">🐍</span>
+              
+                  <div 
+                    ref={(el) => { if (el) iconsRef.current[1] = el; }}
+                    className="absolute top-1/3 -left-6 w-16 h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                  >
+                    <img 
+                      src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
+                      alt="Node.js" 
+                      className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
                   </div>
   
-                  <div className="absolute top-1/3 -left-4 w-20 h-20 bg-gray-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-xl border border-gray-700">
-                    <svg
-                      className="w-12 h-12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#DD0031" />
-                      <path d="M2 17L12 22L22 17L12 12L2 17Z" fill="#C3002F" />
-                    </svg>
+                  <div 
+                    ref={(el) => { if (el) iconsRef.current[2] = el; }}
+                    className="absolute bottom-1/4 -right-8 w-16 h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                  >
+                    <img 
+                      src="https://cdn.simpleicons.org/php/2dd4bf" 
+                      alt="PHP" 
+                      className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
                   </div>
-  
-                  <div className="absolute bottom-1/4 -right-6 w-20 h-20 bg-gray-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-xl border border-gray-700">
-                    <svg
-                      className="w-12 h-12"
-                      viewBox="0 0 24 24"
-                      fill="#68A063"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.3L19.5 8.25V15.75L12 19.7L4.5 15.75V8.25L12 4.3Z" />
-                      <text
-                        x="7"
-                        y="16"
-                        fontSize="10"
-                        fill="#68A063"
-                        fontFamily="monospace"
-                      >
-                        JS
-                      </text>
-                    </svg>
+
+                  <div 
+                    ref={(el) => { if (el) iconsRef.current[3] = el; }}
+                    className="absolute -bottom-4 left-1/4 w-14 h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                  >
+                    <img 
+                      src="https://cdn.simpleicons.org/express/2dd4bf" 
+                      alt="Express" 
+                      className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-  
-          {/* Animated gradient orbs */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
+ 
+          <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl animate-pulse"></div>
           <div
-            className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
+            className="absolute bottom-0 left-0 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl animate-pulse"
             style={{ animationDelay: "1s" }}
           ></div>
       </div>

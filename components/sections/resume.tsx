@@ -12,13 +12,13 @@ export const Resume: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-dark-bg py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Download Button - Fixed at top */}
         <div className="mb-6 flex justify-end print:hidden">
           <button
             onClick={handleDownload}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-lg"
+            className="bg-teal-400 hover:bg-teal-500 text-dark-bg px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-lg"
           >
             <Download size={20} />
             Download as PDF
@@ -26,11 +26,11 @@ export const Resume: React.FC = () => {
         </div>
 
         {/* Resume Container */}
-        <div className="bg-white shadow-xl rounded-lg overflow-hidden print:shadow-none print:rounded-none">
+        <div className="bg-dark-bg shadow-xl rounded-lg overflow-hidden border border-teal-400/10 print:shadow-none print:rounded-none">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 sm:p-12">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-2">Your Name</h1>
-            <p className="text-xl sm:text-2xl text-blue-100 mb-6">
+          <div className="bg-teal-400/5 text-gray-300 p-8 sm:p-12 border-b border-teal-400/10">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-teal-400">Dika Chi</h1>
+            <p className="text-xl sm:text-2xl text-gray-400 mb-6 font-light">
               Full Stack Developer & UI/UX Designer
             </p>
             
@@ -52,17 +52,17 @@ export const Resume: React.FC = () => {
             
             {/* Social Links */}
             <div className="flex flex-wrap gap-4 mt-4 text-sm">
-              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+              <a href="#" className="flex items-center gap-2 hover:text-teal-400 transition-colors">
                 <Linkedin size={16} />
-                <span>linkedin.com/in/yourprofile</span>
+                <span>linkedin.com/in/iamdikachi</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+              <a href="#" className="flex items-center gap-2 hover:text-teal-400 transition-colors">
                 <Github size={16} />
-                <span>github.com/yourusername</span>
+                <span>github.com/iamdikachi</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-blue-200 transition-colors">
+              <a href="#" className="flex items-center gap-2 hover:text-teal-400 transition-colors">
                 <Globe size={16} />
-                <span>yourportfolio.com</span>
+                <span>iamdikachi.com</span>
               </a>
             </div>
           </div>
@@ -71,39 +71,38 @@ export const Resume: React.FC = () => {
           <div className="p-8 sm:p-12 space-y-8">
             {/* Professional Summary */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+              <h2 className="text-2xl font-bold text-teal-400 mb-4 pb-2 border-b border-teal-400/20">
                 Professional Summary
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed italic border-l-2 border-teal-400/20 pl-4 py-2 bg-teal-400/2 rounded-r-lg">
                 Passionate Full Stack Developer with 8+ years of experience building scalable web applications 
                 and leading development teams. Expertise in modern JavaScript frameworks, backend technologies, 
-                and UI/UX design. Proven track record of delivering high-quality projects on time and mentoring 
-                junior developers. Strong problem-solver with excellent communication skills and a commitment to 
+                and UI/UX design. Strong problem-solver with a commitment to 
                 continuous learning.
               </p>
             </section>
 
             {/* Professional Experience */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+              <h2 className="text-2xl font-bold text-teal-400 mb-4 pb-2 border-b border-teal-400/20">
                 Professional Experience
               </h2>
               <div className="space-y-6">
                 {experiences.map((exp) => (
-                  <div key={exp.id} className="relative pl-6 border-l-2 border-blue-200">
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                  <div key={exp.id} className="relative pl-6 border-l border-teal-400/20">
+                    <div className="absolute -left-[5px] top-0 w-2 h-2 bg-teal-400 rounded-full"></div>
                     <div className="mb-2">
-                      <h3 className="text-xl font-bold text-gray-900">{exp.position}</h3>
-                      <p className="text-blue-600 font-semibold">{exp.company}</p>
+                      <h3 className="text-xl font-bold text-gray-300">{exp.position}</h3>
+                      <p className="text-teal-400 font-semibold">{exp.company}</p>
                       <p className="text-sm text-gray-500">
                         {exp.duration} {exp.location && `• ${exp.location}`}
                       </p>
                     </div>
                     {exp.achievements && exp.achievements.length > 0 && (
-                      <ul className="space-y-2 text-gray-700">
+                      <ul className="space-y-2 text-gray-400">
                         {exp.achievements.map((achievement, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <span className="text-blue-600 mt-1">•</span>
+                            <span className="text-teal-400 mt-1">•</span>
                             <span>{achievement}</span>
                           </li>
                         ))}
@@ -114,7 +113,7 @@ export const Resume: React.FC = () => {
                         {exp.technologies.map((tech, idx) => (
                           <span
                             key={idx}
-                            className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded"
+                            className="text-xs bg-teal-400/5 text-teal-400 border border-teal-400/10 px-2 py-1 rounded"
                           >
                             {tech}
                           </span>
@@ -128,20 +127,20 @@ export const Resume: React.FC = () => {
 
             {/* Technical Skills */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+              <h2 className="text-2xl font-bold text-teal-400 mb-4 pb-2 border-b border-teal-400/20">
                 Technical Skills
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {Array.from(new Set(skills.filter(s => s.type !== "soft").map(s => s.category))).map((category) => (
                   <div key={category}>
-                    <h3 className="font-semibold text-gray-900 mb-2">{category}</h3>
+                    <h3 className="font-semibold text-gray-300 mb-2 uppercase tracking-wider text-xs">{category}</h3>
                     <div className="flex flex-wrap gap-2">
                       {skills
                         .filter(s => s.category === category && s.type !== "soft")
                         .map((skill) => (
                           <span
                             key={skill.id}
-                            className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded"
+                            className="text-sm bg-teal-400/5 text-gray-400 border border-teal-400/10 px-3 py-1 rounded"
                           >
                             {skill.name}
                           </span>
@@ -154,7 +153,7 @@ export const Resume: React.FC = () => {
 
             {/* Soft Skills */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
+              <h2 className="text-2xl font-bold text-teal-400 mb-4 pb-2 border-b border-teal-400/20">
                 Soft Skills
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -163,7 +162,7 @@ export const Resume: React.FC = () => {
                   .map((skill) => (
                     <span
                       key={skill.id}
-                      className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded"
+                      className="text-sm bg-teal-400/5 text-teal-400 border border-teal-400/10 px-3 py-1 rounded"
                     >
                       {skill.name}
                     </span>
@@ -178,10 +177,10 @@ export const Resume: React.FC = () => {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">Bachelor of Science in Computer Science</h3>
-                  <p className="text-blue-600 font-semibold">University Name</p>
+                  <h3 className="text-xl font-bold text-gray-300">Bachelor of Science in Computer Science</h3>
+                  <p className="text-teal-400 font-semibold">University Name</p>
                   <p className="text-sm text-gray-500">2014 - 2018 • Lagos, Nigeria</p>
-                  <p className="text-gray-700 mt-2">
+                  <p className="text-gray-400 mt-2">
                     Graduated with First Class Honors. Relevant coursework: Data Structures, 
                     Algorithms, Web Development, Database Systems, Software Engineering.
                   </p>
@@ -194,17 +193,17 @@ export const Resume: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-600">
                 Certifications
               </h2>
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-gray-400">
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
+                  <span className="text-teal-400 mt-1">•</span>
                   <span>AWS Certified Solutions Architect - Amazon Web Services (2023)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
+                  <span className="text-teal-400 mt-1">•</span>
                   <span>Professional Scrum Master I (PSM I) - Scrum.org (2022)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
+                  <span className="text-teal-400 mt-1">•</span>
                   <span>React Developer Certification - Meta (2021)</span>
                 </li>
               </ul>

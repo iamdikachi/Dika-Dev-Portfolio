@@ -2,44 +2,49 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { ServiceCardProps } from "@/lib/types";
 import { services } from "@/data/service";
+import { motion } from "framer-motion";
 
-
-
-export const ServiceCard: React.FC<ServiceCardProps> = ({
+export const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
   title,
   description,
   onReadMore,
+  index,
 }) => {
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-800/70 transition-all duration-300 border
-     border-slate-700/50 hover:border-slate-600/50 group">
-      <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-teal-400/2 backdrop-blur-sm rounded-xl p-8 transition-all duration-300 border border-teal-400/10 hover:border-teal-400/30 group"
+    >
+      <h3 className="text-xl font-bold text-teal-400 mb-4">{title}</h3>
 
-      <p className="text-slate-400 leading-relaxed mb-6">{description}</p>
+      <p className="text-gray-300 leading-relaxed mb-6 italic">{description}</p>
 
-      <button
-        onClick={onReadMore}
-        className="flex items-center gap-2 text-cyan-400 font-medium hover:gap-3 transition-all duration-300"
-      >
-        Read More
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-      </button>
-    </div>
+   
+    </motion.div>
   );
 };
 
 export default function ServiceCardsDemo() {
   return (
-    <div className="">
+    <div className="py-12">
       <div className="">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">
-          My Services
-        </h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-teal-400 mb-12 text-center"
+        >
+          My <span className="text-gray-300">Services</span>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-6">
-          {services.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {services.map((service, index) => (
             <ServiceCard
               key={service.title}
+              index={index}
               title={service.title}
               description={service.description}
               onReadMore={() => alert(`Read more about ${service.title}`)}

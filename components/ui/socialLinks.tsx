@@ -12,7 +12,7 @@ export const SocialLinks: React.FC = () => {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 hover:scale-110"
+            className="bg-teal-400/5 hover:bg-teal-400/10 text-gray-400 hover:text-teal-400 p-3 rounded-full transition-all duration-200 hover:scale-110 border border-teal-400/10 hover:border-teal-400/30"
             aria-label={social.label}
           >
             <Icon size={15} />

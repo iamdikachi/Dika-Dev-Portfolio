@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { projects } from "@/data/projects";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Star, Share2, X, Calendar, Globe, Layers } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ProjectsProps {
   onSectionChange?: (section: string) => void;
@@ -12,6 +13,7 @@ const categories = ["All projects", "Dashboard", "Fintech", "AI Tools", "Web3"];
 
 export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
   const [activeCategory, setActiveCategory] = useState("All projects");
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   const filteredProjects = activeCategory === "All projects" 
     ? projects 
@@ -20,27 +22,27 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
   const getStatusColor = (status?: string) => {
     switch (status) {
       case "ACTIVE":
-        return "bg-blue-600 text-white";
+        return "bg-teal-400 text-dark-bg";
       case "ARCHIVE":
-        return "bg-gray-600 text-white";
+        return "bg-gray-600 text-gray-300";
       case "CASE STUDY":
-        return "bg-orange-500 text-white";
+        return "bg-teal-400/10 text-teal-400 border border-teal-400/20";
       case "BASELINE":
-        return "bg-purple-600 text-white";
+        return "bg-gray-300 text-dark-bg";
       default:
         return "bg-gray-500 text-white";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white py-12 px-6">
+    <div className="min-h-screen bg-dark-bg text-gray-300 py-12 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4">
-            Innovative <span className="text-blue-400">Digital Experience</span>
+          <h1 className="text-5xl font-bold mb-4 text-teal-400">
+            Innovative <span className="text-gray-300">Digital Experience</span>
           </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             A curated collection of desktop and web applications focusing on data visualization, fintech, and creative commerce.
           </p>
 
@@ -52,8 +54,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-5 py-2 rounded-lg font-medium transition-all ${
                   activeCategory === category
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-800 text-gray-300 hover:bg-slate-700"
+                    ? "bg-teal-400 text-dark-bg"
+                    : "bg-teal-400/5 text-gray-400 hover:text-teal-400 hover:bg-teal-400/10"
                 }`}
               >
                 {category}
@@ -63,22 +65,28 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {filteredProjects.map((project) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {filteredProjects.map((project, index) => (
+            <motion.div
               key={project.id}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20"
+              onClick={() => setSelectedProject(project)}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group bg-teal-400/2 backdrop-blur-sm rounded-3xl overflow-hidden border border-teal-400/10 hover:border-teal-400/30 transition-all duration-500 h-full flex flex-col"
             >
               {/* Project Image */}
-              <div className="relative h-64 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center overflow-hidden">
+              <div className="relative h-64 bg-teal-400/5 flex items-center justify-center overflow-hidden">
                 {project.image ? (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
                   />
                 ) : (
-                  <div className="text-6xl text-slate-600">📊</div>
+                  <div className="text-6xl text-teal-400/20">📊</div>
                 )}
                 
                 {/* Status Badge */}
@@ -91,10 +99,10 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                <h3 className="text-2xl font-bold mb-2 text-teal-400">{project.title}</h3>
                 
                 {project.role && (
-                  <p className="text-sm text-blue-400 mb-3">{project.role}</p>
+                  <p className="text-sm text-gray-400 mb-3 uppercase tracking-widest font-bold">{project.role}</p>
                 )}
 
                 <p className="text-gray-300 mb-4 leading-relaxed">
@@ -106,21 +114,20 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="bg-slate-700 text-gray-200 px-3 py-1 rounded-full text-xs font-medium"
+                      className="bg-teal-400/5 text-teal-400/70 border border-teal-400/10 px-3 py-1 rounded-md text-xs font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
                 <div className="flex gap-4">
                   {project.link && (
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-sm"
+                      className="flex items-center gap-2 text-teal-400 hover:text-teal-300 font-medium text-sm transition-colors"
                     >
                       <ExternalLink size={16} />
                       Live Demo
@@ -131,7 +138,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-sm"
+                      className="flex items-center gap-2 text-teal-400 hover:text-teal-300 font-medium text-sm transition-colors"
                     >
                       <Github size={16} />
                       Source Code
@@ -139,34 +146,149 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Call to Action Section */}
-        <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-12 text-center border border-slate-700">
-          <h2 className="text-4xl font-bold mb-4">
-            Let's build something <span className="text-blue-400">amazing</span> together
+        <div className="bg-teal-400/2 rounded-3xl p-12 text-center border border-teal-400/10">
+          <h2 className="text-4xl font-bold mb-4 text-teal-400">
+            Let's build something <span className="text-gray-300">amazing</span> together
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             Currently open for freelance projects and full-time opportunities. I specialize in creating immersive digital products that balance aesthetics and performance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => onSectionChange?.('contact')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+              className="bg-teal-400 hover:bg-teal-500 text-dark-bg px-8 py-3 rounded-lg font-bold transition-all shadow-lg shadow-teal-400/10"
             >
               Get in Touch
             </button>
             <button
               onClick={() => onSectionChange?.('resume')}
-              className="bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+              className="bg-teal-400/5 hover:bg-teal-400/10 text-teal-400 border border-teal-400/20 px-8 py-3 rounded-lg font-bold transition-all"
             >
               Download CV
             </button>
           </div>
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="absolute inset-0 bg-dark-bg/80 backdrop-blur-xl"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl bg-dark-bg border border-teal-400/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[90vh] lg:max-h-[80vh]"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-dark-bg/50 backdrop-blur-md rounded-full text-gray-400 hover:text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Left Side: Image */}
+              <div className="lg:w-1/2 relative bg-teal-400/5 min-h-[250px] lg:min-h-full">
+                {selectedProject.image ? (
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-8xl text-teal-400/10">📊</div>
+                )}
+                <div className="absolute inset-0 bg-linear-to-t from-dark-bg lg:bg-linear-to-r lg:from-transparent lg:to-dark-bg/20" />
+              </div>
+
+              {/* Right Side: Content */}
+              <div className="lg:w-1/2 p-6 lg:p-10 overflow-y-auto custom-scrollbar">
+                <div className="space-y-6">
+                  <div>
+                    <div className={`inline-block px-3 py-1 rounded-md text-[10px] font-bold mb-4 ${getStatusColor(selectedProject.status)}`}>
+                      {selectedProject.status || 'PROJECT'}
+                    </div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-teal-400">{selectedProject.title}</h2>
+                    <p className="text-gray-400 mt-2 font-medium tracking-widest uppercase text-xs">{selectedProject.role}</p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-bold text-gray-200 border-l-2 border-teal-400 pl-3">The Challenge</h3>
+                    <p className="text-gray-400 leading-relaxed text-sm lg:text-base italic">
+                      {selectedProject.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 py-4 border-y border-teal-400/10">
+                    <div className="flex items-center gap-3">
+                      <Calendar className="text-teal-400 w-5 h-5" />
+                      <div>
+                        <p className="text-gray-500 text-[10px] uppercase font-bold">Timeline</p>
+                        <p className="text-gray-300 text-xs">Recently Built</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Layers className="text-teal-400 w-5 h-5" />
+                      <div>
+                        <p className="text-gray-500 text-[10px] uppercase font-bold">Category</p>
+                        <p className="text-gray-300 text-xs">{selectedProject.category}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest">Stack.json</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech: string, idx: number) => (
+                        <span key={idx} className="bg-teal-400/5 text-teal-400/70 border border-teal-400/10 px-3 py-1 rounded-md text-xs font-mono">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 pt-6">
+                    {selectedProject.link && (
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
+                        className="flex-1 min-w-[140px] flex items-center justify-center gap-2 bg-teal-400 text-dark-bg font-bold py-3 rounded-xl hover:bg-teal-500 transition-all shadow-lg shadow-teal-400/10"
+                      >
+                        <Globe size={18} />
+                        Live Demo
+                      </a>
+                    )}
+                    {selectedProject.github && (
+                      <a
+                        href={selectedProject.github}
+                        target="_blank"
+                        className="flex-1 min-w-[140px] flex items-center justify-center gap-2 bg-teal-400/5 text-teal-400 border border-teal-400/20 font-bold py-3 rounded-xl hover:bg-teal-400/10 transition-all"
+                      >
+                        <Github size={18} />
+                        Source
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

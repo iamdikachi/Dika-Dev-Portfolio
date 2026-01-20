@@ -42,7 +42,7 @@ export interface Skill {
   name: string;
   level: number;
   category: string;
-  type?: "technical" | "soft";
+  type?: "technical" | "soft" | "tool";
 }
 
 
