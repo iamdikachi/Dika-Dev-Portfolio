@@ -14,9 +14,9 @@
     "framer-motion": "^12.27.0",
     "gsap": "^3.14.2",
     "lucide-react": "^0.552.0",
-    "next": "16.0.1",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "next": "^16.1.4",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-typed": "^2.0.12",
     "typewriter-effect": "^2.22.0"
   },
@@ -27,7 +27,7 @@
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.9.16",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "^16.1.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
