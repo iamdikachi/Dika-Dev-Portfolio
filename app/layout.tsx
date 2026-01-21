@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dika-Dev Portfolio",
+  title: "Onyedikachi Emmanuel Nnadi | FullStack Developer",
   description: "Professional portfolio showcasing my work and experience",
+   verification: {
+    google: "e2R97YTE80Mm2jm2p_SUey4cEiNJ5R61PVlI_IAf7lo",
+  },
 };
 
 export default function RootLayout({
