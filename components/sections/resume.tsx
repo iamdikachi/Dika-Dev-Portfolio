@@ -30,10 +30,10 @@ export const Resume: React.FC = () => {
 
         <div className="bg-dark-bg shadow-xl rounded-lg overflow-hidden border border-teal-400/10 print:shadow-none print:rounded-none">
           <div className="bg-teal-400/5 text-gray-300 p-8 sm:p-12 border-b border-teal-400/10">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-teal-400">
+            <h1 className="text-3xl sm:text-5xl font-bold mb-2 text-teal-400">
               Onyedikachi Emmanuel
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-400 mb-6 font-light">
+            <p className="text-lg sm:text-2xl text-gray-400 mb-6 font-light">
               Full Stack Developer
             </p>
 
@@ -77,7 +77,7 @@ export const Resume: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-8 sm:p-12 space-y-8">
+          <div className="p-6 sm:p-12 space-y-8">
             <section>
               <h2 className="text-2xl font-bold text-teal-400 mb-4 pb-2 border-b border-teal-400/20">
                 Professional Summary

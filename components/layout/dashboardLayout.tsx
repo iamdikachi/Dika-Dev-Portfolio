@@ -76,7 +76,7 @@ export const DashboardLayout: React.FC = () => {
           onToggle={() => setMobileMenuOpen(!mobileMenuOpen)}
         />
 
-        <main className="flex-1 md:p-6 overflow-hidden">
+        <main className="flex-1 p-4 sm:p-6 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -116,7 +116,7 @@ export const DashboardLayout: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="mx-auto p-10"
+              className="mx-auto p-6 lg:p-10"
             >
               <SectionComponent onSectionChange={setActiveSection} />
             </motion.div>

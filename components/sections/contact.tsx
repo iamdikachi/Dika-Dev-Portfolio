@@ -42,7 +42,7 @@ export const Contact: React.FC = () => {
 
         <div className="lg:col-span-5 space-y-8">
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight text-teal-400">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-teal-400">
               Let&apos;s Build <br />
               <span className="text-gray-300">Something Together</span>
             </h1>
@@ -91,7 +91,7 @@ export const Contact: React.FC = () => {
         </div>
 
         <div className="lg:col-span-7">
-          <Card className="p-8 md:p-10 bg-teal-400/2 border border-teal-400/10 rounded-4xl">
+          <Card className="p-6 md:p-10 bg-teal-400/2 border border-teal-400/10 rounded-3xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">

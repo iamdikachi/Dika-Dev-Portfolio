@@ -24,7 +24,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 
 const About: React.FC = () => {
   return (
-    <div className="min-h-screen bg-dark-bg text-gray-300 p-8">
+    <div className="min-h-screen bg-dark-bg text-gray-300 p-4 sm:p-6 lg:p-8">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -44,7 +44,7 @@ const About: React.FC = () => {
           style={{ animation: "fadeInUp 0.8s ease forwards" }}
         >
           <div className="w-16 h-1 bg-teal-400 rounded-full mb-6" />
-          <h1 className="text-5xl md:text-6xl font-bold text-teal-400 mb-2 tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-400 mb-2 tracking-tight">
             My Journey
           </h1>
           <p className="text-xl text-gray-500 font-light italic">
@@ -54,7 +54,7 @@ const About: React.FC = () => {
 
         {/* Beginning Section */}
         <section
-          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-8 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
+          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
             animation: "fadeInUp 0.8s ease forwards",
             animationDelay: "0.2s",
@@ -101,7 +101,7 @@ const About: React.FC = () => {
 
         {/* Learning Path Section */}
         <section
-          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-8 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
+          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
             animation: "fadeInUp 0.8s ease forwards",
             animationDelay: "0.6s",
@@ -137,7 +137,7 @@ const About: React.FC = () => {
 
         {/* Current Status Section */}
         <section
-          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
+          className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
             animation: "fadeInUp 0.8s ease forwards",
             animationDelay: "1.4s",

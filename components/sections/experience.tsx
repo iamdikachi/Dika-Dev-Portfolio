@@ -141,10 +141,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             <div className="text-xs sm:text-sm text-gray-400 font-mono mb-2">
               const careerJourney = await fetchExperience();
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-teal-400">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-teal-400">
               Professional Experience
             </h1>
-            <p className="text-gray-400 text-base sm:text-lg max-w-3xl">
+            <p className="text-gray-400 text-sm sm:text-lg max-w-3xl">
               A technical chronicle of 8+ years building scalable web systems,
               leading engineering teams, and solving complex architectural
               challenges.
@@ -260,7 +260,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                     </div>
 
      
-                    <div className="p-4 sm:p-6 lg:p-8">
+                    <div className="p-4 sm:p-6 lg:p-10">
                       <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
            
                         <div className="bg-teal-400/10 border border-teal-400/20 rounded-lg p-3 sm:p-4 shrink-0">
@@ -268,7 +268,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                         </div>
 
                         <div className="flex-1">
-                          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-300">
+                          <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-300">
                             {exp.position} @{" "}
                             <span className="text-teal-400">{exp.company}</span>
                           </h2>

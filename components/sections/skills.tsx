@@ -60,10 +60,10 @@ export const Skills: React.FC = () => {
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-teal-400 mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-teal-400 mb-4">
             Technical <span className="text-gray-300">Skills</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
             A comprehensive toolkit of modern technologies, frameworks, and tools I use to build exceptional digital experiences.
           </p>
         </div>
@@ -99,7 +99,7 @@ export const Skills: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: (index % 6) * 0.05 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-teal-400/2 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:shadow-xl transition-all duration-300 border border-teal-400/10 group"
+              className="bg-teal-400/2 rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center gap-3 sm:gap-4 hover:shadow-xl transition-all duration-300 border border-teal-400/10 group"
             >
            
               <div className="w-16 h-16 flex items-center justify-center">
@@ -160,10 +160,10 @@ export const Skills: React.FC = () => {
   
         <div className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-teal-400 mb-4">
               Soft <span className="text-gray-300">Skills</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
               Beyond technical expertise, I bring strong interpersonal and professional skills that drive successful project outcomes.
             </p>
           </div>
@@ -201,10 +201,10 @@ export const Skills: React.FC = () => {
 
         <div className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-teal-400 mb-4">
               Tools I <span className="text-gray-300">Use</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
               Professional software and AI-powered assistants that streamline my development workflow.
             </p>
           </div>

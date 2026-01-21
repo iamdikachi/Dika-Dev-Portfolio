@@ -33,10 +33,10 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
     <div className="min-h-screen bg-dark-bg text-gray-300 py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 text-teal-400">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-teal-400">
             Innovative <span className="text-gray-300">Digital Experience</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
             A curated collection of web applications.
           </p>
 
@@ -138,8 +138,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
           ))}
         </div>
 
-        <div className="bg-teal-400/2 rounded-3xl p-12 text-center border border-teal-400/10">
-          <h2 className="text-4xl font-bold mb-4 text-teal-400">
+        <div className="bg-teal-400/2 rounded-3xl p-8 sm:p-12 text-center border border-teal-400/10">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-teal-400">
             Let&apos;s build something{" "}
             <span className="text-gray-300">amazing</span> together
           </h2>

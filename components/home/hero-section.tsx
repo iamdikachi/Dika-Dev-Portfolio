@@ -71,15 +71,15 @@ const HeroSection = () => {
           </div>
   
           <div className="flex items-center">
-            <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
               <motion.div
                 variants={leftContentVariants}
                 initial="hidden"
                 animate="visible"
-                className="space-y-8 z-10"
+                className="space-y-6 lg:space-y-8 z-10 text-center lg:text-left"
               >
                 <div className="space-y-4">
-                  <motion.h1 variants={itemVariants} className="text-5xl sm:text-5xl lg:text-5xl 2xl:text-7xl font-bold text-teal-400 leading-tight">
+                  <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl 2xl:text-7xl font-bold text-teal-400 leading-tight">
                     Hello
                     <br />
                     I&apos;m
@@ -87,7 +87,7 @@ const HeroSection = () => {
                     <br />
                     Web developer
                   </motion.h1>
-                  <motion.p variants={itemVariants} className="text-gray-300 text-lg font-mono">
+                  <motion.p variants={itemVariants} className="text-gray-300 text-base sm:text-lg font-mono">
                     full stack developer
                   </motion.p>
                   <motion.div variants={itemVariants} className="text-teal-400">
@@ -95,11 +95,11 @@ const HeroSection = () => {
                   </motion.div>
                 </div>
    
-                <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center">
+                <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-dark-bg transition-all duration-300 font-medium"
+                    className="px-6 sm:px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-dark-bg transition-all duration-300 font-medium"
                   >
                     View my CV
                   </motion.button>
@@ -113,8 +113,8 @@ const HeroSection = () => {
                 </motion.div>
               </motion.div>
    
-              <div className="relative flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-md lg:max-w-lg">
+              <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
+                <div className="relative w-full max-w-[280px] sm:max-w-md lg:max-w-lg">
                   <div className="absolute inset-0 bg-teal-400/5 rounded-full blur-3xl"></div>
    
                   <motion.div 
@@ -130,48 +130,48 @@ const HeroSection = () => {
                     />
                   </motion.div>
 
+                  {/* Decorative Icons - Scaled/Hidden on very small screens */}
                   <div 
                     ref={(el) => { if (el) iconsRef.current[0] = el; }}
-                    className="absolute top-12 -right-4 w-14 h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    className="absolute top-8 -right-2 sm:top-12 sm:-right-4 w-10 h-10 sm:w-14 sm:h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
                   >
                     <img 
                       src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
                       alt="Node.js" 
-                      className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
+                      className="w-6 h-6 sm:w-8 sm:h-8 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
   
-              
                   <div 
                     ref={(el) => { if (el) iconsRef.current[1] = el; }}
-                    className="absolute top-1/3 -left-6 w-16 h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    className="absolute top-1/4 -left-4 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
                   >
                     <img 
                       src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
                       alt="Node.js" 
-                      className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                      className="w-8 h-8 sm:w-10 sm:h-10 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
   
                   <div 
                     ref={(el) => { if (el) iconsRef.current[2] = el; }}
-                    className="absolute bottom-1/4 -right-8 w-16 h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    className="absolute bottom-1/4 -right-4 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
                   >
                     <img 
                       src="https://cdn.simpleicons.org/php/2dd4bf" 
                       alt="PHP" 
-                      className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                      className="w-8 h-8 sm:w-10 sm:h-10 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
 
                   <div 
                     ref={(el) => { if (el) iconsRef.current[3] = el; }}
-                    className="absolute -bottom-4 left-1/4 w-14 h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    className="absolute -bottom-2 left-1/4 sm:-bottom-4 w-10 h-10 sm:w-14 sm:h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
                   >
                     <img 
                       src="https://cdn.simpleicons.org/express/2dd4bf" 
                       alt="Express" 
-                      className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
+                      className="w-6 h-6 sm:w-8 sm:h-8 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
                 </div>

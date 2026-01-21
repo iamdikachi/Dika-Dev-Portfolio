@@ -10,8 +10,8 @@ export const BuyMeCoffee: React.FC = () => {
         <Coffee className="text-teal-400" size={48} />
       </div>
 
-      <h2 className="text-4xl font-bold text-teal-400 mb-4">Buy Me a Coffee</h2>
-      <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto italic">
+      <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">Buy Me a Coffee</h2>
+      <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-2xl mx-auto italic">
         Support my work and fuel my passion for creating exceptional digital experiences! Your
         contribution helps me continue building amazing projects and sharing
         knowledge with the community.
