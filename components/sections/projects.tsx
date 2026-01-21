@@ -6,6 +6,7 @@ import { ExternalLink,  X, Calendar, Globe, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import Image from 'next/image'
+import { ScrollReveal } from "../ui/scrollReveal";
 
 
 interface ProjectsProps {
@@ -57,14 +58,15 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <ScrollReveal className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16" stagger={0.2}>
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
               onClick={() => setSelectedProject(project)}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              // whileInView={{ opacity: 1, y: 0 }} // Let GSAP handle entry
+              // viewport={{ once: true, margin: "-50px" }}
+              animate={{ opacity: 1, y: 0 }} // Ensure it's visible if GSAP doesn't catch it or for consistency
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               className="group bg-teal-400/2 backdrop-blur-sm rounded-3xl overflow-hidden border border-teal-400/10 hover:border-teal-400/30 transition-all duration-500 h-full flex flex-col"
@@ -136,7 +138,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </ScrollReveal>
 
         <div className="bg-teal-400/2 rounded-3xl p-8 sm:p-12 text-center border border-teal-400/10">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-teal-400">

@@ -11,6 +11,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { ScrollReveal } from "../ui/scrollReveal";
 
 const iconMap: Record<string, React.ElementType> = {
   briefcase: Briefcase,
@@ -229,16 +230,16 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
               </div>
             </motion.div>
           ) : (
-            <div className="space-y-6 lg:space-y-8">
+            <ScrollReveal className="space-y-6 lg:space-y-8" stagger={0.1}>
               {experiences.map((exp, index) => {
                 const IconComponent = exp.icon ? iconMap[exp.icon] : Briefcase;
 
                 return (
                   <motion.div
                     key={exp.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    // initial={{ opacity: 0, scale: 0.95 }}
+                    // whileInView={{ opacity: 1, scale: 1 }}
+                    // viewport={{ once: true }}
                     className="bg-teal-400/2 backdrop-blur-sm rounded-2xl border border-teal-400/10 overflow-hidden hover:border-teal-400 transition-all duration-300"
                   >
     
@@ -332,7 +333,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                   </motion.div>
                 );
               })}
-            </div>
+            </ScrollReveal>
           )}
         </div>
       </div>
