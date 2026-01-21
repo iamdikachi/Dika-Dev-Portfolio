@@ -25,10 +25,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
       onMouseEnter={() => setIsCollapsed(false)}
       onMouseLeave={() => setIsCollapsed(true)}
     >
-      {/* Logo/Brand */}
+
       <div className="p-6 border-b border-teal-400/10">
         <h1
-          className={`font-bold transition-all duration-300 mt-5 text-teal-400 text-center ${
+          className={`font-bold transition-all duration-300 mt-5 text-teal-400  ${
             isCollapsed ? "text-xl" : "text-2xl"
           }`}
         >
@@ -36,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </h1>
       </div>
 
-      {/* Menu Items */}
+
       <nav className="flex-1 overflow-y-auto py-4">
         {menuItems.map((item) => {
           const Icon = item.icon;

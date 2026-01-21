@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { skills } from "@/data/skills";
 import { motion } from "framer-motion";
+import Image from 'next/image';
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -20,21 +21,21 @@ export const Skills: React.FC = () => {
       "Alpine.js": "https://cdn.simpleicons.org/alpinedotjs/8BC0D0",
       "Livewire": "https://cdn.simpleicons.org/livewire/FB70A9",
       "HTML": "https://cdn.simpleicons.org/html5/E34F26",
-      "CSS": "https://cdn.simpleicons.org/css3/1572B6",
-      "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+      "CSS": "/images/css.png",
+      "Tailwind CSS": "/images/tailwind.png",
       "Bootstrap": "https://cdn.simpleicons.org/bootstrap/7952B3",
       "Shadcn UI": "https://cdn.simpleicons.org/shadcnui/000000",
-      "Flowbite": "https://cdn.simpleicons.org/flowbite/1C64F2",
-      "Shad UI": "https://cdn.simpleicons.org/shadcnui/000000",
+      "Flowbite": "/images/flowbite.jpg",
       "Node.js": "https://cdn.simpleicons.org/nodedotjs/339933",
       "Express.js": "https://cdn.simpleicons.org/express/000000",
       "Laravel": "https://cdn.simpleicons.org/laravel/FF2D20",
       "PHP": "https://cdn.simpleicons.org/php/777BB4",
       "Filament": "https://cdn.simpleicons.org/laravel/FF2D20",
-      "AdminJS": "https://cdn.simpleicons.org/javascript/F7DF1E",
+      "Formik": "/images/formik.png",
+      "AdminJS": "/images/adminjs.png",
       "JavaScript": "https://cdn.simpleicons.org/javascript/F7DF1E",
       "TypeScript": "https://cdn.simpleicons.org/typescript/3178C6",
-      "Zustand": "https://cdn.simpleicons.org/react/61DAFB",
+      "Zustand": "/images/zustand.jpg",
       "MySQL": "https://cdn.simpleicons.org/mysql/4479A1",
       "MongoDB": "https://cdn.simpleicons.org/mongodb/47A248",
       "Firebase": "https://cdn.simpleicons.org/firebase/FFCA28",
@@ -43,7 +44,7 @@ export const Skills: React.FC = () => {
       "Git": "https://cdn.simpleicons.org/git/F05032",
       "Zod": "https://cdn.simpleicons.org/zod/3E67B1",
       "Yup": "https://cdn.simpleicons.org/javascript/F7DF1E",
-      "VS Code": "https://cdn.simpleicons.org/visualstudiocode/007ACC",
+      "VS Code": "/images/vscode.png",
       "ChatGPT": "https://cdn.simpleicons.org/openai/412991",
       "Claude": "https://cdn.simpleicons.org/anthropic/D97757",
       "Antigravity": "https://cdn.simpleicons.org/planetscale/000000",
@@ -57,7 +58,7 @@ export const Skills: React.FC = () => {
   return (
     <div className="min-h-screen bg-dark-bg py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-teal-400 mb-4">
             Technical <span className="text-gray-300">Skills</span>
@@ -67,7 +68,7 @@ export const Skills: React.FC = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
+    
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <button
@@ -84,7 +85,7 @@ export const Skills: React.FC = () => {
           ))}
         </div>
 
-        {/* Skills Grid - Technical Skills Only */}
+   
         <motion.div 
           layout
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
@@ -100,7 +101,7 @@ export const Skills: React.FC = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="bg-teal-400/2 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:shadow-xl transition-all duration-300 border border-teal-400/10 group"
             >
-              {/* Logo */}
+           
               <div className="w-16 h-16 flex items-center justify-center">
                 <img
                   src={getLogoUrl(skill.name)}
@@ -109,7 +110,7 @@ export const Skills: React.FC = () => {
                 />
               </div>
               
-              {/* Name */}
+       
               <div className="text-center">
                 <h3 className="font-semibold text-gray-300 text-sm">
                   {skill.name}
@@ -119,7 +120,7 @@ export const Skills: React.FC = () => {
                 </p>
               </div>
 
-              {/* Proficiency Level (optional visual indicator) */}
+         
               <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
@@ -133,12 +134,12 @@ export const Skills: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Stats */}
+      
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { label: "Technologies", value: `${skills.filter(s => s.type !== "soft").length}+` },
             { label: "Categories", value: categories.length - 1 },
-            { label: "Years Experience", value: "8+" },
+            { label: "Years Experience", value: "6+" },
             { label: "Projects Built", value: "100+" }
           ].map((stat, index) => (
             <motion.div 
@@ -156,7 +157,7 @@ export const Skills: React.FC = () => {
           ))}
         </div>
 
-        {/* Soft Skills Section */}
+  
         <div className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">
@@ -182,7 +183,7 @@ export const Skills: React.FC = () => {
                   {skill.name}
                 </h3>
                 
-                {/* Proficiency Bar */}
+      
                 <div className="w-full bg-teal-400/10 rounded-full h-2 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
@@ -197,7 +198,7 @@ export const Skills: React.FC = () => {
           </div>
         </div>
 
-        {/* Tools I Use Section */}
+
         <div className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-teal-400 mb-4">

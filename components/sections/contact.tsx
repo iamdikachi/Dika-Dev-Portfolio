@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Mail, MapPin, Send, Code2, Briefcase, Share2 } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
+import { FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa6";
 
 export const Contact: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "72cecd5f-f0de-4915-a6a7-9373713edd3e");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -21,24 +54,24 @@ export const Contact: React.FC = () => {
           </div>
 
           <div className="flex gap-6">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer group">
-                <Code2 className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Github</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer group">
-                <Briefcase className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Linkedin</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
+            <a href="https://www.facebook.com/iamdikachukwu" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
               <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer">
-                <Share2 className="w-6 h-6" />
+                <FaFacebook className="w-6 h-6" />
               </div>
-              <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Twitter</span>
-            </div>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest group-hover:text-teal-400 transition-colors">Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/iamdikachukwu?igsh=Zzh0d2VndGRtdGJo" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer">
+                <FaInstagram className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest group-hover:text-teal-400 transition-colors">Instagram</span>
+            </a>
+            <a href="https://www.tiktok.com/@iamdikachukwu" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+              <div className="w-14 h-14 rounded-full border border-teal-400/20 flex items-center justify-center hover:border-teal-400 hover:text-teal-400 transition-colors cursor-pointer">
+                <FaTiktok className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest group-hover:text-teal-400 transition-colors">TikTok</span>
+            </a>
           </div>
 
           <div className="bg-teal-400/5 rounded-2xl p-8 space-y-6 border border-teal-400/10">
@@ -57,17 +90,18 @@ export const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: Form */}
         <div className="lg:col-span-7">
           <Card className="p-8 md:p-10 bg-teal-400/2 border border-teal-400/10 rounded-4xl">
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 flex items-center gap-1">
                     Full Name
                   </label>
                   <input
+                    name="name"
                     type="text"
+                    required
                     placeholder="John Doe"
                     className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
                   />
@@ -77,7 +111,9 @@ export const Contact: React.FC = () => {
                     Email Address
                   </label>
                   <input
+                    name="email"
                     type="email"
+                    required
                     placeholder="john@example.com"
                     className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
                   />
@@ -89,7 +125,9 @@ export const Contact: React.FC = () => {
                   Subject
                 </label>
                 <input
+                  name="subject"
                   type="text"
+                  required
                   placeholder="Project Inquiry"
                   className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600"
                 />
@@ -100,6 +138,8 @@ export const Contact: React.FC = () => {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  required
                   placeholder="Tell me about your project visions..."
                   rows={4}
                   className="w-full px-5 py-4 bg-dark-bg border border-teal-400/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all text-gray-300 placeholder:text-gray-600 resize-none"
@@ -108,11 +148,19 @@ export const Contact: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-4 bg-teal-400 hover:bg-teal-500 text-dark-bg font-bold rounded-xl transition-all shadow-lg shadow-teal-400/10 flex items-center justify-center gap-3 group"
+                disabled={isSubmitting}
+                className="cursor-pointer w-full sm:w-auto px-8 py-4 bg-teal-400 hover:bg-teal-500 disabled:bg-teal-400/50 text-dark-bg font-bold rounded-xl transition-all shadow-lg shadow-teal-400/10 flex items-center justify-center gap-3 group"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
+
+              {submitStatus === "success" && (
+                <p className="text-teal-400 text-sm font-medium text-center">Message sent successfully!</p>
+              )}
+              {submitStatus === "error" && (
+                <p className="text-red-400 text-sm font-medium text-center">Something went wrong. Please try again.</p>
+              )}
 
               <p className="text-center text-xs text-gray-400 font-medium pt-2">
                 Typically responds within 24-48 hours.

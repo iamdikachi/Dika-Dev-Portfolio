@@ -27,7 +27,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
   const [terminalMode, setTerminalMode] = useState(false);
   const views = ["Full Timeline", "Companies", "Core Skills"];
 
-  // Milestones for sidebar
+
   const milestones = [
     { year: "2022-Present", title: "Senior Engineer @ TechCorp" },
     { year: "2020-2022", title: "Full Stack @ InnovateSoft" },
@@ -69,15 +69,12 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
   };
 
   return (
-    <div className="min-h-screen bg-dark-bg text-gray-300 flex">
-      {/* Sidebar */}
-      <div className="w-64 bg-black/30 border-r border-slate-700 p-6 hidden lg:block">
+    <div className="min-h-screen  text-gray-300 flex">
+      <div className="w-64  border-r border-slate-700 p-6 hidden lg:block">
         <div className="mb-8">
           <h3 className="text-xs text-gray-400 uppercase tracking-wider mb-4">
             EXPERIENCE_EXPLORER
           </h3>
-
-          {/* View Options */}
           <div className="space-y-2 mb-8">
             {views.map((view) => (
               <button
@@ -107,8 +104,6 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
               <span className="text-sm">Terminal Mode</span>
             </button>
           </div>
-
-          {/* Milestones */}
           <div>
             <h4 className="text-xs text-gray-400 uppercase tracking-wider mb-4">
               MILESTONES
@@ -128,23 +123,20 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
           </div>
         </div>
 
-        {/* Status Log */}
         <div className="mt-auto pt-8 border-t border-teal-400/10">
           <div className="flex items-center gap-2 text-xs text-teal-400">
             <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(45,212,191,0.6)]"></div>
             <span>status.log</span>
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Currently open to senior leadership roles and cloud architecture
-            consulting.
+            Currently open to Frontend, Backend and FullStack Roles.
           </p>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-12">
-          {/* Header */}
+
           <div className="mb-8 lg:mb-12">
             <div className="text-xs sm:text-sm text-gray-400 font-mono mb-2">
               const careerJourney = await fetchExperience();
@@ -159,7 +151,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             </p>
           </div>
 
-          {/* Experience Cards or Terminal View */}
+
           {terminalMode ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -249,7 +241,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                     viewport={{ once: true }}
                     className="bg-teal-400/2 backdrop-blur-sm rounded-2xl border border-teal-400/10 overflow-hidden hover:border-teal-400 transition-all duration-300"
                   >
-                    {/* File Header */}
+    
                     <div className="bg-dark-bg px-4 sm:px-6 py-3 flex items-center justify-between border-b border-teal-400/10">
                       <div className="flex items-center gap-2">
                         <div className="flex gap-1.5">
@@ -267,15 +259,14 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                       </button>
                     </div>
 
-                    {/* Card Content */}
+     
                     <div className="p-4 sm:p-6 lg:p-8">
                       <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                        {/* Icon */}
+           
                         <div className="bg-teal-400/10 border border-teal-400/20 rounded-lg p-3 sm:p-4 shrink-0">
                           <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-teal-400" />
                         </div>
 
-                        {/* Content */}
                         <div className="flex-1">
                           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-300">
                             {exp.position} @{" "}
@@ -295,7 +286,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                             </div>
                           </div>
 
-                          {/* Achievements */}
+     
                           {exp.achievements && exp.achievements.length > 0 && (
                             <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                               {exp.achievements.map((achievement, idx) => (
@@ -317,7 +308,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                             </div>
                           )}
 
-                          {/* Technologies */}
+            
                           {exp.technologies && exp.technologies.length > 0 && (
                             <div>
                               <div className="text-xs text-gray-500 font-mono mb-2 sm:mb-3">

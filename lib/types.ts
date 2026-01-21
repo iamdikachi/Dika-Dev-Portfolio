@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { ElementType } from "react";
 
 export interface MenuItem {
   id: string;
@@ -7,7 +8,7 @@ export interface MenuItem {
 }
 
 export interface SocialLink {
-  icon: LucideIcon;
+  icon: LucideIcon | ElementType;
   label: string;
   url: string;
 }

@@ -1,14 +1,21 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+
 import { SocialLink } from "@/lib/types";
+import { FaWhatsapp, FaLinkedin} from "react-icons/fa6";
+import { SiGmail } from "react-icons/si";
+import { BsTwitterX } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
+
+
+
 
 export const socialLinks: SocialLink[] = [
-  { icon: Github, label: "GitHub", url: "https://github.com/yourusername" },
+  { icon: FaGithub, label: "GitHub", url: "https://github.com/iamdikachi" },
   {
-    icon: Linkedin,
+    icon: FaLinkedin,
     label: "LinkedIn",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://www.linkedin.com/in/iamdikachukwu/",
   },
-  { icon: Twitter, label: "Twitter", url: "https://twitter.com/yourusername" },
-  { icon: Twitter, label: "Email", url: "https://twitter.com/yourusername" },
-  { icon: Twitter, label: "WhatsApp", url: "https://twitter.com/yourusername" },
+  { icon: BsTwitterX, label: "Twitter", url: "https://x.com/iamdikachukwu" },
+  { icon: SiGmail, label: "Email", url: "mailto:emmanuelnnadi097@gmail.com" },
+  { icon: FaWhatsapp, label: "WhatsApp", url: "https://whatsapp.com/dl/" },
 ];
