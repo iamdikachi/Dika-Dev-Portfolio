@@ -27,16 +27,16 @@ export const AIChatbot: React.FC = () => {
 
     // Simple mock response logic
     setTimeout(() => {
-      let response = "That's a great question! Onyedikachi (Dika) is a specialized Full Stack Developer with 8+ years of experience in AI Automation and modern web frameworks.";
+      let response = "That's a great question! Onyedikachi (Dika.Dev) is a specialized Full Stack Developer with 6+ years of experience in AI Automation and modern web frameworks.";
       if (input.toLowerCase().includes("skill")) response = "He specializes in Node.js, React, Laravel, and AI integrations (OpenAI, LangChain).";
-      if (input.toLowerCase().includes("contact")) response = "You can reach him via the Contact section or directly at onyedikachi@example.com.";
+      if (input.toLowerCase().includes("contact")) response = "You can reach him via the Contact section or directly at emmanuelnnadi097@gmail.com.";
       
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
     }, 1000);
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[90] pointer-events-none">
+    <div className="fixed bottom-6 right-6 z-90 pointer-events-none">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -45,7 +45,7 @@ export const AIChatbot: React.FC = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="pointer-events-auto mb-4 w-[350px] h-[500px] bg-dark-bg border border-teal-400/20 rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl"
           >
-            {/* Header */}
+
             <div className="p-4 bg-teal-400/5 border-b border-teal-400/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-teal-400 rounded-full flex items-center justify-center shadow-lg shadow-teal-400/20">
@@ -67,7 +67,6 @@ export const AIChatbot: React.FC = () => {
               </button>
             </div>
 
-            {/* Messages */}
             <div 
               ref={scrollRef}
               className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide"
@@ -90,7 +89,6 @@ export const AIChatbot: React.FC = () => {
               ))}
             </div>
 
-            {/* Input */}
             <div className="p-4 bg-teal-400/5 border-t border-teal-400/10">
               <div className="relative flex items-center">
                 <input 
@@ -117,7 +115,6 @@ export const AIChatbot: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="pointer-events-auto w-14 h-14 bg-teal-400 rounded-full flex items-center justify-center shadow-2xl shadow-teal-400/20 hover:scale-110 active:scale-95 transition-all group relative overflow-hidden"

@@ -146,7 +146,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
               Professional Experience
             </h1>
             <p className="text-gray-400 text-sm sm:text-lg max-w-3xl">
-              A technical chronicle of 8+ years building scalable web systems,
+              A technical chronicle of 6+ years building scalable web systems,
               leading engineering teams, and solving complex architectural
               challenges.
             </p>
@@ -237,9 +237,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                 return (
                   <motion.div
                     key={exp.id}
-                    // initial={{ opacity: 0, scale: 0.95 }}
-                    // whileInView={{ opacity: 1, scale: 1 }}
-                    // viewport={{ once: true }}
+              
                     className="bg-teal-400/2 backdrop-blur-sm rounded-2xl border border-teal-400/10 overflow-hidden hover:border-teal-400 transition-all duration-300"
                   >
     
