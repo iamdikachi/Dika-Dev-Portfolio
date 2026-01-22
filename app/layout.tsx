@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import BlurredBackground from "@/components/BlurredBackground";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Onyedikachi Emmanuel Nnadi Portfolio",
     images: [
       {
-        url: "/icon.png", // Using the favicon as the main image for now
+        url: "/icon.png", 
         width: 1200,
         height: 630,
         alt: "Onyedikachi Emmanuel Nnadi Portfolio",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description:
       "Full Stack Developer specializing in modern web technologies. Check out my latest projects and skills.",
     images: ["/icon.png"],
-    creator: "@iamdikachukwu", // Updated based on social links in code
+    creator: "@iamdikachukwu", 
   },
   robots: {
     index: true,
@@ -104,6 +104,9 @@ export default function RootLayout({
                 "https://www.instagram.com/iamdikachukwu?igsh=Zzh0d2VndGRtdGJo",
                 "https://www.tiktok.com/@iamdikachukwu",
                 "https://github.com/iamdikachi",
+                "https://www.linkedin.com/in/iamdikachukwu/",
+                "https://x.com/iamdikachukwu",
+                "https://whatsapp.com/dl/"
               ],
             }),
           }}
