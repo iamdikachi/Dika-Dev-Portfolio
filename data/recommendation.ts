@@ -11,7 +11,7 @@ export const recommendations: Recommendation[] = [
     title: "Co-Founder | CTO ",
     company: "Osmaxin Developers",
     avatar:
-      "/images/stanco.jpg",
+      "/images/stan.jpg",
     verified: true,
   },
   {
@@ -22,18 +22,18 @@ export const recommendations: Recommendation[] = [
     title: "Co-Founder ",
     company: "Osmaxin Developers",
     avatar:
-      "/images/godwin.jpg",
+      "/images/nwochie.jpg",
     verified: true,
   },
   {
     id: "3",
     quote:
-      "Collaborating with Dikachi has been an absolute pleasure. His technical expertise combined with her creative problem-solving skills made our project a huge success. He goes above and beyond every time.",
-    name: "Emily Rodriguez",
-    title: "CTO",
-    company: "StartupHub",
+      "Collaborating with Dikachi has been an absolute pleasure. His technical expertise combined with his creative problem-solving skills made our project a huge success. He goes above and beyond every time.",
+    name: "Ezeobi Kingsley",
+    title: "Senior Backend Developer",
+    company: "oneDosh",
     avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+      "/images/sunny.jpg",
     verified: true,
   },
 ];

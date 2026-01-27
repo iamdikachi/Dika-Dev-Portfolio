@@ -5,13 +5,16 @@ import ProjectContributions from "../home/project-contributions";
 import Recommendation from "../home/recommendation";
 import { ScrollReveal } from "../ui/scrollReveal";
 
-export const Home: React.FC = () => {
-  
+interface HomeProps {
+  onSectionChange?: (section: string) => void;
+}
 
+export const Home: React.FC<HomeProps> = ({ onSectionChange }) => {
+  
   return (
     <div className="">
       <section>
-        <HeroSection />
+        <HeroSection onSectionChange={onSectionChange} />
       </section>
       <ScrollReveal>
         <section>

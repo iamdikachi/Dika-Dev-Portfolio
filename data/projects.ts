@@ -68,7 +68,7 @@ export const sampleProjects: SampleProject[] = [
   {
     id: "3",
     title: "Educational Tutoring Platform",
-    image: "/images/eduzone Logo png 1.png",
+    image: "/images/eduzone.png",
     url: "https://eduzoneng.com/",
   },
   {

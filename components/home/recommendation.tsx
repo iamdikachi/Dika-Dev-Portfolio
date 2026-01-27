@@ -30,7 +30,7 @@ const Recommendation = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-teal-400/2 rounded-2xl p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 relative border-l-4 border-teal-400"
+            className="bg-teal-400/2 rounded-2xl p-2 shadow-xl transition-all duration-300 hover:-translate-y-1 relative border-l-4 border-teal-400"
           >
          
             <div className="absolute top-6 left-6 w-12 h-12 bg-teal-400/10 rounded-full flex items-center justify-center border border-teal-400/20">
@@ -44,7 +44,7 @@ const Recommendation = () => {
             </div>
 
         
-            <p className="text-gray-300 leading-relaxed mb-6 mt-12 italic">
+            <p className="text-gray-300 leading-relaxed mb-6 mt-16 italic">
               &quot;{rec.quote}&quot;
             </p>
 
@@ -52,8 +52,8 @@ const Recommendation = () => {
             <div className="flex items-center justify-between mt-6 pt-6 border-t border-teal-400/10">
               <div className="flex items-center gap-3">
                 <Image
-                  width={48}
-                  height={48}
+                  width={60}
+                  height={60}
                   src={rec.avatar}
                   alt={rec.name}
                   className="w-12 h-12 rounded-full object-cover border-2 border-teal-400/20 grayscale group-hover:grayscale-0 transition-all"

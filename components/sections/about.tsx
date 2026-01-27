@@ -52,7 +52,7 @@ const About: React.FC = () => {
           </p>
         </header>
 
-        {/* Beginning Section */}
+ 
         <section
           className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
@@ -67,25 +67,27 @@ const About: React.FC = () => {
             The Beginning
           </h2>
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-            My journey into tech didn&apos;t start with a computer science
-            degree or a childhood spent coding. It began with{" "}
-            <span className="text-teal-400 font-medium">curiosity</span> and a
-            simple question: &quot;How does this work?&quot; Whether it was
-            taking apart gadgets to see their inner workings or staying up late
-            wondering how websites came to life, that curiosity became the spark
-            that ignited everything.
-          </p>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            I still remember the first time I wrote a line of code that actually
-            worked. It was messy, probably inefficient, but it was{" "}
-            <span className="text-teal-400 font-medium">mine</span>. That
-            feeling of creating something from nothing, of turning an idea into
-            reality through logic and creativity, was addictive. I knew then
-            that I had found something special.
+          My journey into tech started in 2017, after my senior secondary school. I had zero knowledge of computers or programming at the time. I originally wanted to study Medicine or any medical-related course, but unfortunately, I had a D7 in Biology. I think that was when my mindset started to shift. I needed to do something else that aligned with my WAEC results.
+
+I can’t really remember who suggested it to my mom, but someone told her I should go and learn a skill. 
+
+<p className="text-lg text-gray-300 mb-6 mt-6 leading-relaxed">I told my mom I wanted to learn phone repairs. We were already doing research and even visited a phone repair shop to register. Then a man from my village came around. I don’t know what conversation he had with my mom, but he told her I should learn computer repair instead. My mom agreed, and that was it. We decided to try that out, and the search for where I would learn it began.
+
+We went to Nsukka town, which wasn’t far from my place. We went straight to Ogige Market.</p> There was a computer and phone repair line there at the time, before it was moved. We met a man who had a shop and some apprentices learning repairs. He told us it would cost 45k to learn. After that, we went to another shop and met the man who eventually taught me the work.
+
+The place was called MicroSpeed Ltd. He told us it was 40k. 
+
+<p className="text-lg text-gray-300 mb-6 leading-relaxed">Accommodation became a problem, but he offered me a place to stay in his home. That was how everything started. I began learning and fell in love with computers. I completely forgot about anything medical.
+
+
+Later on, I applied for JAMB and got into school as a Computer Science student. </p>That was where I met Okechukwu Somto Stanley, who was the NACOS president at the time. One day, he called for students who were interested in learning programming. I attended, and it has been a ride since then.
+
+Today, I’m proud to call myself a software developer.
+And honestly, the journey is more than this story.
           </p>
         </section>
 
-        {/* Quote Section */}
+    
         <div
           className="bg-teal-400/5 border-l-4 border-teal-400 rounded-xl p-8 my-8 opacity-0"
           style={{
@@ -99,7 +101,6 @@ const About: React.FC = () => {
           </p>
         </div>
 
-        {/* Learning Path Section */}
         <section
           className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 mb-8 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
@@ -135,7 +136,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Current Status Section */}
+
         <section
           className="bg-teal-400/2 backdrop-blur-sm rounded-3xl p-6 md:p-12 border border-teal-400/10 transition-all duration-300 hover:-translate-y-2 hover:border-teal-400/30 opacity-0"
           style={{
@@ -152,10 +153,8 @@ const About: React.FC = () => {
           <p className="text-lg text-gray-300 mb-6 leading-relaxed">
             Today, I approach every project with the same{" "}
             <span className="text-teal-400 font-medium">
-              curiosity and passion
-            </span>
-            that got me started. I&apos;ve learned that being a developer
-            isn&apos;t just about writing code—it&apos;s about solving problems,
+              curiosity and passion </span>   that got me started. I&apos;ve learned that being a developer
+            isn&apos;t just about writing code it&apos;s about solving problems,
             collaborating with others, and constantly pushing yourself to learn
             and grow.
           </p>

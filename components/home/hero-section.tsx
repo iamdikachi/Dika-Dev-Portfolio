@@ -5,7 +5,11 @@ import { motion, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onSectionChange?: (section: string) => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
   const iconsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -99,17 +103,18 @@ const HeroSection = () => {
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 sm:px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-dark-bg transition-all duration-300 font-medium"
+                    onClick={() => onSectionChange?.('resume')}
+                    className="cursor-pointer px-6 sm:px-8 py-3 border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-dark-bg transition-all duration-300 font-medium"
                   >
                     View my CV
                   </motion.button>
-                  <motion.a
+                  <motion.button
                     whileHover={{ x: 5 }}
-                    href="#"
-                    className="text-gray-300 hover:text-teal-400 underline transition-colors duration-300 flex items-center gap-2"
+                    onClick={() => onSectionChange?.('contact')}
+                    className="cursor-pointer text-gray-300 hover:text-teal-400 underline transition-colors duration-300 flex items-center gap-2"
                   >
                     Booking
-                  </motion.a>
+                  </motion.button>
                 </motion.div>
               </motion.div>
    
@@ -130,7 +135,6 @@ const HeroSection = () => {
                     />
                   </motion.div>
 
-                  {/* Decorative Icons - Scaled/Hidden on very small screens */}
                   <div 
                     ref={(el) => { if (el) iconsRef.current[0] = el; }}
                     className="absolute top-8 -right-2 sm:top-12 sm:-right-4 w-10 h-10 sm:w-14 sm:h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
