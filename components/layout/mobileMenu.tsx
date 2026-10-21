@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { menuItems } from "@/data/menuItem";
 
@@ -19,6 +19,11 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   isOpen,
   onToggle,
 }) => {
+  const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
   const handleSectionChange = (section: string) => {
     onSectionChange(section);
     onToggle();
@@ -80,9 +85,16 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               </div>
             </nav>
 
-            <div className="p-6 border-t border-teal-400/10">
+            <div className="p-5 border-t border-teal-400/10 space-y-3">
+              <div className="flex items-center justify-center gap-2 text-xs font-mono text-gray-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
+                </span>
+                <span className="text-teal-400 font-medium">Available for opportunities</span>
+              </div>
               <p className="text-xs text-gray-500 text-center">
-                © 2025 Onyedikachi Emmanuel
+                © {currentYear} Onyedikachi Emmanuel
               </p>
             </div>
           </motion.div>
