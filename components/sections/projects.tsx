@@ -74,11 +74,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               <div className="relative h-64 bg-teal-400/5 flex items-center justify-center overflow-hidden">
                 {project.image ? (
                   <Image
-                    width={100}
-                    height={100}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                    className="object-cover grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
                   />
                 ) : (
                   <div className="text-6xl text-teal-400/20">📊</div>
@@ -194,9 +194,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               <div className="lg:w-1/2 relative bg-teal-400/5 min-h-[250px] lg:min-h-full">
                 {selectedProject.image ? (
                   <Image
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="w-full h-full object-cover"
+                    className="object-cover"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-8xl text-teal-400/10">

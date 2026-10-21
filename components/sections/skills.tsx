@@ -106,6 +106,10 @@ export const Skills: React.FC = () => {
                 <img
                   src={getLogoUrl(skill.name)}
                   alt={skill.name}
+                  loading="lazy"
+                  decoding="async"
+                  width={64}
+                  height={64}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               </div>

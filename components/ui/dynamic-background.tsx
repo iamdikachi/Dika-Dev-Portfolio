@@ -8,53 +8,73 @@ export const DynamicBackground: React.FC = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for cursor reactivity
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+  // Smooth spring for cursor reactivity with high performance
+  const springX = useSpring(mouseX, { stiffness: 45, damping: 25 });
+  const springY = useSpring(mouseY, { stiffness: 45, damping: 25 });
 
   useEffect(() => {
     setMounted(true);
+    // Skip tracking on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    let rafId: number | null = null;
     const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      mouseX.set(clientX);
-      mouseY.set(clientY);
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        mouseX.set(e.clientX);
+        mouseY.set(e.clientY);
+        rafId = null;
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [mouseX, mouseY]);
 
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 -z-10 bg-dark-bg overflow-hidden pointer-events-none">
-      {/* Primary animated orb */}
+    <div className="fixed inset-0 -z-10 bg-dark-bg overflow-hidden pointer-events-none contain-strict">
+      {/* Primary animated orb using hardware-accelerated radial-gradient instead of expensive blur filters */}
       <motion.div
         style={{
           x: springX,
           y: springY,
           translateX: "-50%",
           translateY: "-50%",
+          background:
+            "radial-gradient(circle, rgba(45, 212, 191, 0.12) 0%, rgba(45, 212, 191, 0.04) 40%, transparent 70%)",
+          willChange: "transform",
         }}
-        className="absolute w-[600px] h-[600px] bg-teal-400/10 rounded-full blur-[120px]"
+        className="absolute w-[600px] h-[600px] rounded-full"
       />
 
-      {/* Secondary static orbs for depth */}
-      <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-teal-400/5 rounded-full blur-[100px] animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-400/5 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
+      {/* Secondary static ambient glow orbs with zero repaint cost */}
+      <div
+        className="absolute top-[-10%] left-[-10%] w-[450px] h-[450px] rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(45, 212, 191, 0.06) 0%, transparent 70%)",
+        }}
+      />
 
       {/* Subtle grid pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(var(--accent-color, #2dd4bf) 1px, transparent 1px), linear-gradient(90deg, var(--accent-color, #2dd4bf) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
-      />
-      
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay pointer-events-none"
-           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
       />
     </div>
   );

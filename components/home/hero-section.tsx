@@ -13,18 +13,23 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
   const iconsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    iconsRef.current.forEach((icon, index) => {
-      gsap.to(icon, {
-        y: "random(-20, 20)",
-        x: "random(-10, 10)",
-        rotation: "random(-10, 10)",
-        duration: "random(2, 4)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: index * 0.5,
+    const ctx = gsap.context(() => {
+      iconsRef.current.forEach((icon, index) => {
+        if (!icon) return;
+        gsap.to(icon, {
+          y: "random(-20, 20)",
+          x: "random(-10, 10)",
+          rotation: "random(-10, 10)",
+          duration: "random(2, 4)",
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.5,
+        });
       });
     });
+
+    return () => ctx.revert();
   }, []);
 
   const leftContentVariants: Variants = {
@@ -120,7 +125,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
    
               <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
                 <div className="relative w-full max-w-[280px] sm:max-w-md lg:max-w-lg">
-                  <div className="absolute inset-0 bg-teal-400/5 rounded-full blur-3xl"></div>
+                  <div
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, transparent 70%)",
+                    }}
+                  />
    
                   <motion.div 
                     variants={rightContentVariants}
@@ -183,11 +194,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
             </div>
           </div>
  
-          <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl animate-pulse"></div>
           <div
-            className="absolute bottom-0 left-0 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
+            className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none opacity-40"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none opacity-40"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%)",
+            }}
+          />
       </div>
   )
 }

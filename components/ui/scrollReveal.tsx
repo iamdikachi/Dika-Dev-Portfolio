@@ -29,34 +29,35 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const element = elementRef.current;
     if (!element) return;
 
-    // Use a small timeout to ensure DOM is ready and layout is settled
+    let ctx: gsap.Context | undefined;
     const timer = setTimeout(() => {
-      gsap.fromTo(
-        element.children,
-        {
-          opacity: 0,
-          y: yOffset,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: duration,
-          delay: delay,
-          stagger: stagger,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 85%", // Animation starts when top of element hits 85% of viewport height
-            toggleActions: "play none none reverse", // Play on enter, reverse on leave back up
-            // refreshPriority: 1 // Helpful for dynamic content
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          element.children,
+          {
+            opacity: 0,
+            y: yOffset,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: duration,
+            delay: delay,
+            stagger: stagger,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }, element);
     }, 100);
 
     return () => {
-        clearTimeout(timer);
-        ScrollTrigger.getAll().forEach(t => t.kill());
+      clearTimeout(timer);
+      if (ctx) ctx.revert();
     };
   }, [delay, duration, yOffset, stagger]);
 

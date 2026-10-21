@@ -7,24 +7,54 @@ import { MobileMenu } from "./mobileMenu";
 import { Footer } from "./footer";
 import { Sidebar } from "./sidebar";
 import { motion, AnimatePresence } from "framer-motion";
-import { CommandPalette } from "../ui/commandPalette";
-// import { CustomCursor } from "../ui/customCursor";
-import { AIChatbot } from "../ui/aiChatbot";
-import { ThemeSwitcher } from "../ui/theme-switcher";
+import dynamic from "next/dynamic";
+import { Home } from "../sections/home";
 import { MagicMenu } from "../ui/magic-menu";
 
-import { Profile } from "../sections/profile";
+const ThemeSwitcher = dynamic(
+  () => import("../ui/theme-switcher").then((mod) => mod.ThemeSwitcher),
+  { ssr: false }
+);
 
-import { Projects } from "../sections/projects";
-import { Experience } from "../sections/experience";
-import { Skills } from "../sections/skills";
-import { Resume } from "../sections/resume";
-import { Contact } from "../sections/contact";
-import { BuyMeCoffee } from "../sections/buyMeCofee";
-import { Home } from "../sections/home";
-import About from "../sections/about";
+const SectionLoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-[40vh]">
+    <div className="w-8 h-8 rounded-full border-2 border-teal-400/20 border-t-teal-400 animate-spin" />
+  </div>
+);
 
+const Profile = dynamic(() => import("../sections/profile").then((mod) => mod.Profile), {
+  loading: () => <SectionLoadingFallback />,
+});
+const About = dynamic(() => import("../sections/about"), {
+  loading: () => <SectionLoadingFallback />,
+});
+const Projects = dynamic(() => import("../sections/projects").then((mod) => mod.Projects), {
+  loading: () => <SectionLoadingFallback />,
+});
+const Experience = dynamic(() => import("../sections/experience").then((mod) => mod.Experience), {
+  loading: () => <SectionLoadingFallback />,
+});
+const Skills = dynamic(() => import("../sections/skills").then((mod) => mod.Skills), {
+  loading: () => <SectionLoadingFallback />,
+});
+const Resume = dynamic(() => import("../sections/resume").then((mod) => mod.Resume), {
+  loading: () => <SectionLoadingFallback />,
+});
+const Contact = dynamic(() => import("../sections/contact").then((mod) => mod.Contact), {
+  loading: () => <SectionLoadingFallback />,
+});
+const BuyMeCoffee = dynamic(() => import("../sections/buyMeCofee").then((mod) => mod.BuyMeCoffee), {
+  loading: () => <SectionLoadingFallback />,
+});
 
+const CommandPalette = dynamic(
+  () => import("../ui/commandPalette").then((mod) => mod.CommandPalette),
+  { ssr: false }
+);
+const AIChatbot = dynamic(
+  () => import("../ui/aiChatbot").then((mod) => mod.AIChatbot),
+  { ssr: false }
+);
 
 const sectionComponents = {
   home: Home,
