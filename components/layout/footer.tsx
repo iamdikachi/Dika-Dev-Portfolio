@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    const scrollContainer = document.querySelector(".overflow-y-auto");
+    const scrollContainer = document.getElementById("portfolio-scroll-container");
     if (scrollContainer) {
       scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
         {/* Bottom copyright and social links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm md:text-base text-center md:text-left">
-            © {currentYear} <span className="text-teal-400 font-medium">Onyedikachi Emmanuel</span>. All rights reserved.
+            Â© {currentYear} <span className="text-teal-400 font-medium">Onyedikachi Emmanuel</span>. All rights reserved.
           </p>
           <SocialLinks />
         </div>
