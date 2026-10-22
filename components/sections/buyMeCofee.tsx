@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Coffee, Heart } from "lucide-react";
-import Link from "next/link";
 
 export const BuyMeCoffee: React.FC = () => {
   return (
@@ -16,12 +15,15 @@ export const BuyMeCoffee: React.FC = () => {
         contribution helps me continue building amazing projects and sharing
         knowledge with the community.
       </p>
-    <Link target="_" href="buymeacoffee.com/emmanuelnno">
-         <button className="cursor-pointer bg-teal-400 hover:bg-teal-500 text-dark-bg px-8 py-4 rounded-xl text-lg font-bold flex items-center gap-3 mx-auto transition-all transform hover:scale-105 shadow-lg shadow-teal-400/10">
+      <a
+        href="https://buymeacoffee.com/emmanuelnno"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-3 bg-teal-400 hover:bg-teal-500 text-dark-bg px-8 py-4 rounded-xl text-lg font-bold mx-auto transition-all transform hover:scale-105 shadow-lg shadow-teal-400/10 cursor-pointer"
+      >
         <Heart size={24} className="fill-current" />
-        Buy Me a Coffee
-      </button>
-    </Link>
+        <span>Buy Me a Coffee</span>
+      </a>
  
 
       <div className="mt-8 pt-8 border-t border-teal-400/10">

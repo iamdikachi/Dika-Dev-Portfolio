@@ -7,30 +7,28 @@ export const experiences: Experience[] = [
     position: "FullStack Developer",
     duration: "Jan 2022 - Present",
     location: "Remote",
-    description: "Leading development of enterprise web applications.",
+    description: "Leading development of cutting-edge educational web platform connecting students with expert teachers.",
     icon: "briefcase",
     achievements: [
-      "Led the migration of a legacy PHP monolith to a Node.js microservices architecture, improving system response time by 65%.",
-      "Architected a real-time data visualization dashboard using React and WebSockets, supporting 50k+ concurrent users.",
-      "Mentored a team of 6 engineers, implementing TDD and CI/CD best practices that reduced production bugs by 40%."
+      "Architected full-stack educational web platform with Laravel, Livewire, and MySQL connecting learners with educators for online and offline sessions.",
+      "Engineered dynamic, highly reactive user interfaces using Alpine.js and Tailwind CSS with server-rendered Blade templates.",
+      "Designed and optimized relational MySQL database schema and query indexes, ensuring sub-second search and session scheduling."
     ],
-    technologies: ["React", "Node.js", "AWS Lambda", "PostgreSQL", "Redis"],
+    technologies: ["Laravel", "Livewire", "MySQL", "Blade", "Alpine", "Tailwind"],
   },
   {
     id: "2",
-    company: "Cogrea",
+    company: "Callik",
     position: "Senior Frontend Developer",
-    duration: "Mar 2020 - Dec 2021",
+    duration: "2020 - 2022",
     location: "Remote",
-    description: "Developed scalable web applications and APIs.",
+    description: "Built e-commerce and social commerce web platform for African fashion connecting customers with designers across 15+ countries.",
     icon: "code",
     achievements: [
-      "Developed and maintained multiple Next.js e-commerce sites, handling over $2M in monthly transactions.",
-      "Built a custom CMS using React and Node.js, reducing content update time by 70%.",
-      "Optimized database queries and implemented caching strategies, improving page load times by 50%."
+      "Developed high-performance e-commerce and social commerce web applications using Next.js, TypeScript, and Tailwind CSS.",
+      "Implemented modular and accessible design system using Shadcn UI components, optimizing frontend UX for fashion merchants and customers.",
+      "Engineered seamless designer catalog browsing, interactive product galleries, and responsive cart and checkout flows."
     ],
-    technologies: ["Next.js", "TypeScript", "MongoDB", "Stripe", "Docker"],
+    technologies: ["Next.js", "Tailwind CSS", "Shadcn", "TypeScript"],
   },
-
 ];
-

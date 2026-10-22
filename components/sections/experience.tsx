@@ -39,10 +39,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
 
 
   const milestones = [
-    { year: "2022-Present", title: "Senior Engineer @ TechCorp" },
-    { year: "2020-2022", title: "Full Stack @ InnovateSoft" },
-    { year: "2019-2020", title: "Frontend Dev @ StartupHub" },
-    { year: "2016-2018", title: "Junior Dev @ CodeCrafters" },
+    { year: "2022-Present", title: "Fullstack @ Eduzone" },
+    { year: "2020-2022", title: "Senior Frontend @ Callik" },
+    { year: "2019-2020", title: "Backend Dev @ Trarrk" },
+    { year: "2016-2018", title: "Frontend @ Cogrea" },
   ];
 
   const highlightKeywords = (text: string) => {
@@ -64,6 +64,12 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
       "Framer Motion",
       "CMS",
       "e-commerce",
+      "Laravel",
+      "Livewire",
+      "MySQL",
+      "Blade",
+      "Alpine",
+      "Shadcn",
     ];
 
     let highlighted = text;

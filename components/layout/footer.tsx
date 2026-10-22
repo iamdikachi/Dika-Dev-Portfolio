@@ -25,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
   return (
     <footer
-      className={`bg-dark-bg text-gray-400 pt-6 pb-42 md:py-6 px-6 md:px-10 border-t border-teal-400/5 ${className}`}
+      className={`bg-dark-bg text-gray-400 py-6 px-4 sm:px-6 md:px-10 border-t border-teal-400/5 ${className}`}
     >
       <div className="max-w-4xl mx-auto flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-b border-teal-400/5 pb-3">

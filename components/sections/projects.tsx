@@ -33,7 +33,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
     <div className="min-h-screen bg-dark-bg text-gray-300 py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-teal-400">
+          <h1 className="text-2xl md:text-5xl font-bold mb-4 text-teal-400">
             Innovative <span className="text-gray-300">Digital Experience</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
@@ -142,7 +142,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
         </ScrollReveal>
 
         <div className="bg-teal-400/2 rounded-3xl p-8 sm:p-12 text-center border border-teal-400/10">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-teal-400">
+          <h2 className="text-xl sm:text-4xl font-bold mb-4 text-teal-400">
             Let&apos;s build something{" "}
             <span className="text-gray-300">amazing</span> together
           </h2>
@@ -162,7 +162,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 cursor-pointer bg-teal-400/5 hover:bg-teal-400/10 text-teal-400 border border-teal-400/20 px-8 py-3 rounded-lg font-bold transition-all"
+              className="inline-flex items-center text-xs justify-center gap-2 cursor-pointer bg-teal-400/5 hover:bg-teal-400/10 text-teal-400 border border-teal-400/20 px-8 py-3 rounded-lg font-bold transition-all"
             >
               <span>View Resume (PDF)</span>
               <ExternalLink className="w-4 h-4" />

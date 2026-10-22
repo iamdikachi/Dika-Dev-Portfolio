@@ -140,30 +140,30 @@ async function generateResume() {
 
   const experiences = [
     {
-      role: "Senior Full Stack Engineer",
-      company: "TechCorp",
+      role: "FullStack Developer",
+      company: "Eduzone",
       period: "2022 - Present",
       location: "Remote",
       bullets: [
-        "Architected migration of legacy monolithic core to Node.js and TypeScript microservices, cutting response latency by 42%.",
-        "Engineered real-time analytics streaming engine with React, WebSockets, and Redis, reliably supporting 100k+ daily active users.",
-        "Spearheaded automated CI/CD pipeline modernization and enforced TDD practices, elevating engineering test coverage above 95%."
+        "Architected full-stack educational web platform with Laravel, Livewire, and MySQL connecting learners with educators.",
+        "Built responsive, dynamic user interfaces using Alpine.js and Tailwind CSS with server-rendered Blade templates.",
+        "Optimized relational database schema and query performance in MySQL for high-speed session matching."
       ],
     },
     {
-      role: "Full Stack Developer",
-      company: "InnovateSoft",
+      role: "Senior Frontend Developer",
+      company: "Callik",
       period: "2020 - 2022",
-      location: "Lagos, Nigeria",
+      location: "Remote",
       bullets: [
-        "Built enterprise Next.js and Tailwind CSS client portal, achieving a 28% boost in user retention and conversion.",
-        "Implemented containerized deployment pipelines using Docker, AWS, and GitHub Actions, slashing deployment cycle to under 15 minutes.",
-        "Engineered PCI-compliant payment gateway integration with Stripe handling $500k+ in monthly recurring subscription volume."
+        "Developed high-performance e-commerce and social commerce web applications using Next.js, TypeScript, and Tailwind CSS.",
+        "Implemented modular and accessible design system with Shadcn UI components for fashion merchants across 15+ African countries.",
+        "Engineered interactive designer showcases, product galleries, and optimized checkout conversion flows."
       ],
     },
     {
       role: "Frontend Developer",
-      company: "StartupHub",
+      company: "Trarrk",
       period: "2019 - 2020",
       location: "Remote",
       bullets: [
