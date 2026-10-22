@@ -45,7 +45,23 @@ export const DashboardLayout: React.FC = () => {
 
   const scrollToSection = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const scrollContainer = scrollContainerRef.current;
+    if (window.innerWidth >= 1024 && scrollContainer) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      const headerOffset = 70;
+      const elementPosition = element.getBoundingClientRect().top;
+      const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      const targetTop = elementPosition + currentScroll - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: "smooth",
+      });
+    }
   }, []);
 
   useEffect(() => {
