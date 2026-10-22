@@ -32,7 +32,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <>
       {/* Mobile Header */}
-      <header className="md:hidden bg-dark-bg text-teal-400 p-4 flex items-center justify-between shadow-lg sticky top-0 z-40 border-b border-teal-400/10">
+      <header className="lg:hidden bg-dark-bg text-teal-400 p-4 flex items-center justify-between shadow-lg sticky top-0 z-40 border-b border-teal-400/10">
         <h1 className="text-xl font-bold tracking-tighter">DIKA.DEV</h1>
         <button onClick={onToggle} className="p-2">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,7 +94,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                 <span className="text-teal-400 font-medium">Available for opportunities</span>
               </div>
               <p className="text-xs text-gray-500 text-center">
-                © {currentYear} Onyedikachi Emmanuel
+                Â© {currentYear} Onyedikachi Emmanuel
               </p>
             </div>
           </motion.div>

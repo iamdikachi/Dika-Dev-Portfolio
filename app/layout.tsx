@@ -2,115 +2,87 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const siteUrl = "https://dikachi-portfolio.vercel.app";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dikachi-portfolio.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Onyedikachi Emmanuel Nnadi | FullStack Developer",
+    default: "Onyedikachi Emmanuel Nnadi | Full-Stack Developer",
     template: "%s | Onyedikachi Emmanuel Nnadi",
   },
-  description:
-    "Professional portfolio of Onyedikachi Emmanuel Nnadi, a Full Stack Developer specializing in building scalable web applications with Next.js, React, and Node.js.",
-  keywords: [
-    "Full Stack Developer",
-    "Web Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Software Engineer",
-    "Onyedikachi Emmanuel Nnadi",
-    "Dikachi",
-    "Portfolio",
-    "JavaScript",
-    "TypeScript",
-  ],
-  authors: [{ name: "Onyedikachi Emmanuel Nnadi", url: "https://dikachi-portfolio.vercel.app" }],
+  description: "Onyedikachi Emmanuel Nnadi is a full-stack developer in Nigeria who builds performant web applications with Next.js, React, Node.js, Laravel, and AI integrations.",
+  keywords: ["full-stack developer Nigeria", "Next.js developer", "React developer", "Node.js developer", "Laravel developer", "AI integration developer", "Onyedikachi Emmanuel Nnadi", "Dikachi"],
+  authors: [{ name: "Onyedikachi Emmanuel Nnadi", url: siteUrl }],
   creator: "Onyedikachi Emmanuel Nnadi",
   publisher: "Onyedikachi Emmanuel Nnadi",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://dikachi-portfolio.vercel.app",
-    title: "Onyedikachi Emmanuel Nnadi | FullStack Developer",
-    description:
-      "Explore the portfolio of Onyedikachi Emmanuel Nnadi. View projects, skills, and professional experience in web development.",
-    siteName: "Onyedikachi Emmanuel Nnadi Portfolio",
-    images: [
-      {
-        url: "/icon.png", 
-        width: 1200,
-        height: 630,
-        alt: "Onyedikachi Emmanuel Nnadi Portfolio",
-      },
-    ],
+    locale: "en_NG",
+    url: siteUrl,
+    title: "Onyedikachi Emmanuel Nnadi | Full-Stack Developer",
+    description: "Full-stack developer building performant web applications, AI integrations, and digital products.",
+    siteName: "Dika.Dev Portfolio",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Onyedikachi Emmanuel Nnadi, Full-Stack Developer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Onyedikachi Emmanuel Nnadi | FullStack Developer",
-    description:
-      "Full Stack Developer specializing in modern web technologies. Check out my latest projects and skills.",
-    images: ["/icon.png"],
-    creator: "@iamdikachukwu", 
+    title: "Onyedikachi Emmanuel Nnadi | Full-Stack Developer",
+    description: "Full-stack developer building performant web applications, AI integrations, and digital products.",
+    images: ["/opengraph-image"],
+    creator: "@iamdikachukwu",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
   },
-  alternates: {
-    canonical: "https://dikachi-portfolio.vercel.app",
-  },
-  verification: {
-    google: "e2R97YTE80Mm2jm2p_SUey4cEiNJ5R61PVlI_IAf7lo",
-  },
+  alternates: { canonical: siteUrl },
+  verification: { google: "e2R97YTE80Mm2jm2p_SUey4cEiNJ5R61PVlI_IAf7lo" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Onyedikachi Emmanuel Nnadi",
+      alternateName: "Dikachi",
+      url: siteUrl,
+      image: `${siteUrl}/images/my-photo.png`,
+      jobTitle: "Full-Stack Developer",
+      email: "mailto:emmanuelnnadi097@gmail.com",
+      address: { "@type": "PostalAddress", addressCountry: "NG" },
+      knowsAbout: ["Next.js", "React", "Node.js", "Laravel", "TypeScript", "AI integrations", "Web application development"],
+      sameAs: [
+        "https://github.com/iamdikachi",
+        "https://www.linkedin.com/in/iamdikachukwu/",
+        "https://x.com/iamdikachukwu",
+        "https://www.facebook.com/iamdikachukwu",
+        "https://www.instagram.com/iamdikachukwu?igsh=Zzh0d2VndGRtdGJo",
+        "https://www.tiktok.com/@iamdikachukwu"
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Dika.Dev Portfolio",
+      description: "Portfolio of Onyedikachi Emmanuel Nnadi, a full-stack developer.",
+      publisher: { "@id": `${siteUrl}/#person` },
+      inLanguage: "en-NG",
+    },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dark-bg text-gray-300`}
-      >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Onyedikachi Emmanuel Nnadi",
-              url: "https://dikachi-portfolio.vercel.app",
-              jobTitle: "Full Stack Developer",
-              sameAs: [
-                "https://www.facebook.com/iamdikachukwu",
-                "https://www.instagram.com/iamdikachukwu?igsh=Zzh0d2VndGRtdGJo",
-                "https://www.tiktok.com/@iamdikachukwu",
-                "https://github.com/iamdikachi",
-                "https://www.linkedin.com/in/iamdikachukwu/",
-                "https://x.com/iamdikachukwu",
-                "https://whatsapp.com/dl/"
-              ],
-            }),
-          }}
-        />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dark-bg text-gray-300`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         {children}
       </body>
     </html>

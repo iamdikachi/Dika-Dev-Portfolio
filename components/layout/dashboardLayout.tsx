@@ -3,14 +3,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { Footer } from "./footer";
+import { MobileMenu } from "./mobileMenu";
 import { Sidebar } from "./sidebar";
 import { Home } from "../sections/home";
-import { DynamicBackground } from "../ui/dynamic-background";
 
-const ThemeSwitcher = dynamic(
-  () => import("../ui/theme-switcher").then((mod) => mod.ThemeSwitcher),
-  { ssr: false }
-);
+const ThemeSwitcher = dynamic(() => import("../ui/theme-switcher").then((mod) => mod.ThemeSwitcher), { ssr: false });
+const CommandPalette = dynamic(() => import("../ui/commandPalette").then((mod) => mod.CommandPalette), { ssr: false });
+const AIChatbot = dynamic(() => import("../ui/aiChatbot").then((mod) => mod.AIChatbot), { ssr: false });
 
 const SectionLoadingFallback = () => (
   <div className="flex min-h-[40vh] items-center justify-center">
@@ -26,8 +25,6 @@ const Skills = dynamic(() => import("../sections/skills").then((mod) => mod.Skil
 const Resume = dynamic(() => import("../sections/resume").then((mod) => mod.Resume), { loading: SectionLoadingFallback });
 const Contact = dynamic(() => import("../sections/contact").then((mod) => mod.Contact), { loading: SectionLoadingFallback });
 const BuyMeCoffee = dynamic(() => import("../sections/buyMeCofee").then((mod) => mod.BuyMeCoffee), { loading: SectionLoadingFallback });
-const CommandPalette = dynamic(() => import("../ui/commandPalette").then((mod) => mod.CommandPalette), { ssr: false });
-const AIChatbot = dynamic(() => import("../ui/aiChatbot").then((mod) => mod.AIChatbot), { ssr: false });
 
 type SectionProps = { onSectionChange?: (section: string) => void };
 type PortfolioSection = { id: string; Component: React.ComponentType<SectionProps> };
@@ -46,11 +43,18 @@ const portfolioSections: PortfolioSection[] = [
 
 export const DashboardLayout: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showEnhancements, setShowEnhancements] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowEnhancements(true), 1800);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -70,7 +74,11 @@ export const DashboardLayout: React.FC = () => {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible) setActiveSection(visible.target.id);
       },
-      { root: window.innerWidth >= 1024 ? scrollContainerRef.current : null, rootMargin: "-15% 0px -60% 0px", threshold: [0, 0.1, 0.5] }
+      {
+        root: window.innerWidth >= 1024 ? scrollContainerRef.current : null,
+        rootMargin: "-15% 0px -60% 0px",
+        threshold: [0, 0.1, 0.5],
+      }
     );
 
     sectionElements.forEach((section) => observer.observe(section));
@@ -78,12 +86,21 @@ export const DashboardLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen bg-dark-bg lg:mx-auto lg:h-screen lg:max-w-[85%] lg:overflow-hidden 2xl:max-w-[80%]">
-      <DynamicBackground />
-      <CommandPalette onSectionChange={scrollToSection} />
-      <AIChatbot />
-      <ThemeSwitcher />
+    <div className="relative flex min-h-screen flex-col lg:flex-row bg-dark-bg lg:mx-auto lg:h-screen lg:max-w-[85%] lg:overflow-hidden 2xl:max-w-[80%]">
+      {showEnhancements && (
+        <>
+          <CommandPalette onSectionChange={scrollToSection} />
+          <AIChatbot />
+          <ThemeSwitcher />
+        </>
+      )}
       <Sidebar activeSection={activeSection} onSectionChange={scrollToSection} />
+      <MobileMenu
+        activeSection={activeSection}
+        onSectionChange={scrollToSection}
+        isOpen={mobileMenuOpen}
+        onToggle={() => setMobileMenuOpen((open) => !open)}
+      />
 
       <main id="portfolio-scroll-container" ref={scrollContainerRef} className="flex min-w-0 flex-1 flex-col lg:overflow-y-auto">
         <div className="mx-auto w-full p-4 sm:p-6 lg:p-10">

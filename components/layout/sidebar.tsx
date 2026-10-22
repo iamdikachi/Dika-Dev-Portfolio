@@ -21,7 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <motion.aside
       initial={false}
       animate={{ width: isCollapsed ? 80 : 256 }}
-      className={`hidden md:flex flex-col bg-dark-bg text-gray-300 transition-colors duration-300 ease-in-out relative border-r border-teal-400/5`}
+      className={`hidden lg:flex flex-col bg-dark-bg text-gray-300 transition-colors duration-300 ease-in-out relative border-r border-teal-400/5`}
       onMouseEnter={() => setIsCollapsed(false)}
       onMouseLeave={() => setIsCollapsed(true)}
     >

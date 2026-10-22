@@ -94,10 +94,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
                     I&apos;m
                     <span className="text-gray-300"> Onyedikachi Emmanuel</span>,
                     <br />
-                    Web developer
+                    Full-stack developer
                   </motion.h1>
                   <motion.p variants={itemVariants} className="text-gray-300 text-base sm:text-lg font-mono">
-                    full stack developer
+                    I build performant web applications, AI integrations, and digital products.
                   </motion.p>
                   <motion.div variants={itemVariants} className="text-teal-400">
                     <AnimatedText />

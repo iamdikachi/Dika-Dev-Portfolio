@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { experiences } from "@/data/experience";
 import { MapPin, Briefcase, Code, Palette, Clipboard, Sparkles, Layout } from "lucide-react";
@@ -30,9 +31,11 @@ export const Profile: React.FC<ProfileProps> = ({ onSectionChange }) => {
         className="text-center"
       >
         <div className="relative inline-block mb-4">
-          <img
+          <Image
             src="/images/my-photo.png"
-            alt="Profile"
+            alt="Portrait of Onyedikachi Emmanuel"
+            width={96}
+            height={96}
             className="w-24 h-24 rounded-full object-cover border-4 border-teal-400/20 shadow-xl shadow-teal-400/5"
           />
           <div className="absolute bottom-1 right-1 w-5 h-5 bg-teal-400 rounded-full border-2 border-dark-bg shadow-[0_0_10px_rgba(45,212,191,0.4)]"></div>
@@ -116,4 +119,3 @@ export const Profile: React.FC<ProfileProps> = ({ onSectionChange }) => {
     </div>
   );
 };
-
