@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 
 import { menuItems } from "@/data/menuItem";
-import Profile from "@/public/images/my-photo.png";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface SidebarProps {

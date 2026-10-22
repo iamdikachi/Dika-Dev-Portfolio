@@ -56,6 +56,7 @@ export interface Recommendation {
   company: string;
   avatar: string;
   verified: boolean;
+  linkedin?: string;
 }
 
 export interface ServiceCardProps {

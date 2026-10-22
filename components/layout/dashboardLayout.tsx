@@ -17,7 +17,6 @@ const SectionLoadingFallback = () => (
   </div>
 );
 
-const Profile = dynamic(() => import("../sections/profile").then((mod) => mod.Profile), { loading: SectionLoadingFallback });
 const About = dynamic(() => import("../sections/about"), { loading: SectionLoadingFallback });
 const Projects = dynamic(() => import("../sections/projects").then((mod) => mod.Projects), { loading: SectionLoadingFallback });
 const Experience = dynamic(() => import("../sections/experience").then((mod) => mod.Experience), { loading: SectionLoadingFallback });
@@ -31,7 +30,6 @@ type PortfolioSection = { id: string; Component: React.ComponentType<SectionProp
 
 const portfolioSections: PortfolioSection[] = [
   { id: "home", Component: Home },
-  { id: "profile", Component: Profile },
   { id: "about", Component: About },
   { id: "projects", Component: Projects },
   { id: "experience", Component: Experience },

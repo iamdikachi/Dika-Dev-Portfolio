@@ -13,6 +13,7 @@ export const recommendations: Recommendation[] = [
     avatar:
       "/images/stan.jpg",
     verified: true,
+    linkedin: "https://www.linkedin.com/in/okechukwu-somtochukwu-stanley/",
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ export const recommendations: Recommendation[] = [
     avatar:
       "/images/nwochie.jpg",
     verified: true,
+    linkedin: "https://www.linkedin.com/in/nwochie-godwin/",
   },
   {
     id: "3",
@@ -35,5 +37,6 @@ export const recommendations: Recommendation[] = [
     avatar:
       "/images/sunny.jpg",
     verified: true,
+    linkedin: "https://www.linkedin.com/in/ezeobi-kingsley-67496120a/",
   },
 ];

@@ -1,6 +1,5 @@
 import {
   Home,
-  User,
   FileText,
   Briefcase,
   Award,
@@ -13,7 +12,6 @@ import { MenuItem } from "@/lib/types";
 
 export const menuItems: MenuItem[] = [
   { id: "home", label: "Home", icon: Home },
-  { id: "profile", label: "Profile", icon: User },
   { id: "about", label: "About Me", icon: FileText },
   { id: "projects", label: "My Projects", icon: Code },
   { id: "experience", label: "My Experience", icon: Briefcase },

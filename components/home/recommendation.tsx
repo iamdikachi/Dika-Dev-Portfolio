@@ -1,6 +1,7 @@
 import { recommendations } from '@/data/recommendation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Linkedin } from 'lucide-react';
 
 const Recommendation = () => {
   return (
@@ -66,22 +67,37 @@ const Recommendation = () => {
                 </div>
               </div>
 
-              {rec.verified && (
-                <div className="flex items-center gap-1 text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full border border-teal-400/20">
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+              <div className="flex flex-col items-end gap-2">
+                {rec.verified && (
+                  <div className="flex items-center gap-1 text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full border border-teal-400/20">
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Verified</span>
+                  </div>
+                )}
+
+                {rec.linkedin && (
+                  <a
+                    href={rec.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`${rec.name}'s LinkedIn profile`}
+                    aria-label={`${rec.name}'s LinkedIn profile`}
+                    className="text-gray-400 hover:text-teal-400 transition-colors p-0.5 hover:scale-110"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">Verified</span>
-                </div>
-              )}
+                    <Linkedin size={18} />
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
         ))}

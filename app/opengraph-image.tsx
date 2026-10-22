@@ -31,8 +31,9 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", maxWidth: "900px" }}>
           <div style={{ color: "#2dd4bf", fontSize: 32, letterSpacing: 4 }}>DIKA.DEV</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-            <div style={{ color: "#2dd4bf", fontSize: 76, fontWeight: 700, lineHeight: 1.05 }}>
-              Onyedikachi<br />Emmanuel Nnadi
+            <div style={{ display: "flex", flexDirection: "column", color: "#2dd4bf", fontSize: 76, fontWeight: 700, lineHeight: 1.05 }}>
+              <span>Onyedikachi</span>
+              <span>Emmanuel Nnadi</span>
             </div>
             <div style={{ fontSize: 34 }}>Full-Stack Developer</div>
             <div style={{ color: "#9ca3af", fontSize: 24 }}>Next.js / React / Node.js / Laravel / AI Integrations</div>

@@ -15,10 +15,9 @@ interface ProjectsProps {
 
 const categories = [
   "All projects",
-  "Social Media",
+  "Education",
   "E-commerce",
-  "AI Tools",
-  "Streaming",
+  "Career",
 ];
 
 export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
@@ -64,9 +63,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
               key={project.id}
               onClick={() => setSelectedProject(project)}
               initial={{ opacity: 0, y: 20 }}
-              // whileInView={{ opacity: 1, y: 0 }} // Let GSAP handle entry
-              // viewport={{ once: true, margin: "-50px" }}
-              animate={{ opacity: 1, y: 0 }} // Ensure it's visible if GSAP doesn't catch it or for consistency
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               className="group bg-teal-400/2 backdrop-blur-sm rounded-3xl overflow-hidden border border-teal-400/10 hover:border-teal-400/30 transition-all duration-500 h-full flex flex-col"
@@ -78,7 +75,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     src={project.image}
                     alt={project.title}
-                    className="object-cover grayscale opacity-80 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                    className={`transition-all duration-300 hover:opacity-100 ${
+                      project.image.toLowerCase().includes("logo")
+                        ? "object-contain p-8 opacity-90 hover:scale-105"
+                        : "object-cover grayscale opacity-80 hover:grayscale-0"
+                    }`}
                   />
                 ) : (
                   <div className="text-6xl text-teal-400/20">📊</div>
@@ -198,7 +199,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="object-cover"
+                    className={
+                      selectedProject.image.toLowerCase().includes("logo")
+                        ? "object-contain p-8"
+                        : "object-cover"
+                    }
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-8xl text-teal-400/10">

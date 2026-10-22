@@ -5,7 +5,6 @@ import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Home, 
-  User, 
   FileText, 
   Briefcase, 
   Award, 
