@@ -47,13 +47,6 @@ export interface Skill {
 }
 
 
-export interface SampleProject {
-  id: string;
-  title: string;
-  image: string;
-  url: string;
-}
-
 
 export interface Recommendation {
   id: string;

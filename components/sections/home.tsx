@@ -1,32 +1,24 @@
 
 import HeroSection from "../home/hero-section";
 import ServiceCardsDemo from "../home/services";
-import ProjectContributions from "../home/project-contributions";
 import Recommendation from "../home/recommendation";
-import { ScrollReveal } from "../ui/scrollReveal";
 
 interface HomeProps {
   onSectionChange?: (section: string) => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ onSectionChange }) => {
-  
   return (
-    <div className="">
+    <div className="space-y-16 lg:space-y-24">
       <section>
         <HeroSection onSectionChange={onSectionChange} />
       </section>
-      <ScrollReveal>
-        <section>
-          <ServiceCardsDemo />
-        </section>
-        <section>
-          <ProjectContributions />
-        </section>
-        <section>
-          <Recommendation />
-        </section>
-      </ScrollReveal>
+      <section id="services" className="scroll-mt-20">
+        <ServiceCardsDemo />
+      </section>
+      <section>
+        <Recommendation />
+      </section>
     </div>
   );
 };

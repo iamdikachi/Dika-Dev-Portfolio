@@ -31,6 +31,11 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     let ctx: gsap.Context | undefined;
     const timer = setTimeout(() => {
+      const scrollContainer =
+        typeof window !== "undefined" && window.innerWidth >= 1024
+          ? document.getElementById("portfolio-scroll-container") || window
+          : window;
+
       ctx = gsap.context(() => {
         gsap.fromTo(
           element.children,
@@ -47,7 +52,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
             ease: "power3.out",
             scrollTrigger: {
               trigger: element,
-              start: "top 85%",
+              scroller: scrollContainer,
+              start: "top 90%",
               toggleActions: "play none none reverse",
             },
           }
