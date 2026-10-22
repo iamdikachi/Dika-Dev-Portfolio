@@ -158,12 +158,15 @@ export const Projects: React.FC<ProjectsProps> = ({ onSectionChange }) => {
             >
               Get in Touch
             </button>
-            <button
-              onClick={() => onSectionChange?.("resume")}
-              className="cursor-pointer bg-teal-400/5 hover:bg-teal-400/10 text-teal-400 border border-teal-400/20 px-8 py-3 rounded-lg font-bold transition-all"
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 cursor-pointer bg-teal-400/5 hover:bg-teal-400/10 text-teal-400 border border-teal-400/20 px-8 py-3 rounded-lg font-bold transition-all"
             >
-              Download CV
-            </button>
+              <span>View Resume (PDF)</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

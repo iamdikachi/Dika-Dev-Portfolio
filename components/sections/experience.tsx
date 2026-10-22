@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { experiences } from "@/data/experience";
+import { skills, skillCommandGroups } from "@/data/skills";
 import {
   Briefcase,
   Code,
@@ -9,6 +10,7 @@ import {
   Building2,
   MapPin,
   Calendar,
+  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "../ui/scrollReveal";
@@ -24,9 +26,16 @@ interface ExperienceProps {
 }
 
 export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
-  const [activeView, setActiveView] = useState("Full Timeline");
+  const [activeView, setActiveView] = useState("Companies");
   const [terminalMode, setTerminalMode] = useState(false);
-  const views = ["Full Timeline", "Companies", "Core Skills"];
+  const [skillTab, setSkillTab] = useState<"technical" | "soft">("technical");
+  const views = ["Companies", "Core Skills"];
+
+  const technicalGroups = skillCommandGroups.filter((g) => g.type === "technical");
+  const softGroups = skillCommandGroups.filter((g) => g.type === "soft");
+
+  const displayedGroups =
+    skillTab === "technical" ? technicalGroups : softGroups;
 
 
   const milestones = [
@@ -80,14 +89,16 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             {views.map((view) => (
               <button
                 key={view}
-                onClick={() => setActiveView(view)}
-                className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-                  activeView === view
-                    ? "bg-teal-400 text-dark-bg"
+                onClick={() => {
+                  setActiveView(view);
+                  setTerminalMode(false);
+                }}
+                className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer ${
+                  !terminalMode && activeView === view
+                    ? "bg-teal-400 text-dark-bg font-semibold"
                     : "text-gray-500 hover:bg-teal-400/5 hover:text-teal-400"
                 }`}
               >
-                {view === "Full Timeline" && <Calendar className="w-4 h-4" />}
                 {view === "Companies" && <Building2 className="w-4 h-4" />}
                 {view === "Core Skills" && <Code className="w-4 h-4" />}
                 <span className="text-sm">{view}</span>
@@ -95,9 +106,9 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
             ))}
             <button
               onClick={() => setTerminalMode(!terminalMode)}
-              className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors ${
+              className={`w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors cursor-pointer ${
                 terminalMode
-                  ? "bg-teal-400 text-dark-bg"
+                  ? "bg-teal-400 text-dark-bg font-semibold"
                   : "text-gray-500 hover:bg-teal-400/5 hover:text-teal-400"
               }`}
             >
@@ -138,17 +149,41 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-12">
 
+          {/* Mobile view switchers */}
+          <div className="flex lg:hidden flex-wrap gap-2 mb-6">
+            {views.map((view) => (
+              <button
+                key={view}
+                onClick={() => {
+                  setActiveView(view);
+                  setTerminalMode(false);
+                }}
+                className={`cursor-pointer px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                  !terminalMode && activeView === view
+                    ? "bg-teal-400 text-dark-bg font-bold"
+                    : "bg-teal-400/5 text-gray-400 hover:text-teal-400 border border-teal-400/10"
+                }`}
+              >
+                {view}
+              </button>
+            ))}
+          </div>
+
           <div className="mb-8 lg:mb-12">
             <div className="text-xs sm:text-sm text-gray-400 font-mono mb-2">
-              const careerJourney = await fetchExperience();
+              {activeView === "Core Skills"
+                ? "const skillCompetencies = await fetchSkills();"
+                : "const companiesLed = await fetchCompanies();"}
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-teal-400">
-              Professional Experience
+              {activeView === "Core Skills"
+                ? "Core Skills"
+                : "Companies & Roles"}
             </h1>
             <p className="text-gray-400 text-sm sm:text-lg max-w-3xl">
-              A technical chronicle of 6+ years building scalable web systems,
-              leading engineering teams, and solving complex architectural
-              challenges.
+              {activeView === "Core Skills"
+                ? "A comprehensive overview of technical proficiencies and leadership soft skills developed across production engineering and enterprise platforms."
+                : "Organizations and technology teams where I have delivered high-impact engineering solutions."}
             </p>
           </div>
 
@@ -225,6 +260,144 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
                 <div className="flex gap-2 pt-4">
                   <span className="text-teal-400">➜</span>
                   <span className="text-gray-300">~ /career/experience</span>
+                  <span className="bg-teal-400/50 w-2 h-5 animate-pulse"></span>
+                </div>
+              </div>
+            </motion.div>
+          ) : activeView === "Core Skills" ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-[#0c0c0c] border border-teal-400/20 rounded-xl overflow-hidden shadow-2xl font-mono text-sm"
+            >
+              {/* Terminal Window Header */}
+              <div className="bg-dark-bg border-b border-teal-400/10 px-4 py-2 flex items-center justify-between">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-400/20 border border-red-400/30"></div>
+                  <div className="w-3 h-3 rounded-full bg-orange-400/20 border border-orange-400/30"></div>
+                  <div className="w-3 h-3 rounded-full bg-teal-400/20 border border-teal-400/30"></div>
+                </div>
+                <div className="text-xs text-gray-500 uppercase tracking-widest hidden sm:block">
+                  dikachi-dev@skills: ~
+                </div>
+                <div className="w-10"></div>
+              </div>
+
+              {/* Terminal Tabs */}
+              <div className="bg-[#121212] border-b border-teal-400/10 px-3 pt-2 flex items-center gap-2">
+                {[
+                  {
+                    id: "technical",
+                    label: "Technical Skills",
+                    count: technicalGroups.length,
+                  },
+                  {
+                    id: "soft",
+                    label: "Soft Skills",
+                    count: softGroups.length,
+                  },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setSkillTab(tab.id as "technical" | "soft")}
+                    className={`px-4 py-2 text-xs font-mono rounded-t-lg transition-all cursor-pointer flex items-center gap-2 border-t border-x ${
+                      skillTab === tab.id
+                        ? "bg-[#0c0c0c] border-teal-400/30 text-teal-300 font-bold -mb-[1px] border-b-transparent shadow-sm"
+                        : "bg-transparent border-transparent text-gray-500 hover:text-gray-300 hover:bg-teal-400/5"
+                    }`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        skillTab === tab.id
+                          ? "bg-teal-400 shadow-[0_0_6px_rgba(45,212,191,0.6)]"
+                          : "bg-gray-600"
+                      }`}
+                    ></span>
+                    <span>{tab.label}</span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded ${
+                        skillTab === tab.id
+                          ? "bg-teal-400/10 text-teal-400"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Terminal Body */}
+              <div className="p-4 sm:p-6 space-y-4">
+                <div className="flex gap-2">
+                  <span className="text-teal-400">➜</span>
+                  <span className="text-gray-300">~ /career/skills</span>
+                  <span className="text-teal-400">
+                    {skillTab === "technical"
+                      ? "cat technical-stack.json"
+                      : "cat soft-skills.json"}
+                  </span>
+                </div>
+                <div className="text-gray-500">
+                  {skillTab === "technical"
+                    ? `Loaded ${technicalGroups.length} technical engineering lifecycle modules.`
+                    : `Loaded ${softGroups.length} interpersonal and leadership competency modules.`}
+                </div>
+                <div className="text-gray-400">
+                  All competencies verified across production systems and enterprise engineering.
+                </div>
+
+                {/* Command Pipeline Output */}
+                <div className="space-y-3 pt-2">
+                  {displayedGroups.map((group) => (
+                    <div
+                      key={group.id}
+                      className="p-3.5 sm:p-4 rounded-lg bg-teal-400/[0.02] hover:bg-teal-400/[0.06] border border-teal-400/10 hover:border-teal-400/30 transition-all font-mono"
+                    >
+                      {/* Terminal Command Line */}
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold mb-2">
+                        <span className="text-teal-400">➜</span>
+                        <span className="text-gray-400">~</span>
+                        <span className="text-cyan-300 font-bold">{group.command}</span>
+                        <span className="text-teal-400/80">{group.flag}</span>
+                        <span className="text-amber-300/90 text-xs">
+                          {group.items.length === 1
+                            ? `"${group.items[0].toLowerCase().replace(/\s+/g, "-")}"`
+                            : `[${group.items.map((i) => `"${i.toLowerCase().replace(/\s+/g, "-")}"`).join(", ")}]`}
+                        </span>
+                      </div>
+
+                      {/* Output tokens */}
+                      <div className="pl-4 sm:pl-6 space-y-2">
+                        <div className="text-[11px] text-gray-500 flex items-center justify-between">
+                          <span className="flex items-center gap-1.5">
+                            <span className="text-teal-400/50">#</span>
+                            <span className="text-gray-400 font-medium">{group.category}</span>
+                          </span>
+                          <span className="text-teal-400/60 text-[10px] uppercase tracking-wider">
+                            status: ready
+                          </span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 pt-0.5">
+                          {group.items.map((item) => (
+                            <span
+                              key={item}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-teal-400/5 text-gray-200 border border-teal-400/20 text-xs font-mono hover:border-teal-400/50 hover:text-teal-300 transition-colors"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_6px_rgba(45,212,191,0.6)]"></span>
+                              <span>{item}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-2 pt-4 border-t border-teal-400/10">
+                  <span className="text-teal-400">➜</span>
+                  <span className="text-gray-300">~ /career/skills</span>
                   <span className="bg-teal-400/50 w-2 h-5 animate-pulse"></span>
                 </div>
               </div>

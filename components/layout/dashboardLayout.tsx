@@ -20,7 +20,6 @@ const SectionLoadingFallback = () => (
 const About = dynamic(() => import("../sections/about"), { loading: SectionLoadingFallback });
 const Projects = dynamic(() => import("../sections/projects").then((mod) => mod.Projects), { loading: SectionLoadingFallback });
 const Experience = dynamic(() => import("../sections/experience").then((mod) => mod.Experience), { loading: SectionLoadingFallback });
-const Skills = dynamic(() => import("../sections/skills").then((mod) => mod.Skills), { loading: SectionLoadingFallback });
 const Resume = dynamic(() => import("../sections/resume").then((mod) => mod.Resume), { loading: SectionLoadingFallback });
 const Contact = dynamic(() => import("../sections/contact").then((mod) => mod.Contact), { loading: SectionLoadingFallback });
 const BuyMeCoffee = dynamic(() => import("../sections/buyMeCofee").then((mod) => mod.BuyMeCoffee), { loading: SectionLoadingFallback });
@@ -33,7 +32,6 @@ const portfolioSections: PortfolioSection[] = [
   { id: "about", Component: About },
   { id: "projects", Component: Projects },
   { id: "experience", Component: Experience },
-  { id: "skills", Component: Skills },
   { id: "resume", Component: Resume },
   { id: "contact", Component: Contact },
   { id: "coffee", Component: BuyMeCoffee },

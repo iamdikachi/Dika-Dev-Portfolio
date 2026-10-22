@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
         {/* Bottom copyright and social links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm md:text-base text-center md:text-left">
-            Â© {currentYear} <span className="text-teal-400 font-medium">Onyedikachi Emmanuel</span>. All rights reserved.
+            &copy; {currentYear} <span className="text-teal-400 font-medium">Onyedikachi Emmanuel</span>. All rights reserved.
           </p>
           <SocialLinks />
         </div>
