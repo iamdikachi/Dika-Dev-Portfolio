@@ -149,10 +149,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
                   <div 
                     ref={(el) => { if (el) iconsRef.current[0] = el; }}
                     className="absolute top-8 -right-2 sm:top-12 sm:-right-4 w-10 h-10 sm:w-14 sm:h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    title="NestJS"
                   >
                     <img 
-                      src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
-                      alt="Node.js" 
+                      src="https://cdn.simpleicons.org/nestjs/2dd4bf" 
+                      alt="NestJS" 
                       className="w-6 h-6 sm:w-8 sm:h-8 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
@@ -160,6 +161,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
                   <div 
                     ref={(el) => { if (el) iconsRef.current[1] = el; }}
                     className="absolute top-1/4 -left-4 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    title="Node.js"
                   >
                     <img 
                       src="https://cdn.simpleicons.org/nodedotjs/2dd4bf" 
@@ -171,10 +173,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
                   <div 
                     ref={(el) => { if (el) iconsRef.current[2] = el; }}
                     className="absolute bottom-1/4 -right-4 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    title="React"
                   >
                     <img 
-                      src="https://cdn.simpleicons.org/php/2dd4bf" 
-                      alt="PHP" 
+                      src="https://cdn.simpleicons.org/react/2dd4bf" 
+                      alt="React" 
                       className="w-8 h-8 sm:w-10 sm:h-10 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
@@ -182,10 +185,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSectionChange }) => {
                   <div 
                     ref={(el) => { if (el) iconsRef.current[3] = el; }}
                     className="absolute -bottom-2 left-1/4 sm:-bottom-4 w-10 h-10 sm:w-14 sm:h-14 bg-dark-bg/80 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-teal-400/20 hover:border-teal-400/50 transition-all duration-300 group"
+                    title="Laravel"
                   >
                     <img 
-                      src="https://cdn.simpleicons.org/express/2dd4bf" 
-                      alt="Express" 
+                      src="https://cdn.simpleicons.org/laravel/2dd4bf" 
+                      alt="Laravel" 
                       className="w-6 h-6 sm:w-8 sm:h-8 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>

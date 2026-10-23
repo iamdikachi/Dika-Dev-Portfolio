@@ -53,14 +53,22 @@ export const Resume: React.FC<ResumeProps> = () => {
           {/* Simple terminal write-up */}
           <div className="text-gray-300 space-y-2.5 border-l-2 border-teal-400/20 pl-4 py-1 leading-relaxed">
             <p className="text-teal-300 font-bold">
-              ONYEDIKACHI EMMANUEL — Full Stack Engineer
+              ONYEDIKACHI EMMANUEL — Full-Stack Engineer
             </p>
             <p className="text-gray-400">
-              Senior engineer with 8+ years of experience building scalable web applications, microservices, and leading engineering teams.
+              Full-Stack Engineer with 5 years of hands-on experience building and shipping web applications across Fintech, Edutech, and AI. Strong on backend (NestJS, Node.js, Laravel, PostgreSQL) and frontend (React, Next.js, TypeScript, Livewire).
             </p>
             <p className="text-gray-400">
-              If you want to check out my complete resume with verified work history, technical stack, and credentials, view the PDF directly in your browser.
+              Track record of building payment and wallet systems, multi-tenant architectures, AI-driven automation, and real-time features, often owning both layers of a product.
             </p>
+            <div className="text-xs text-gray-400 pt-1 border-t border-teal-400/10 space-y-1">
+              <div>
+                <span className="text-teal-400 font-medium">Education:</span> Higher National Diploma & National Diploma in Computer Science (Federal Polytechnic, Oko)
+              </div>
+              <div>
+                <span className="text-teal-400 font-medium">Core Stack:</span> Node.js · NestJS · Laravel · React · Next.js · TypeScript · AI Integration
+              </div>
+            </div>
           </div>
 
           {/* open command */}

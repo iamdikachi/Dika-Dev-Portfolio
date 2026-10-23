@@ -27,9 +27,9 @@ export const AIChatbot: React.FC = () => {
 
     // Simple mock response logic
     setTimeout(() => {
-      let response = "That's a great question! Onyedikachi (Dika.Dev) is a specialized Full Stack Developer with 6+ years of experience in AI Automation and modern web frameworks.";
-      if (input.toLowerCase().includes("skill")) response = "He specializes in Node.js, React, Laravel, and AI integrations (OpenAI, LangChain).";
-      if (input.toLowerCase().includes("contact")) response = "You can reach him via the Contact section or directly at emmanuelnnadi097@gmail.com.";
+      let response = "That's a great question! Onyedikachi (Dika.Dev) is a Full-Stack Engineer with 5 years of hands-on experience building and shipping web applications across Fintech, Edutech, and AI.";
+      if (input.toLowerCase().includes("skill") || input.toLowerCase().includes("stack")) response = "He specializes in NestJS, Node.js, Laravel, React, Next.js, TypeScript, PostgreSQL, and AI integrations (OpenAI API).";
+      if (input.toLowerCase().includes("contact") || input.toLowerCase().includes("hire") || input.toLowerCase().includes("email")) response = "You can reach him via the Contact section, by phone at 09066846864, or directly at emmanuelnnadi097@gmail.com.";
       
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
     }, 1000);

@@ -4,116 +4,37 @@ import path from "path";
 
 async function generateResume() {
   const pdfDoc = await PDFDocument.create();
-  
-  // Create Page 1
-  const page = pdfDoc.addPage([595.28, 841.89]); // A4 dimensions in points
-  const { width, height } = page.getSize();
+
+  // A4 dimensions
+  const pageWidth = 595.28;
+  const pageHeight = 841.89;
+  const margin = 42;
+  const contentWidth = pageWidth - margin * 2;
 
   const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const fontOblique = await pdfDoc.embedFont(StandardFonts.HelveticaOblique);
 
-  // Palette
-  const primaryColor = rgb(0.176, 0.831, 0.749); // #2dd4bf Teal
-  const darkColor = rgb(0.08, 0.10, 0.13); // Deep dark
-  const textDark = rgb(0.15, 0.18, 0.22);
+  // Color palette
+  const headerBg = rgb(0.08, 0.14, 0.22); // Deep dark navy
+  const accentTeal = rgb(0.18, 0.78, 0.72); // Teal
+  const textDark = rgb(0.12, 0.14, 0.18);
   const textMuted = rgb(0.42, 0.46, 0.52);
-  const lineColor = rgb(0.85, 0.88, 0.92);
+  const lineGrey = rgb(0.82, 0.85, 0.89);
+  const linkColor = rgb(0.10, 0.42, 0.70);
 
-  let y = height - 40;
-  const margin = 40;
-  const contentWidth = width - margin * 2;
-
-  // Header Banner Background
-  page.drawRectangle({
-    x: 0,
-    y: height - 105,
-    width: width,
-    height: 105,
-    color: rgb(0.04, 0.06, 0.08),
-  });
-
-  // Top accent bar
-  page.drawRectangle({
-    x: 0,
-    y: height - 5,
-    width: width,
-    height: 5,
-    color: primaryColor,
-  });
-
-  // Name
-  page.drawText("ONYEDIKACHI EMMANUEL", {
-    x: margin,
-    y: height - 42,
-    size: 20,
-    font: fontBold,
-    color: rgb(1, 1, 1),
-  });
-
-  // Title
-  page.drawText("SENIOR FULL STACK ENGINEER | SYSTEM ARCHITECT", {
-    x: margin,
-    y: height - 60,
-    size: 10.5,
-    font: fontBold,
-    color: primaryColor,
-  });
-
-  // Contact line
-  const contactText = "emmanuelnnadi097@gmail.com   |   +234 906 684 6864   |   Awka, Nigeria   |   github.com/iamdikachi   |   iamdikachi.com";
-  page.drawText(contactText, {
-    x: margin,
-    y: height - 82,
-    size: 8.5,
-    font: fontRegular,
-    color: rgb(0.8, 0.84, 0.88),
-  });
-
-  y = height - 125;
-
-  function drawSectionHeader(title) {
-    page.drawText(title.toUpperCase(), {
-      x: margin,
-      y: y,
-      size: 11,
-      font: fontBold,
-      color: darkColor,
-    });
-    
-    // Draw accent underline
-    page.drawLine({
-      start: { x: margin, y: y - 4 },
-      end: { x: margin + 40, y: y - 4 },
-      thickness: 2,
-      color: primaryColor,
-    });
-
-    page.drawLine({
-      start: { x: margin + 40, y: y - 4 },
-      end: { x: margin + contentWidth, y: y - 4 },
-      thickness: 0.5,
-      color: lineColor,
-    });
-
-    y -= 18;
-  }
-
-  // 1. PROFESSIONAL SUMMARY
-  drawSectionHeader("Professional Summary");
-  const summary =
-    "Results-driven Senior Full Stack Engineer with 8+ years of expertise architecting resilient microservices, high-performance web applications, and enterprise cloud solutions. Proven leadership across full software development lifecycles, reducing latency, scaling distributed systems to 100k+ daily users, and championing code quality and modern CI/CD automation.";
-  
-  // Multi-line text wrapper
-  function wrapText(text, maxChars) {
+  // Text wrap utility
+  function wrapTextToLines(text, font, fontSize, maxWidth) {
     const words = text.split(" ");
     const lines = [];
     let currentLine = "";
+
     for (const w of words) {
-      if ((currentLine + " " + w).length <= maxChars) {
-        currentLine = currentLine ? currentLine + " " + w : w;
+      const candidate = currentLine ? `${currentLine} ${w}` : w;
+      const width = font.widthOfTextAtSize(candidate, fontSize);
+      if (width <= maxWidth) {
+        currentLine = candidate;
       } else {
-        lines.push(currentLine);
+        if (currentLine) lines.push(currentLine);
         currentLine = w;
       }
     }
@@ -121,204 +42,449 @@ async function generateResume() {
     return lines;
   }
 
-  wrapText(summary, 98).forEach((line) => {
-    page.drawText(line, {
-      x: margin,
-      y: y,
-      size: 9,
-      font: fontRegular,
-      color: textDark,
-      lineHeight: 13,
+  // Draw Top Banner (Page 1)
+  function drawHeaderBanner(page) {
+    const bannerHeight = 92;
+    page.drawRectangle({
+      x: 0,
+      y: pageHeight - bannerHeight,
+      width: pageWidth,
+      height: bannerHeight,
+      color: headerBg,
     });
-    y -= 13;
-  });
 
-  y -= 8;
+    // Top Teal line
+    page.drawRectangle({
+      x: 0,
+      y: pageHeight - 4,
+      width: pageWidth,
+      height: 4,
+      color: accentTeal,
+    });
 
-  // 2. EXPERIENCE
-  drawSectionHeader("Professional Experience");
-
-  const experiences = [
-    {
-      role: "FullStack Developer",
-      company: "Eduzone",
-      period: "2022 - Present",
-      location: "Remote",
-      bullets: [
-        "Architected full-stack educational web platform with Laravel, Livewire, and MySQL connecting learners with educators.",
-        "Built responsive, dynamic user interfaces using Alpine.js and Tailwind CSS with server-rendered Blade templates.",
-        "Optimized relational database schema and query performance in MySQL for high-speed session matching."
-      ],
-    },
-    {
-      role: "Senior Frontend Developer",
-      company: "Callik",
-      period: "2020 - 2022",
-      location: "Remote",
-      bullets: [
-        "Developed high-performance e-commerce and social commerce web applications using Next.js, TypeScript, and Tailwind CSS.",
-        "Implemented modular and accessible design system with Shadcn UI components for fashion merchants across 15+ African countries.",
-        "Engineered interactive designer showcases, product galleries, and optimized checkout conversion flows."
-      ],
-    },
-    {
-      role: "Frontend Developer",
-      company: "Trarrk",
-      period: "2019 - 2020",
-      location: "Remote",
-      bullets: [
-        "Developed comprehensive modular design system with React, TypeScript, and Storybook, unifying 4 core platform applications.",
-        "Collaborated with UX/UI leadership to optimize core web vitals, enhancing mobile interaction speed and accessibility (WCAG 2.1 AA)."
-      ],
-    },
-  ];
-
-  for (const exp of experiences) {
-    page.drawText(exp.role, {
+    // Name
+    page.drawText("ONYEDIKACHI EMMANUEL", {
       x: margin,
-      y: y,
+      y: pageHeight - 36,
+      size: 21,
+      font: fontBold,
+      color: rgb(1, 1, 1),
+    });
+
+    // Subtitle
+    page.drawText("Full-Stack Engineer  ·  Node.js  ·  NestJS  ·  Laravel  ·  React  ·  AI Integration", {
+      x: margin,
+      y: pageHeight - 54,
+      size: 9.5,
+      font: fontRegular,
+      color: rgb(0.75, 0.88, 0.95),
+    });
+
+    // Contact line
+    const contactLine = "emmanuelnnadi097@gmail.com   |   09066846864   |   Remote   |   GitHub: github.com/iamdikachi   |   Portfolio: iamdikachi.com";
+    page.drawText(contactLine, {
+      x: margin,
+      y: pageHeight - 74,
+      size: 8.5,
+      font: fontRegular,
+      color: rgb(0.86, 0.90, 0.94),
+    });
+  }
+
+  // Section Title
+  function drawSectionTitle(page, title, curY) {
+    page.drawText(title.toUpperCase(), {
+      x: margin,
+      y: curY,
       size: 10,
       font: fontBold,
       color: textDark,
     });
 
-    const rightMeta = `${exp.company}  |  ${exp.period}  |  ${exp.location}`;
-    const metaWidth = fontBold.widthOfTextAtSize(rightMeta, 8.5);
-    page.drawText(rightMeta, {
-      x: margin + contentWidth - metaWidth,
-      y: y,
-      size: 8.5,
-      font: fontBold,
-      color: rgb(0.2, 0.45, 0.55),
+    page.drawLine({
+      start: { x: margin, y: curY - 3 },
+      end: { x: margin + contentWidth, y: curY - 3 },
+      thickness: 0.75,
+      color: lineGrey,
     });
 
-    y -= 12;
+    return curY - 14;
+  }
 
-    for (const b of exp.bullets) {
-      page.drawCircle({
-        x: margin + 8,
-        y: y + 2.5,
-        size: 1.8,
-        color: primaryColor,
+  // Draw Bullet point with optional bold prefix (e.g. "Auth system: ")
+  function drawBullet(page, bulletText, curY, maxWidth = contentWidth - 14, bulletOffset = 14) {
+    const colonIndex = bulletText.indexOf(":");
+    let prefix = "";
+    let body = bulletText;
+
+    if (colonIndex !== -1 && colonIndex < 35) {
+      prefix = bulletText.substring(0, colonIndex + 1);
+      body = bulletText.substring(colonIndex + 1).trimStart();
+    }
+
+    // Bullet circle
+    page.drawCircle({
+      x: margin + 4,
+      y: curY + 2.5,
+      size: 1.5,
+      color: textDark,
+    });
+
+    if (prefix) {
+      const fullText = `${prefix} ${body}`;
+      const wrapped = wrapTextToLines(fullText, fontRegular, 8.5, maxWidth);
+      const prefixWidth = fontBold.widthOfTextAtSize(prefix, 8.5);
+
+      wrapped.forEach((line, lineIdx) => {
+        if (lineIdx === 0) {
+          page.drawText(prefix, {
+            x: margin + bulletOffset,
+            y: curY,
+            size: 8.5,
+            font: fontBold,
+            color: textDark,
+          });
+
+          const rest = line.substring(prefix.length).trimStart();
+          page.drawText(rest, {
+            x: margin + bulletOffset + prefixWidth + 3,
+            y: curY,
+            size: 8.5,
+            font: fontRegular,
+            color: textDark,
+          });
+        } else {
+          page.drawText(line, {
+            x: margin + bulletOffset,
+            y: curY,
+            size: 8.5,
+            font: fontRegular,
+            color: textDark,
+          });
+        }
+        curY -= 11.5;
       });
-
-      const bulletLines = wrapText(b, 94);
-      for (let i = 0; i < bulletLines.length; i++) {
-        page.drawText(bulletLines[i], {
-          x: margin + 18,
-          y: y,
+    } else {
+      const wrapped = wrapTextToLines(body, fontRegular, 8.5, maxWidth);
+      wrapped.forEach((line) => {
+        page.drawText(line, {
+          x: margin + bulletOffset,
+          y: curY,
           size: 8.5,
           font: fontRegular,
           color: textDark,
         });
-        y -= 11.5;
-      }
+        curY -= 11.5;
+      });
     }
-    y -= 4;
+
+    return curY - 1.5;
   }
 
-  y -= 4;
-
-  // 3. CORE TECHNICAL SKILLS
-  drawSectionHeader("Core Technical Competencies");
-
-  const skillGroups = [
-    { label: "Frontend & Web:", items: "Next.js, React.js, TypeScript, JavaScript, Tailwind CSS, Framer Motion, HTML5/CSS3" },
-    { label: "Backend & Systems:", items: "Node.js, Express.js, Nest.js, PHP, Laravel, RESTful APIs, GraphQL, Microservices" },
-    { label: "Databases & Storage:", items: "PostgreSQL, MySQL, MongoDB, Redis, Schema Design, Performance Indexing" },
-    { label: "DevOps & Cloud:", items: "Docker, AWS (EC2, S3, CloudFront), GitHub Actions, CI/CD Pipelines, Linux" },
-    { label: "Testing & Quality:", items: "Jest, Pytest, Playwright, Cypress, Test-Driven Development (TDD), Sentry" },
-  ];
-
-  for (const sg of skillGroups) {
-    page.drawText(sg.label, {
+  function drawRoleHeader(page, role, company, period, loc, curY) {
+    const leftText = `${role}  ·  ${company}`;
+    page.drawText(leftText, {
       x: margin,
-      y: y,
-      size: 8.5,
+      y: curY,
+      size: 9.5,
       font: fontBold,
-      color: darkColor,
+      color: textDark,
     });
 
-    page.drawText(sg.items, {
-      x: margin + 115,
-      y: y,
+    const rightText = `${period}  ·  ${loc}`;
+    const rightW = fontRegular.widthOfTextAtSize(rightText, 8.5);
+    page.drawText(rightText, {
+      x: margin + contentWidth - rightW,
+      y: curY,
       size: 8.5,
+      font: fontRegular,
+      color: textMuted,
+    });
+
+    return curY - 13;
+  }
+
+  // ==========================================
+  // PAGE 1
+  // ==========================================
+  const page1 = pdfDoc.addPage([pageWidth, pageHeight]);
+  drawHeaderBanner(page1);
+
+  let y1 = pageHeight - 110;
+
+  // 1. PROFILE
+  y1 = drawSectionTitle(page1, "Profile", y1);
+  const profileSummary =
+    "Full-Stack Engineer with 5 years of hands-on experience building and shipping web applications across Fintech, Edutech, and AI. Strong on backend (NestJS, Node.js, Laravel, PostgreSQL) and frontend (React, Next.js, TypeScript, Livewire). Track record of building payment and wallet systems, multi-tenant architectures, AI-driven automation, and real-time features, often owning both layers of a product.";
+
+  wrapTextToLines(profileSummary, fontRegular, 8.8, contentWidth).forEach((line) => {
+    page1.drawText(line, {
+      x: margin,
+      y: y1,
+      size: 8.8,
       font: fontRegular,
       color: textDark,
     });
-    y -= 12.5;
+    y1 -= 12;
+  });
+
+  y1 -= 8;
+
+  // 2. TECHNICAL SKILLS (Two Columns with proper wrapping)
+  y1 = drawSectionTitle(page1, "Technical Skills", y1);
+
+  const colWidth = 240;
+  const col1X = margin;
+  const col2X = margin + colWidth + 25; // 42 + 240 + 25 = 307
+
+  function drawSkillGroup(page, x, curY, label, valueText, maxW) {
+    const fullText = `${label} ${valueText}`;
+    const wrapped = wrapTextToLines(fullText, fontRegular, 8.5, maxW);
+    const labelW = fontBold.widthOfTextAtSize(label, 8.5);
+
+    wrapped.forEach((line, idx) => {
+      if (idx === 0) {
+        page.drawText(label, {
+          x,
+          y: curY,
+          size: 8.5,
+          font: fontBold,
+          color: textDark,
+        });
+        const rest = line.substring(label.length).trimStart();
+        page.drawText(rest, {
+          x: x + labelW + 3,
+          y: curY,
+          size: 8.5,
+          font: fontRegular,
+          color: textDark,
+        });
+      } else {
+        page.drawText(line, {
+          x,
+          y: curY,
+          size: 8.5,
+          font: fontRegular,
+          color: textDark,
+        });
+      }
+      curY -= 11.5;
+    });
+
+    return curY - 3;
   }
 
-  y -= 6;
+  let skillsCol1Y = y1;
+  skillsCol1Y = drawSkillGroup(page1, col1X, skillsCol1Y, "Backend:", "NestJS, Express.js, Laravel (Passport, queues), Node.js, PHP", colWidth);
+  skillsCol1Y = drawSkillGroup(page1, col1X, skillsCol1Y, "Frontend:", "React, Next.js, TypeScript, Tailwind CSS, Livewire, Alpine.js, TanStack Query, Zustand", colWidth);
+  skillsCol1Y = drawSkillGroup(page1, col1X, skillsCol1Y, "Databases:", "PostgreSQL, MySQL, MongoDB, Redis, Prisma, Mongoose", colWidth);
 
-  // 4. EDUCATION & CERTIFICATIONS (2 Columns)
-  drawSectionHeader("Education & Credentials");
+  let skillsCol2Y = y1;
+  skillsCol2Y = drawSkillGroup(page1, col2X, skillsCol2Y, "DevOps:", "GitHub Actions, GitLab CI/CD, Docker, AWS (S3/EC2)", colWidth);
+  skillsCol2Y = drawSkillGroup(page1, col2X, skillsCol2Y, "Payments, Real-Time & AI:", "Paystack, Flutterwave, WebSockets, Pusher, OpenAI API, Puppeteer", colWidth);
+  skillsCol2Y = drawSkillGroup(page1, col2X, skillsCol2Y, "Testing & Docs:", "PHPUnit, Swagger/OpenAPI, Cypress, Playwright, Storybook", colWidth);
 
-  const colWidth = (contentWidth - 20) / 2;
+  y1 = Math.min(skillsCol1Y, skillsCol2Y) - 5;
 
-  // Left Column: Education
-  page.drawText("Bachelor of Science in Computer Science", {
+  // 3. PROFESSIONAL EXPERIENCE
+  y1 = drawSectionTitle(page1, "Professional Experience", y1);
+
+  // KodeHauz
+  y1 = drawRoleHeader(page1, "Senior Backend Engineer", "KodeHauz", "Feb 2026 – Present", "Remote", y1);
+  const kodehauzBullets = [
+    "Auth system: Architected multi-role JWT authentication with NestJS, covering Admin flows and environment-level secret key verification.",
+    "Database: Engineered PostgreSQL/Prisma schemas with full type safety; resolved complex migration conflicts across environments.",
+    "CI/CD: Stabilized GitHub Actions pipelines, cutting build failures by 40% through environment configuration fixes.",
+    "API: Standardized API documentation with Swagger/OpenAPI for frontend teams across all endpoints.",
+  ];
+  for (const b of kodehauzBullets) {
+    y1 = drawBullet(page1, b, y1);
+  }
+  y1 -= 5;
+
+  // Callik
+  y1 = drawRoleHeader(page1, "Senior Frontend Developer", "Callik (formerly Alphalli)", "Feb 2026 – Present", "Remote", y1);
+  const callikBullets = [
+    "Customer platform: Owned the customer-facing side of a multi-sided e-commerce platform (customer, merchant, admin) built with Next.js, React, TypeScript, and Tailwind CSS.",
+    "Data layer: Replaced a custom fetch client with Axios and TanStack Query, adding caching, request deduplication, and explicit loading, error, and empty states.",
+    "State management: Built a persistent global cart with Zustand and fixed SSR hydration mismatches using a hydration-guard pattern.",
+    "Design system: Moved styling to semantic CSS-variable tokens and corrected toast contrast for accessibility across light and dark modes.",
+  ];
+  for (const b of callikBullets) {
+    y1 = drawBullet(page1, b, y1);
+  }
+  y1 -= 5;
+
+  // Trarrk (3 bullets on Page 1)
+  y1 = drawRoleHeader(page1, "Lead Backend Developer", "Trarrk (Special Education Platform)", "Jan 2024 – Jan 2026", "Remote", y1);
+  const trarrkBulletsP1 = [
+    "AI integration: Built an OpenAI GPT-4o-mini powered IEP generation engine, automating educational goal creation for teachers.",
+    "Architecture: Designed a scalable multi-tenant MongoDB system with strict data isolation across organizations, therapists, and parents.",
+    "Real-time events: Built a high-frequency behavioral tracking system with automatic student progress updates via custom API.",
+  ];
+  for (const b of trarrkBulletsP1) {
+    y1 = drawBullet(page1, b, y1);
+  }
+
+  // Page 1 footer
+  page1.drawText("Page 1 of 2  ·  Onyedikachi Emmanuel  ·  Full-Stack Engineer", {
     x: margin,
-    y: y,
-    size: 9,
-    font: fontBold,
-    color: textDark,
-  });
-  page.drawText("Graduated with First Class Honors  |  2014 - 2018", {
-    x: margin,
-    y: y - 11,
-    size: 8,
+    y: 18,
+    size: 7.5,
     font: fontRegular,
     color: textMuted,
   });
 
-  // Right Column: Certifications
-  const rightColX = margin + colWidth + 20;
-  const certs = [
-    "AWS Certified Solutions Architect (Associate)",
-    "Professional Scrum Master I (PSM I) - Scrum.org",
-    "Meta React Developer Professional Certification",
+  // ==========================================
+  // PAGE 2
+  // ==========================================
+  const page2 = pdfDoc.addPage([pageWidth, pageHeight]);
+  let y2 = pageHeight - 45;
+
+  // Trarrk remaining bullet
+  y2 = drawBullet(page2, "Reporting: Automated PDF/CSV report generation using Puppeteer and Handlebars for behavioral and assessment data.", y2);
+  y2 -= 8;
+
+  // Cogrea
+  y2 = drawRoleHeader(page2, "Frontend Developer", "Cogrea", "Apr 2023 – Present", "Remote", y2);
+  const cogreaBullets = [
+    "Payment UI: Built React/TypeScript frontend for a secure payment gateway with Auth0 OAuth2, connecting to a Node.js/FastAPI backend.",
+    "CI/CD & Cloud: Managed GitLab CI/CD pipelines and AWS deployments, coordinating frontend releases with infrastructure teams.",
+  ];
+  for (const b of cogreaBullets) {
+    y2 = drawBullet(page2, b, y2);
+  }
+  y2 -= 6;
+
+  // Eduzone
+  y2 = drawRoleHeader(page2, "Full-Stack Developer", "Eduzone", "Mar 2022 – Present", "Awka, Nigeria", y2);
+  const eduzoneBullets = [
+    "Full-stack build: Built and maintain a tutoring marketplace (300+ teachers, 100+ students, 50 partners) with PHP, Laravel, Livewire, Tailwind CSS, Alpine.js, and MySQL, deployed with Docker.",
+    "Payments & wallets: Integrated Paystack, later migrated to Flutterwave; fixed critical wallet transaction bugs with idempotency, ensuring 100% user balance accuracy.",
+    "Backend: Laravel Passport authentication, queued jobs, scheduled tasks, form-request validation, and PHPUnit tests.",
+    "Real-time chat: Developed a Wirechat messaging system with Web Push notifications, boosting re-engagement by 25%.",
+  ];
+  for (const b of eduzoneBullets) {
+    y2 = drawBullet(page2, b, y2);
+  }
+  y2 -= 14;
+
+  // 4. NOTABLE PROJECTS
+  y2 = drawSectionTitle(page2, "Notable Projects", y2);
+
+  const projects = [
+    {
+      name: "Callik — E-commerce Platform",
+      link: "callik.com",
+      desc: "Customer-side storefront: Next.js, React, TypeScript, Tailwind CSS, TanStack Query, Zustand.",
+    },
+    {
+      name: "Eduzone — Tutoring Marketplace",
+      link: "eduzoneng.com",
+      desc: "Full-stack: PHP, Laravel, Livewire, Tailwind CSS, Alpine.js, MySQL, Paystack/Flutterwave, Docker.",
+    },
+    {
+      name: "Trarrk — Special Education Platform",
+      link: "trarrk.com",
+      desc: "NestJS backend with multi-tenant MongoDB, AI IEP engine, real-time tracking. Tech: NestJS, MongoDB, OpenAI API, Puppeteer.",
+    },
+    {
+      name: "Cogrea — Career GPS Platform",
+      link: "cogrea.com",
+      desc: "Tech: React, TypeScript, Node.js, FastAPI, Auth0, Docker, AWS.",
+    },
+    {
+      name: "Scuib.AI — AI Job Platform",
+      link: "scuib.com",
+      desc: "AI job matching with a recommendation engine. Tech: Node.js, React, TypeScript, OpenAI API.",
+    },
   ];
 
-  let certY = y;
-  for (const cert of certs) {
-    page.drawCircle({
-      x: rightColX + 3,
-      y: certY + 2.5,
-      size: 1.8,
-      color: primaryColor,
-    });
-    page.drawText(cert, {
-      x: rightColX + 12,
-      y: certY,
-      size: 8,
-      font: fontRegular,
+  for (const p of projects) {
+    page2.drawText(p.name, {
+      x: margin,
+      y: y2,
+      size: 9.2,
+      font: fontBold,
       color: textDark,
     });
-    certY -= 11;
+
+    const linkW = fontRegular.widthOfTextAtSize(p.link, 8.5);
+    page2.drawText(p.link, {
+      x: margin + contentWidth - linkW,
+      y: y2,
+      size: 8.5,
+      font: fontRegular,
+      color: linkColor,
+    });
+
+    y2 -= 12;
+    y2 = drawBullet(page2, p.desc, y2);
+    y2 -= 2.5;
   }
 
-  // Footer bar
-  page.drawRectangle({
-    x: 0,
-    y: 0,
-    width: width,
-    height: 18,
-    color: rgb(0.04, 0.06, 0.08),
-  });
+  y2 -= 10;
 
-  page.drawText("Verified Professional Resume  |  Onyedikachi Emmanuel  |  Available for Senior & Lead Roles", {
+  // 5. EDUCATION
+  y2 = drawSectionTitle(page2, "Education", y2);
+
+  const education = [
+    {
+      degree: "Higher National Diploma — Computer Science",
+      school: "Federal Polytechnic, Oko",
+      period: "Nov 2023 – Aug 2025",
+    },
+    {
+      degree: "National Diploma — Computer Science",
+      school: "Federal Polytechnic, Oko",
+      period: "Jul 2021 – Apr 2023",
+    },
+  ];
+
+  for (const edu of education) {
+    page2.drawText(edu.degree, {
+      x: margin,
+      y: y2,
+      size: 9.2,
+      font: fontBold,
+      color: textDark,
+    });
+
+    const periodW = fontRegular.widthOfTextAtSize(edu.period, 8.5);
+    page2.drawText(edu.period, {
+      x: margin + contentWidth - periodW,
+      y: y2,
+      size: 8.5,
+      font: fontRegular,
+      color: textMuted,
+    });
+
+    y2 -= 11.5;
+
+    page2.drawText(edu.school, {
+      x: margin,
+      y: y2,
+      size: 8.5,
+      font: fontRegular,
+      color: textMuted,
+    });
+
+    y2 -= 16;
+  }
+
+  // Page 2 footer
+  page2.drawText("Page 2 of 2  ·  Onyedikachi Emmanuel  ·  emmanuelnnadi097@gmail.com  ·  09066846864", {
     x: margin,
-    y: 5.5,
+    y: 18,
     size: 7.5,
     font: fontRegular,
-    color: rgb(0.65, 0.70, 0.75),
+    color: textMuted,
   });
 
   const pdfBytes = await pdfDoc.save();
   const outputPath = path.resolve("public", "resume.pdf");
   fs.writeFileSync(outputPath, pdfBytes);
-  console.log(`Resume successfully generated at: ${outputPath} (${pdfBytes.length} bytes)`);
+  console.log(`Resume successfully generated at: ${outputPath} (${pdfBytes.length} bytes, 2 pages)`);
 }
 
 generateResume().catch((err) => {

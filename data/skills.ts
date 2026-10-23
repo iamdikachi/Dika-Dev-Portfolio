@@ -11,85 +11,67 @@ export interface SkillCommandGroup {
 
 export const skillCommandGroups: SkillCommandGroup[] = [
   {
-    id: "planning",
-    category: "Planning",
-    command: "planning",
-    flag: "--tools",
-    items: ["Jira"],
-    type: "technical",
-  },
-  {
-    id: "architecture",
-    category: "System Architecture",
-    command: "system-architecture",
-    flag: "--diagram",
-    items: ["Draw.io"],
-    type: "technical",
-  },
-  {
-    id: "development",
-    category: "Development & Coding",
-    command: "development-and-coding",
-    flag: "--tools",
-    items: ["Visual Studio Code", "Git", "GitHub"],
-    type: "technical",
-  },
-  {
-    id: "ai-assistants",
-    category: "AI Coding Assistants",
-    command: "ai-coding-assistants",
-    flag: "--models",
-    items: ["Claude", "OpenAI"],
-    type: "technical",
-  },
-  {
-    id: "languages-frameworks",
-    category: "Programming Languages & Frameworks",
-    command: "programming-languages",
+    id: "backend",
+    category: "Backend Development",
+    command: "backend-architecture",
     flag: "--stack",
+    items: ["NestJS", "Express.js", "Laravel", "Node.js", "PHP"],
+    type: "technical",
+  },
+  {
+    id: "frontend",
+    category: "Frontend & UI",
+    command: "frontend-engineering",
+    flag: "--ecosystem",
     items: [
+      "React",
       "Next.js",
-      "React.js",
       "TypeScript",
-      "JavaScript",
-      "Node.js",
-      "Nest.js",
-      "Express.js",
-      "PHP",
-      "Laravel",
+      "Tailwind CSS",
+      "Livewire",
+      "Alpine.js",
+      "TanStack Query",
+      "Zustand",
     ],
     type: "technical",
   },
   {
     id: "database",
-    category: "Database",
+    category: "Databases & ORMs",
     command: "database",
     flag: "--engines",
-    items: ["MongoDB", "MySQL", "PostgreSQL"],
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Prisma", "Mongoose"],
     type: "technical",
   },
   {
-    id: "testing",
-    category: "Testing",
-    command: "testing",
-    flag: "--runners",
-    items: ["Jest", "Pytest", "Playwright", "Cypress"],
+    id: "devops",
+    category: "DevOps & Cloud",
+    command: "devops-infra",
+    flag: "--cloud",
+    items: ["GitHub Actions", "GitLab CI/CD", "Docker", "AWS (S3/EC2)"],
     type: "technical",
   },
   {
-    id: "deployment",
-    category: "Deployment",
-    command: "deployment",
-    flag: "--infra",
-    items: ["GitHub Actions", "Docker", "AWS"],
+    id: "payments-ai",
+    category: "Payments, Real-Time & AI",
+    command: "payments-and-ai",
+    flag: "--integrations",
+    items: [
+      "Paystack",
+      "Flutterwave",
+      "WebSockets",
+      "Pusher",
+      "OpenAI API",
+      "Puppeteer",
+    ],
     type: "technical",
   },
   {
-    id: "maintenance",
-    category: "Maintenance",
-    command: "maintenance",
-    flag: "--telemetry",
-    items: ["Sentry"],
+    id: "testing-docs",
+    category: "Testing & Documentation",
+    command: "testing-and-docs",
+    flag: "--qa",
+    items: ["PHPUnit", "Swagger/OpenAPI", "Cypress", "Playwright", "Storybook"],
     type: "technical",
   },
   {
@@ -111,57 +93,58 @@ export const skillCommandGroups: SkillCommandGroup[] = [
 ];
 
 export const skills: Skill[] = [
-  // Planning
-  { id: "1", name: "Jira", level: 90, category: "Planning", type: "technical" },
+  // Backend
+  { id: "1", name: "NestJS", level: 92, category: "Backend", type: "technical" },
+  { id: "2", name: "Node.js", level: 95, category: "Backend", type: "technical" },
+  { id: "3", name: "Laravel", level: 92, category: "Backend", type: "technical" },
+  { id: "4", name: "Express.js", level: 90, category: "Backend", type: "technical" },
+  { id: "5", name: "PHP", level: 90, category: "Backend", type: "technical" },
 
-  // System Architecture
-  { id: "2", name: "Draw.io", level: 90, category: "System Architecture", type: "technical" },
+  // Frontend
+  { id: "6", name: "React", level: 95, category: "Frontend", type: "technical" },
+  { id: "7", name: "Next.js", level: 94, category: "Frontend", type: "technical" },
+  { id: "8", name: "TypeScript", level: 92, category: "Frontend", type: "technical" },
+  { id: "9", name: "Tailwind CSS", level: 95, category: "Frontend", type: "technical" },
+  { id: "10", name: "TanStack Query", level: 90, category: "Frontend", type: "technical" },
+  { id: "11", name: "Zustand", level: 90, category: "Frontend", type: "technical" },
+  { id: "12", name: "Livewire", level: 88, category: "Frontend", type: "technical" },
+  { id: "13", name: "Alpine.js", level: 88, category: "Frontend", type: "technical" },
 
-  // Development & Coding
-  { id: "3", name: "Visual Studio Code", level: 95, category: "Development & Coding", type: "technical" },
-  { id: "4", name: "Git", level: 92, category: "Development & Coding", type: "technical" },
-  { id: "5", name: "GitHub", level: 92, category: "Development & Coding", type: "technical" },
+  // Databases
+  { id: "14", name: "PostgreSQL", level: 92, category: "Databases", type: "technical" },
+  { id: "15", name: "MySQL", level: 92, category: "Databases", type: "technical" },
+  { id: "16", name: "MongoDB", level: 90, category: "Databases", type: "technical" },
+  { id: "17", name: "Redis", level: 85, category: "Databases", type: "technical" },
+  { id: "18", name: "Prisma", level: 90, category: "Databases", type: "technical" },
+  { id: "19", name: "Mongoose", level: 88, category: "Databases", type: "technical" },
 
-  // AI Coding Assistants
-  { id: "6", name: "Claude", level: 90, category: "AI Coding Assistants", type: "technical" },
-  { id: "7", name: "OpenAI", level: 90, category: "AI Coding Assistants", type: "technical" },
+  // DevOps
+  { id: "20", name: "GitHub Actions", level: 90, category: "DevOps", type: "technical" },
+  { id: "21", name: "GitLab CI/CD", level: 86, category: "DevOps", type: "technical" },
+  { id: "22", name: "Docker", level: 88, category: "DevOps", type: "technical" },
+  { id: "23", name: "AWS", level: 85, category: "DevOps", type: "technical" },
 
-  // Programming Languages & Frameworks
-  { id: "8", name: "Next.js", level: 92, category: "Programming Languages", type: "technical" },
-  { id: "9", name: "React.js", level: 95, category: "Programming Languages", type: "technical" },
-  { id: "10", name: "TypeScript", level: 90, category: "Programming Languages", type: "technical" },
-  { id: "11", name: "JavaScript", level: 95, category: "Programming Languages", type: "technical" },
-  { id: "12", name: "Node.js", level: 90, category: "Programming Languages", type: "technical" },
-  { id: "13", name: "Nest.js", level: 85, category: "Programming Languages", type: "technical" },
-  { id: "14", name: "Express.js", level: 88, category: "Programming Languages", type: "technical" },
-  { id: "15", name: "PHP", level: 90, category: "Programming Languages", type: "technical" },
-  { id: "16", name: "Laravel", level: 92, category: "Programming Languages", type: "technical" },
+  // Payments, Real-Time & AI
+  { id: "24", name: "OpenAI API", level: 94, category: "AI & Real-Time", type: "technical" },
+  { id: "25", name: "Paystack", level: 95, category: "Payments", type: "technical" },
+  { id: "26", name: "Flutterwave", level: 92, category: "Payments", type: "technical" },
+  { id: "27", name: "WebSockets", level: 88, category: "AI & Real-Time", type: "technical" },
+  { id: "28", name: "Pusher", level: 88, category: "AI & Real-Time", type: "technical" },
+  { id: "29", name: "Puppeteer", level: 88, category: "AI & Real-Time", type: "technical" },
 
-  // Database
-  { id: "17", name: "MongoDB", level: 88, category: "Database", type: "technical" },
-  { id: "18", name: "MySQL", level: 90, category: "Database", type: "technical" },
-  { id: "19", name: "PostgreSQL", level: 88, category: "Database", type: "technical" },
-
-  // Testing
-  { id: "20", name: "Jest", level: 88, category: "Testing", type: "technical" },
-  { id: "21", name: "Pytest", level: 82, category: "Testing", type: "technical" },
-  { id: "22", name: "Playwright", level: 85, category: "Testing", type: "technical" },
-  { id: "23", name: "Cypress", level: 85, category: "Testing", type: "technical" },
-
-  // Deployment
-  { id: "24", name: "GitHub Actions", level: 88, category: "Deployment", type: "technical" },
-  { id: "25", name: "Docker", level: 85, category: "Deployment", type: "technical" },
-  { id: "26", name: "AWS", level: 82, category: "Deployment", type: "technical" },
-
-  // Maintenance
-  { id: "27", name: "Sentry", level: 85, category: "Maintenance", type: "technical" },
+  // Testing & Docs
+  { id: "30", name: "PHPUnit", level: 88, category: "Testing & Docs", type: "technical" },
+  { id: "31", name: "Swagger/OpenAPI", level: 92, category: "Testing & Docs", type: "technical" },
+  { id: "32", name: "Cypress", level: 85, category: "Testing & Docs", type: "technical" },
+  { id: "33", name: "Playwright", level: 86, category: "Testing & Docs", type: "technical" },
+  { id: "34", name: "Storybook", level: 85, category: "Testing & Docs", type: "technical" },
 
   // Soft Skills
-  { id: "28", name: "Problem Solving", level: 95, category: "Soft Skills", type: "soft" },
-  { id: "29", name: "Team Leadership", level: 90, category: "Soft Skills", type: "soft" },
-  { id: "30", name: "Communication", level: 95, category: "Soft Skills", type: "soft" },
-  { id: "31", name: "Adaptability", level: 93, category: "Soft Skills", type: "soft" },
-  { id: "32", name: "Collaboration", level: 94, category: "Soft Skills", type: "soft" },
-  { id: "33", name: "Critical Thinking", level: 92, category: "Soft Skills", type: "soft" },
-  { id: "34", name: "Time Management", level: 88, category: "Soft Skills", type: "soft" },
+  { id: "35", name: "Problem Solving", level: 95, category: "Soft Skills", type: "soft" },
+  { id: "36", name: "Team Leadership", level: 90, category: "Soft Skills", type: "soft" },
+  { id: "37", name: "Communication", level: 95, category: "Soft Skills", type: "soft" },
+  { id: "38", name: "Adaptability", level: 93, category: "Soft Skills", type: "soft" },
+  { id: "39", name: "Collaboration", level: 94, category: "Soft Skills", type: "soft" },
+  { id: "40", name: "Critical Thinking", level: 92, category: "Soft Skills", type: "soft" },
+  { id: "41", name: "Time Management", level: 88, category: "Soft Skills", type: "soft" },
 ];

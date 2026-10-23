@@ -105,7 +105,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onSectionChange 
                       <span className="font-medium">Save Page as PDF</span>
                     </Command.Item>
                     <Command.Item
-                      onSelect={() => window.open('mailto:onyedikachi@example.com')}
+                      onSelect={() => window.open('mailto:emmanuelnnadi097@gmail.com')}
                       className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-teal-400 hover:bg-teal-400/5 cursor-pointer transition-all aria-selected:bg-teal-400/10 aria-selected:text-teal-400 group"
                     >
                       <Mail className="w-5 h-5" />
