@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { experiences } from "@/data/experience";
-import { skills, skillCommandGroups } from "@/data/skills";
+import { skillCommandGroups } from "@/data/skills";
 import {
   Briefcase,
   Code,
@@ -10,14 +10,10 @@ import {
   Building2,
   MapPin,
   Calendar,
-  Sparkles,
-  GitBranch,
-  GitCommit,
   Terminal,
   CornerDownLeft,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScrollReveal } from "../ui/scrollReveal";
 import { Experience as ExperienceType } from "@/lib/types";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -491,7 +487,7 @@ const LiveTerminalStream: React.FC<{
 
             {/* Git Show Output */}
             {entry.outputType === "show" && entry.selectedCommit && (
-              <div className="p-4 rounded-xl bg-teal-400/[0.03] border border-teal-400/20 space-y-3">
+              <div className="p-4 rounded-xl bg-teal-400/3 border border-teal-400/20 space-y-3">
                 <div className="border-b border-teal-400/10 pb-2 flex flex-wrap items-center justify-between gap-2 text-xs">
                   <div>
                     <span className="text-gray-500">commit </span>
@@ -585,12 +581,10 @@ interface ExperienceProps {
   onSectionChange?: (section: string) => void;
 }
 
-export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
-  const [activeView, setActiveView] = useState("Companies");
-  const [terminalMode, setTerminalMode] = useState(false);
+export const Experience: React.FC<ExperienceProps> = () => {
   const [skillTab, setSkillTab] = useState<"technical" | "soft">("technical");
   const [currentPhase, setCurrentPhase] = useState(0); // 0: Companies, 1: Core Skills, 2: Terminal
-  const [storyMode] = useState(true);
+  const storyMode = true;
 
   const trackRef = useRef<HTMLDivElement>(null);
   const isManualOverride = useRef(false);
@@ -686,15 +680,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
       if (!isManualOverride.current) {
         if (progress < 0.33) {
           setCurrentPhase(0);
-          setActiveView("Companies");
-          setTerminalMode(false);
         } else if (progress < 0.67) {
           setCurrentPhase(1);
-          setActiveView("Core Skills");
-          setTerminalMode(false);
         } else {
           setCurrentPhase(2);
-          setTerminalMode(true);
         }
       }
     };
@@ -723,15 +712,6 @@ export const Experience: React.FC<ExperienceProps> = ({ onSectionChange }) => {
     }, 900);
 
     setCurrentPhase(phaseIndex);
-    if (phaseIndex === 0) {
-      setActiveView("Companies");
-      setTerminalMode(false);
-    } else if (phaseIndex === 1) {
-      setActiveView("Core Skills");
-      setTerminalMode(false);
-    } else {
-      setTerminalMode(true);
-    }
 
     if (!storyMode || !trackRef.current) return;
 

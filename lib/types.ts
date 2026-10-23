@@ -38,13 +38,6 @@ export interface Experience {
   technologies?: string[];
 }
 
-export interface Skill {
-  id: string;
-  name: string;
-  level: number;
-  category: string;
-  type?: "technical" | "soft" | "tool";
-}
 
 
 

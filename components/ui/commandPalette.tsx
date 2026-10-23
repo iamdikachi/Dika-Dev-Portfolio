@@ -45,7 +45,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onSectionChange 
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh] p-4">
+          <div className="fixed inset-0 z-100 flex items-start justify-center pt-[20vh] p-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -58,7 +58,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onSectionChange 
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="w-full max-w-[600px] z-[101] bg-dark-bg border border-teal-400/20 rounded-2xl shadow-2xl overflow-hidden"
+              className="w-full max-w-[600px] z-101 bg-dark-bg border border-teal-400/20 rounded-2xl shadow-2xl overflow-hidden"
             >
               <Command className="flex flex-col h-full">
                 <div className="flex items-center px-4 py-4 border-b border-teal-400/10">
@@ -114,7 +114,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onSectionChange 
                   </Command.Group>
                 </Command.List>
 
-                <div className="p-3 border-t border-teal-400/10 bg-teal-400/[0.02] flex items-center justify-between">
+                <div className="p-3 border-t border-teal-400/10 bg-teal-400/2 flex items-center justify-between">
                    <div className="flex items-center gap-2 text-[10px] text-gray-600">
                       <CommandIcon className="w-3 h-3" />
                       <span>Press <kbd className="font-mono text-teal-400">Ctrl + K</kbd> to toggle anywhere</span>
